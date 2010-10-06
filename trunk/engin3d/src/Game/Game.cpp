@@ -10,6 +10,8 @@ bool cGame::Init()
 {
   mbFinish = false;
   mfTimeElapsed = 0.0f;
+
+
   return true;
 }
 
