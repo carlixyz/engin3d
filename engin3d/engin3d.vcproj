@@ -191,6 +191,22 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Window"
+			>
+			<File
+				RelativePath=".\src\Window\ApplicationProperties.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Window\Window.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Window\Window.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\src\main.cpp"
 			>
