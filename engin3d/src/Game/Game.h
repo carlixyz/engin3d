@@ -8,8 +8,7 @@ class cGame : public cSingleton<cGame>
   friend class cSingleton<cGame>;
   bool mbFinish;
   float mfTimeElapsed;
-
-
+ 
  public:
   //Method to initialize the game
   bool Init();
