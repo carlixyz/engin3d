@@ -1,5 +1,6 @@
 #include "../Utility/Singleton.h"
 #include "GLHeaders.h"
+#include "../Window/Window.h"
 
 class cWindow;
 class cGraphicManager : public cSingleton <cGraphicManager>

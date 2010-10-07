@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "../Graphics/GraphicManager.h"
 #include <string>
 #include <sstream>
 
@@ -10,9 +11,11 @@
 //Method to initialize the game
 bool cGame::Init()
 {
+  //Init time and exit attribute
   mbFinish = false;
   mfTimeElapsed = 0.0f;
 
+  //Init window
   cApplicationProperties mProperties;
   mProperties.macApplicationName = "Test 1";
   mProperties.mbFullscreen = false;
@@ -21,6 +24,16 @@ bool cGame::Init()
   mProperties.muiHeight = 480;
 
   bool lbResult = cWindow::Get().Init( mProperties);
+  
+  //Init OpenGL
+  if (lbResult)
+  {
+    lbResult = cGraphicManager::Get().Init( &cWindow::Get() );
+
+    //If something failed kill the window
+    if (!lbResult)
+      cWindow::Get().Deinit();
+  }
   return lbResult;
 }
 
@@ -32,10 +45,6 @@ void cGame::Update(float lfTimeStep)
   //Update time
   mfTimeElapsed += lfTimeStep;
   
-  //If the time is over 5 seconds end the game
-  if (mfTimeElapsed >= 5.0f) 
-    mbFinish = true;
-
 	mbFinish = mbFinish || cWindow::Get().GetCloseApplication();
 	if (mbFinish)
 	{ 
@@ -46,27 +55,23 @@ void cGame::Update(float lfTimeStep)
 //Method to render the game 
 void cGame::Render()
 {
-  //Convert the time to string
-  std::stringstream lssTimeStream;
-  lssTimeStream << mfTimeElapsed;
+  //Clear buffers
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glLoadIdentity();
 
-  //Create the string
-  std::string lsDebugString;
-  lsDebugString = std::string("Time elapsed ") + lssTimeStream.str() + std::string("\n");
+  //Render here
 
-  //Print the string
-#ifdef _WIN32
-  OutputDebugString(lsDebugString.c_str());
-#else
-  std::cout << lsDebugString.c_str();
-#endif
-
+  cGraphicManager::Get().SwapBuffer();
 }
 
 //Method to deinitialize the game
 bool cGame::Deinit()
 {
-	bool lbResult = cWindow::Get().Deinit();
+  //Deinit graphic manager
+  bool lbResult = cGraphicManager::Get().Deinit();
+
+  //Deinit window
+	lbResult =  lbResult && cWindow::Get().Deinit();
   return lbResult;
 }
  
