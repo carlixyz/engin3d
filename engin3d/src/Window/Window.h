@@ -28,6 +28,18 @@ class cWindow : public cSingleton<cWindow>
   //Method to deinitialize the window
   bool Deinit();
 
+  //Method to get the width 
+  inline unsigned GetWidth() { return mProperties.muiWidth; }
+
+  //Method to get the height
+  inline unsigned GetHeight() { return mProperties.muiHeight; }
+
+  //Method to get the bpp
+  inline unsigned GetBpp() { return mProperties.muiBits; }
+
+  //Get DC
+  inline HDC &GetHDC() { returnn mDC; }
+
   inline bool GetCloseApplication() { return mbCloseApplication; }
   inline HWND GetHWND() { return mWnd; }
 
