@@ -38,7 +38,7 @@ class cWindow : public cSingleton<cWindow>
   inline unsigned GetBpp() { return mProperties.muiBits; }
 
   //Get DC
-  inline HDC &GetHDC() { returnn mDC; }
+  inline HDC &GetHDC() { return mDC; }
 
   inline bool GetCloseApplication() { return mbCloseApplication; }
   inline HWND GetHWND() { return mWnd; }

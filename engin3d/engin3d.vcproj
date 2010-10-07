@@ -60,7 +60,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib"
+				AdditionalDependencies="winmm.lib OpenGL32.lib GLu32.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -133,7 +133,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib"
+				AdditionalDependencies="winmm.lib OpenGL32.lib GLu32.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -204,6 +204,22 @@
 			</File>
 			<File
 				RelativePath=".\src\Window\Window.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Graphics"
+			>
+			<File
+				RelativePath=".\src\Graphics\GLHeaders.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Graphics\GraphicManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Graphics\GraphicManager.h"
 				>
 			</File>
 		</Filter>

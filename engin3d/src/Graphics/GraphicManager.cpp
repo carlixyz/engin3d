@@ -1,4 +1,5 @@
 #include "GraphicManager.h"
+#include <assert.h>
 
 //Method to init the class
 bool cGraphicManager::Init( cWindow *lpWindow )
@@ -36,7 +37,7 @@ bool cGraphicManager::CreateContext( cWindow *lpWindow )
   };
 
   //Create the Device Context
-  HCD &lDC = lpWindow->GetHDC();
+  HDC &lDC = lpWindow->GetHDC();
   if (!lDC)
   {
     Deinit();
@@ -150,5 +151,5 @@ bool cGraphicManager::Deinit()
 void cGraphicManager::SwapBuffer()
 {
   if ( mpWindow )
-    SwapBuffers(mpWindow->GetHDC();
+    SwapBuffers(mpWindow->GetHDC());
 }
