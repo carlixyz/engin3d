@@ -60,6 +60,8 @@ void cGame::Render()
   glLoadIdentity();
 
   //Render here
+  cGraphicManager::Get().DrawPoint(cVec3(0,0,-5),cVec3(1.0,1.0,0.0));
+  cGraphicManager::Get().DrawLine(cVec3(0,1,-2),cVec3(1,0,-3),cVec3(1.0,0.0,0.0));
 
   cGraphicManager::Get().SwapBuffer();
 }
