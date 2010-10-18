@@ -154,6 +154,36 @@ void cGraphicManager::SwapBuffer()
     SwapBuffers(mpWindow->GetHDC());
 }
 
+void cGraphicManager::SetWorldMatrix( const cMatrix &lMatrix )
+{
+	mWorldMatrix = lMatrix;
+	RefreshWorldView();
+}
+
+void cGraphicManager::RefreshWorldView()
+{
+	//Select the ModelView Matrix
+	glMatrixMode(GL_MODELVIEW);
+	// Calculate the modelView Matrix
+	cMatrix lWorldView = mpActiveCamera->GetView();
+	lWorldView = mWorldMatrix * lWorldView;
+	// Set the View Matrix
+	glLoadMatrixf( lWorldView.AsFloatPointer() );
+}
+
+void cGraphicManager::ActivateCamera(cCamera *lpCamera)
+{
+	assert(lpCamera);
+	mpActiveCamera = lpCamera;
+
+	// Select The Projection Matrix
+	glMatrixMode(GL_PROJECTION);
+	// Set The Projection Matrix
+	glLoadMatrixf( mpActiveCamera->GetProj().AsFloatPointer() );
+	//Refresh the world View matrix
+	RefreshWorldView();
+}
+
 // Render Auxiliar Tools
 void cGraphicManager::DrawPoint(const cVec3 &lvPosition, const cVec3 &lvColor)
 {
