@@ -1,6 +1,7 @@
 #ifndef CGAME_H
 #define	CGAME_H
 #include "../Utility/Singleton.h"
+#include "../Graphics/GraphicManager.h"
 
 class cGame : public cSingleton<cGame>
 {
@@ -8,6 +9,7 @@ class cGame : public cSingleton<cGame>
   friend class cSingleton<cGame>;
   bool mbFinish;
   float mfTimeElapsed;
+  cCamera m3DCamera;
  
  public:
   //Method to initialize the game

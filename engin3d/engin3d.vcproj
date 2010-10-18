@@ -211,6 +211,14 @@
 			Name="Graphics"
 			>
 			<File
+				RelativePath=".\src\Graphics\Camera.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Graphics\Camera.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Graphics\GLHeaders.h"
 				>
 			</File>

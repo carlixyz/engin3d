@@ -1,5 +1,6 @@
 #include "../Utility/Singleton.h"
 #include "GLHeaders.h"
+#include "Camera.h"
 #include "../Window/Window.h"
 #include "../MathLib/MathLib.h"
 
@@ -10,12 +11,19 @@ class cGraphicManager : public cSingleton <cGraphicManager>
     cWindow* mpWindow;
     GLuint mPixelFormat;
     HGLRC mHRC;
+	cCamera * mpActiveCamera;
+	cMatrix mWorldMatrix;
+
   public:
     bool Init( cWindow * lpWindow );
     bool Deinit();
     void SwapBuffer();
     bool CreateContext( cWindow *lpWindow );
     void InitializeGLState();
+
+	void SetWorldMatrix( const cMatrix &lMatrix );
+	void RefreshWorldView();
+	void ActivateCamera( cCamera * lpCamera );
 
 	//Auxiliar Tools for rendering
 	void DrawPoint(const cVec3 &lvPosition, const cVec3 &lvColor ); 
