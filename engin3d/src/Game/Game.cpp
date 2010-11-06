@@ -1,15 +1,21 @@
 #include "Game.h"
 #include <string>
 #include <sstream>
+#include "InputConfiguration.h"
+#include "../Input/InputManager.h"
 
 #ifdef _WIN32
   #include <windows.h>
   #include "../Window/Window.h" 
 #endif
 
+
 //Method to initialize the game
 bool cGame::Init()
 {
+  extern tActionMapping kaActionMapping[];
+
+ 
   //Init time and exit attribute
   mbFinish = false;
   mfTimeElapsed = 0.0f;
@@ -30,7 +36,10 @@ bool cGame::Init()
 
 
   bool lbResult = cWindow::Get().Init( mProperties);
-  
+
+   //Init Input Manager
+  cInputManager::Get().Init(kaActionMapping, eIA_Count);
+
   //Init OpenGL
   if (lbResult)
   {
@@ -48,10 +57,15 @@ void cGame::Update(float lfTimeStep)
 {
 	cWindow::Get().Update();
 
+  //Update Input manager
+  cInputManager::Get().Update(lfTimeStep);
+
   //Update time
   mfTimeElapsed += lfTimeStep;
   
-	mbFinish = mbFinish || cWindow::Get().GetCloseApplication();
+	mbFinish = mbFinish || 
+             cWindow::Get().GetCloseApplication() ||
+             IsPressed(eIA_CloseApplication);
 	if (mbFinish)
 	{ 
 		return;
@@ -92,6 +106,9 @@ void cGame::Render()
 //Method to deinitialize the game
 bool cGame::Deinit()
 {
+  //Deinit Input Manager
+  cInputManager::Get().Deinit();
+
   //Deinit graphic manager
   bool lbResult = cGraphicManager::Get().Deinit();
 

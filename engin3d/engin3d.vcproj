@@ -41,6 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories=".\src\Input\ois\includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -176,6 +177,14 @@
 			</File>
 			<File
 				RelativePath=".\src\Game\Game.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Game\InputConfiguration.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Game\InputConfiguration.h"
 				>
 			</File>
 		</Filter>
@@ -338,6 +347,42 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Input"
+			>
+			<File
+				RelativePath=".\src\Input\GenericDevice.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\InputAction.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\InputAction.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\InputEntry.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\InputManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\InputManager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\Keyboard.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\Keyboard.h"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\src\main.cpp"
