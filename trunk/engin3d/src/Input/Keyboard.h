@@ -4,10 +4,10 @@
 #include <Windows.h>
 #include "GenericDevice.h"
 
-#include "OISInputManager.h"
-#include "OISException.h"
-#include "OISKeyboard.h"
-#include "OISEvents.h"
+#include "ois\includes\OISInputManager.h"
+#include "ois\includes\OISException.h"
+#include "ois\includes\OISKeyboard.h"
+#include "ois\includes\OISEvents.h"
 
 class cKeyboard : public cGenericDevice, public OIS::KeyListener
 {  
