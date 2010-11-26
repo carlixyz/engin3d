@@ -8,5 +8,7 @@
 #define PI2 (6.283185307179586476925286766559f)
 ///	Constante Epsilon: Un valor suficientemente peque—o como para ser despreciable 
 #define EPSILON (0.00001f)
+/// La mitad de la Constante PI 
+#define HALF_PI (PI / 2.0f )
 
 #endif

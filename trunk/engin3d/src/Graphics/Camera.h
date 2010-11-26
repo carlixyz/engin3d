@@ -10,7 +10,8 @@ private:
 
 public:
 	void Init();
-	void SetLookAt( const cVec3 &lvPosition, const cVec3 &lvTarget, const cVec3 &lvUpWorld );
+	void SetLookAt( const cVec3 &lvPosition, const cVec3 &lvTarget,// LvUpWorld by default is +Y Vector
+		const cVec3 &lvUpWorld = cVec3(0.0f, 1.0f, 0.0f) );	 
 
 	void SetOrtho(	float lfLeft, float lfRight,
 					float lfBottom, float lfTop,
