@@ -204,7 +204,7 @@ void cGraphicManager::DrawLine(const cVec3 &lvPosition1, const cVec3 &lvPosition
 	glDisable(GL_TEXTURE_2D);
 
 	//LINE
-	glLineWidth(1);
+	glLineWidth(2);
 	glColor3f(lvColor.x, lvColor.y, lvColor.z);
 	glBegin(GL_LINES);
 
