@@ -19,7 +19,7 @@ public:
 	virtual void Update(float lfTimestep) = 0; // virtual pure foo 
 
 	// This foo it´s for set the target position from anywhere
-	//virtual void SetTarget( const cVec3 &lvTarget ) = 0; // It Doesn´t Work ! 
+	virtual void SetTarget(float posX, float posY, float posZ ) = 0;  
 };
 
 #endif /* CBEHAVIOURBASE_H */

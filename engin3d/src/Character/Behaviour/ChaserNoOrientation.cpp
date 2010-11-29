@@ -4,7 +4,7 @@
 void cChaserNoOrientation::Init(cCharacter *lpCharacter)
 { 
 	// Inicializar los atributos del comportamiento 
-	mTarget = cVec3( -5.0f, 0.0f, 5.0f);
+//	mTarget = cVec3( -5.0f, 0.0f, -5.0f); // Not needed for now
 	mpCharacter = lpCharacter;	
 }
 
@@ -12,7 +12,10 @@ void cChaserNoOrientation::Deinit()
 { 
 	mpCharacter = NULL;
 }
-
+void cChaserNoOrientation::SetTarget(float posX, float posY, float posZ)
+{
+	mTarget = cVec3( posX, posY, posZ );
+}
 void cChaserNoOrientation::Update(float lfTimestep)
 {
 	//Calcular el vector distancia (diferencia entre la posición del
@@ -41,4 +44,6 @@ void cChaserNoOrientation::Update(float lfTimestep)
 		mpCharacter->SetPosition(lVecPos);
 	}
 }
+
+
 

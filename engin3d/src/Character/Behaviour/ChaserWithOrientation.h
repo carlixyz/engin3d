@@ -24,6 +24,8 @@ public:
 	// special Implementation of the current behaviour 
 	void Update(float lfTimestep); 
 
+	void SetTarget(float posX, float posY, float posZ ); 
+
 };
 
 #endif /* CCHASERORIENTED */

@@ -8,6 +8,7 @@ class cCharacter
 {
  private:  
 
+	int miId;
 	cVec3 mPosition;
 	float mfYaw;
 	float mfSpeed;
@@ -17,7 +18,7 @@ class cCharacter
 
  public:
 	  // initialize vars
-	  void Init();
+	  void Init( int liId );
 
 	  // empty definition
 	  void Deinit();
@@ -31,12 +32,11 @@ class cCharacter
 	  void Render();
 
 	  //Getters
-	  inline const cVec3 &GetPosition() const { return mPosition; }
+	  inline const int &GetId() const { return miId; }
+  	  inline const cVec3 &GetPosition() const { return mPosition; }
   	  inline const float GetYaw() const { return mfYaw; }
   	  inline const float GetSpeed() const { return mfSpeed; }
   	  inline const float GetAngSpeed() const { return mfAngSpeed; }
-
-	  void SetActiveBehaviour( cBehaviourBase * lpBehaviour ); // Set current behaviour
 
 	  // Return front Vector of Character
   	  inline cVec3 GetFront() const { return cVec3( sinf(mfYaw), 0.0f, cosf(mfYaw) )  ;}
@@ -47,14 +47,16 @@ class cCharacter
   	  // Return Right vector of character
 	  inline cVec3 GetRight() const { return -GetLeft(); }
 
+	  inline cBehaviourBase* GetActiveBehaviour() { return mpActiveBehaviour; }// Get a pointer of the current Behaviour
+
 	  // Setters
 	  void SetPosition( const cVec3 &lPosition );
 	  void SetYaw( float lfYaw );
 	  void SetSpeed( float lfSpeed );
 	  void SetAngSpeed( float lfAngSpeed );
 
-	  inline cBehaviourBase* GetActiveBehaviour() { return mpActiveBehaviour; }// Get a pointer of the current Behaviour
-
+  	  void SetActiveBehaviour( cBehaviourBase * lpBehaviour ); // Set current behaviour
+  	  void SetActiveBehaviour( cBehaviourBase * lpBehaviour, float posX, float posY, float posZ ); // Same but with Target
 };
 
 #endif	/* CCHARACTER_H */

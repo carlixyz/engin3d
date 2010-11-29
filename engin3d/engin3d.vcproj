@@ -396,6 +396,26 @@
 			<Filter
 				Name="Scripts"
 				>
+				<File
+					RelativePath=".\src\Data\Scripts\CreatePatrol.lua"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Data\Scripts\test1.lua"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Data\Scripts\test2.lua"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Data\Scripts\test3.lua"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Data\Scripts\test4.lua"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -461,6 +481,14 @@
 		<Filter
 			Name="Lua"
 			>
+			<File
+				RelativePath=".\src\Lua\LuaFunctions.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Lua\LuaFunctions.h"
+				>
+			</File>
 			<File
 				RelativePath=".\src\Lua\LuaManager.cpp"
 				>
