@@ -3,13 +3,18 @@
 
 void cChaserSnapOrientation::Init(cCharacter *lpCharacter)
 { // Inicializar los atributos del comportamiento 
-	mTarget = cVec3( 5.0f, 0.0f, 3.0f);
+//	mTarget = cVec3( -5.0f, 0.0f, -5.0f); // Not needed for now
 	mpCharacter = lpCharacter;	
 }
 
 void cChaserSnapOrientation::Deinit()
-{ // Deinicializar los atributos del comportamiento ¿ cuales ?
+{ // Deinicializar los atributos del comportamiento 
 	mpCharacter = NULL;
+}
+
+void cChaserSnapOrientation::SetTarget(float posX, float posY, float posZ)
+{
+	mTarget = cVec3( posX, posY, posZ );
 }
 
 void cChaserSnapOrientation::Update(float lfTimestep)
@@ -44,3 +49,4 @@ void cChaserSnapOrientation::Update(float lfTimestep)
 		mpCharacter->SetYaw( atan2f(lDistanceVec.x, lDistanceVec.z	) );
 
 }
+

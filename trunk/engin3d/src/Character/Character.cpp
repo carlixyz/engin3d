@@ -2,8 +2,9 @@
 #include "Character.h"
 #include "../Graphics/GraphicManager.h"
 
-void cCharacter::Init()
+void cCharacter::Init(  int liId )
 {	
+	miId = liId;
 	mPosition = cVec3( 0.0f, 0.0f, 0.0f) ;
 	mfYaw = 0.0f;
 	mfSpeed = 0.0f;
@@ -68,10 +69,15 @@ void cCharacter::SetAngSpeed(float lfAngSpeed)
 }
 
 void cCharacter::SetActiveBehaviour(cBehaviourBase *lpBehaviour)
-{
-	
+{	
 		mpActiveBehaviour = lpBehaviour;
 		mpActiveBehaviour->Init(this);
+}
+void cCharacter::SetActiveBehaviour( cBehaviourBase * lpBehaviour, float posX, float posY, float posZ )
+{
+		mpActiveBehaviour = lpBehaviour;
+		mpActiveBehaviour->Init(this);
+		mpActiveBehaviour->SetTarget(  posX, posY, posZ );
 }
 
 

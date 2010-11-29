@@ -1,9 +1,10 @@
 #include "Game.h"
-#include <string>
-#include <sstream>
+
+#include "../Lua/LuaManager.h"
 #include "InputConfiguration.h"
 #include "../Input/InputManager.h"
 #include "../Character/CharacterManager.h"
+
 
 #ifdef _WIN32
   #include <windows.h>
@@ -48,36 +49,19 @@ bool cGame::Init()
     if (!lbResult)
       cWindow::Get().Deinit();
   }
+  // Character Manager initialization
+  cCharacterManager::Get().Init();
 
-    // Character Creation 1 ( With Orientation )
-  cCharacterManager::Get().Init();
-  cCharacter* lpCharacter1 = cCharacterManager::Get().CreateCharacter();
-  lpCharacter1->SetPosition( cVec3( 2.0f, 0.0f, 5.0f) );
-  lpCharacter1->SetSpeed( 3.0f );
-  lpCharacter1->SetYaw( 1.0f );
-  lpCharacter1->SetAngSpeed( 2.0f );
-  
-    // Character Creation 2 ( Without Orientation )
-  cCharacterManager::Get().Init();
-  cCharacter* lpCharacter2 = cCharacterManager::Get().CreateCharacter();
-  lpCharacter2->SetPosition( cVec3( -2.0f, 0.0f, -5.0f) );
-  lpCharacter2->SetSpeed( 1.0f );
-  lpCharacter2->SetYaw( -5.0f );
-
-      // Character Creation 3 ( Snap orientation )
-  cCharacterManager::Get().Init();
-  cCharacter* lpCharacter3 = cCharacterManager::Get().CreateCharacter();
-  lpCharacter3->SetSpeed( 2.0f );
-  
-  // Behaviour Setting
+   // Behaviour Setting
   cBehaviourManager::Get().Init() ;
-  cBehaviourBase* lpBehaviour1 = cBehaviourManager::Get().CreateBehaviour( eCHASER_WITH_ORIENTATION );
-  cBehaviourBase* lpBehaviour2 = cBehaviourManager::Get().CreateBehaviour( eCHASER_SNAP_ORIENTATION );
-  cBehaviourBase* lpBehaviour3 = cBehaviourManager::Get().CreateBehaviour( eCHASER_NO_ORIENTATION );
 
-  lpCharacter1->SetActiveBehaviour( lpBehaviour1 );
-  lpCharacter2->SetActiveBehaviour( lpBehaviour2 );
-  lpCharacter3->SetActiveBehaviour( lpBehaviour3 );
+	// Init LuaManager
+  cLuaManager::Get().Init();
+  RegisterLuaFunctions(); // C++ Functions Registered into Lua
+
+  // REMEMBER THE FOLDERS STRUCTURE TO ACCESS THE FILES 
+  cLuaManager::Get().DoFile( "Src/Data/Scripts/CreatePatrol.lua"  );
+//  cLuaManager::Get().DoString( "CreatePatrol( 5, 0, 5.5, 2.1, 3)" );
 
   return lbResult;
 }
@@ -143,6 +127,12 @@ bool cGame::Deinit()
 
   //Deinit CharacterManager
   cCharacterManager::Get().Deinit();
+
+  // Behaviour Setting
+  cBehaviourManager::Get().Deinit() ;
+
+  //Deinit Lua Manager
+  cLuaManager::Get().Deinit();
 
   //Deinit graphic manager
   bool lbResult = cGraphicManager::Get().Deinit();

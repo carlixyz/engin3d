@@ -4,8 +4,12 @@
 void cChaserWithOrientation::Init(cCharacter *lpCharacter)
 {  
 	// Inicializar los atributos del comportamiento 
-	mTarget = cVec3( -5.0f, 0.0f, -5.0f);
+//	mTarget = cVec3( -5.0f, 0.0f, -5.0f); // Not needed for now
 	mpCharacter = lpCharacter;	
+}
+void cChaserWithOrientation::SetTarget(float posX, float posY, float posZ)
+{
+	mTarget = cVec3( posX, posY, posZ );
 }
 
 void cChaserWithOrientation::Deinit()
@@ -67,7 +71,8 @@ void cChaserWithOrientation::Update(float lfTimestep)
 	if (lfAngle > lfAngleDisplacement ) // Si el giro que puede realizar en este frame
 		lfAngle = lfAngleDisplacement; // es menor al necesario restringimos la rotación 
 
-	cPlane lPlane; // We are going to make a test plane
+	cPlane lPlane;
+	// We made a test plane to check if target is at the right or left of Character
 	lPlane.Init( mpCharacter->GetRight(), mpCharacter->GetPosition() );
 
 	if ( lPlane.PointTest(mTarget) < 0.0f )
@@ -84,4 +89,6 @@ void cChaserWithOrientation::Update(float lfTimestep)
 
  
 }
+
+
 

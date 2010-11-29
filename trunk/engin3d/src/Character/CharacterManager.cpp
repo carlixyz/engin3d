@@ -41,8 +41,14 @@ void cCharacterManager::Render()
 
 cCharacter* cCharacterManager::CreateCharacter()
 {
+	int liNextId = 1;
+
+	//If not empty take Last Id of the list + 1
+	if ( !mCharacters.empty() ) 
+		liNextId += mCharacters.back()->GetId();
+	
 	cCharacter* lpCharacter = new cCharacter();
-	lpCharacter->Init();
+	lpCharacter->Init( liNextId );
 	mCharacters.push_back(lpCharacter);
 
 	return lpCharacter;

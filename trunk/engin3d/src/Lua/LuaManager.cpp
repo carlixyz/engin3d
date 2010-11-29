@@ -1,5 +1,19 @@
 #include "LuaManager.h"
 
+#ifdef _WIN32
+ #include <Windows.h>
+ #include <sstream>
+ 
+void DbgOutInt(std::string label, std::string value )
+ {
+	 // Foo for check up in somewhere the Debug Output
+	 std::stringstream strs;
+	 strs << value << std::endl << std::endl;
+	label.append(strs.str()) ;
+	const char *c_str =label.c_str() ;
+	OutputDebugString( c_str ) ;
+ }
+#endif
 
 // Constructor
 cLuaManager::cLuaManager()
@@ -61,7 +75,13 @@ bool cLuaManager::CheckError( int liError )
 	{
 		assert( mpLuaContext );
 		// Showing the error message (could be by outputdebug string)
-		printf( "Error: %s\n", lua_tostring( mpLuaContext, -1 ) );
+	
+		#ifdef _WIN32
+		DbgOutInt("\n Error: \n",lua_tostring( mpLuaContext, -1 )  );
+		#else	
+		printf( "\n Error: %s\n", lua_tostring( mpLuaContext, -1 ) );
+		#endif
+
 		// taking the message from the top of the stack
 		lua_pop( mpLuaContext, 1 );
 		return false;

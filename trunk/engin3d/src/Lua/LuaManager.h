@@ -1,16 +1,17 @@
 #ifndef LUAMANAGER_H
 #define LUAMANAGER_H
 
-#include "..\Utility\Singleton.h"
 #include <iostream>
 #include <cassert>
+#include "LuaFunctions.h"
+#include "..\Utility\Singleton.h"
+
 extern "C"
 {
 	#include "Src/lua.h"
 	#include "Src/lauxlib.h"
 	#include "Src/lualib.h"
 }
-
 // extern C: tells to compiler that the library 
 // must be compiled in C (and not C++)
 
