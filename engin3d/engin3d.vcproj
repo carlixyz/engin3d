@@ -194,6 +194,30 @@
 			Name="Utility"
 			>
 			<File
+				RelativePath=".\src\Utility\InternalResource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Utility\Resource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Utility\ResourceHandle.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Utility\ResourceHandle.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Utility\ResourceManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Utility\ResourceManager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Utility\Singleton.h"
 				>
 			</File>
