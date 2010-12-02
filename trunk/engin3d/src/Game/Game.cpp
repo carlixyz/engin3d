@@ -5,7 +5,6 @@
 #include "../Input/InputManager.h"
 #include "../Character/CharacterManager.h"
 
-
 #ifdef _WIN32
   #include <windows.h>
   #include "../Window/Window.h" 
