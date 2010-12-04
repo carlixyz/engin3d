@@ -49,8 +49,9 @@ bool cGame::Init()
 
   // Init the font
   cTextureManager::Get().Init( 256 ); // <- Cuanto Debería ser luiMaxSize para las texturas ??????????
-  mFont.Init( "./Src/Data/Fonts/Test1.fnt" );					// <<<<<<<<<<<<<<<<<<<< EL PROBLEMA ANDA POR AQUI: COMENTA  ESTO Y COMPILA! ! !
+//  mFont.Init( "./Src/Data/Fonts/Test1.fnt" );					// <<<<<<<<<<<<<<<<<<<< EL PROBLEMA ANDA POR AQUI: COMENTA  ESTO Y COMPILA! ! !
 
+ 
 
   // Window Creation
   bool lbResult =  cWindow::Get().Init( mProperties)  ;
@@ -70,6 +71,7 @@ bool cGame::Init()
   // Character Manager initialization
   cCharacterManager::Get().Init();
 
+   mFont.Init( "./Src/Data/Fonts/Test1.fnt" );
    // Behaviour Setting
   cBehaviourManager::Get().Init() ;
 
@@ -110,7 +112,7 @@ void cGame::Update(float lfTimeStep)
 //Method to render the game 
 void cGame::Render()
 {
-	// 1) Clear buffers
+ 	// 1) Clear buffers
 	// ---------------------------------------------------------------------------------------
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   
@@ -147,7 +149,7 @@ void cGame::Render()
 	// 6) Render 2D Elements
 	// ---------------------------------------------------------------------------------------
 		// Draw some strings
-	
+
 		mFont.SetColour( 1.0f, 0.0f, 0.0f);									 // <<<<<<<<<<<<<<<<<<<<  COMENTA  DESDE AQUI ...
 		mFont.Write(0, 200,0, "Año Totó pingüino() !¡¿?", 0, FONT_ALIGN_CENTER);// Uncomment this for IA
 
