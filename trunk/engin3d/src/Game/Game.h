@@ -2,14 +2,20 @@
 #define	CGAME_H
 #include "../Utility/Singleton.h"
 #include "../Graphics/GraphicManager.h"
+#include "../Graphics/Fonts/acgfx_font.h"
+#include "../Graphics/Fonts/acutil_unicode.h"
+
+
 
 class cGame : public cSingleton<cGame>
 {
  private:  
   friend class cSingleton<cGame>;
   bool mbFinish;
-  float mfTimeElapsed;
+//  float mfTimeElapsed;
   cCamera m3DCamera;
+  cCamera m2DCamera;
+  cFont mFont;
  
  public:
   //Method to initialize the game

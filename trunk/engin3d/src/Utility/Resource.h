@@ -16,7 +16,7 @@ public:
 	
 	virtual bool IsLoaded()				{ return false; }
 
-	virtual bool Reload()				{ ; }
+	virtual void Reload()				{ ; }
 
 	bool IsThisResource( const std::string &lacNameID )
 										{ return macNameID == lacNameID; }
