@@ -1,6 +1,7 @@
 #ifndef INTERNALRESOURCE_H
 #define INTERNALRESOURCE_H
 
+/*
 #ifndef NULL
 #ifdef __cplusplus
 #define NULL    0
@@ -8,6 +9,7 @@
 #define NULL    ((void *)0)
 #endif
 #endif
+*/
 
 #include "Resource.h"
 

@@ -265,6 +265,90 @@
 				RelativePath=".\src\Graphics\GraphicManager.h"
 				>
 			</File>
+			<Filter
+				Name="Textures"
+				>
+				<File
+					RelativePath=".\src\Graphics\Textures\Texture.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\Texture.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\TextureManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\TextureManager.h"
+					>
+				</File>
+				<Filter
+					Name="SOIL"
+					>
+					<File
+						RelativePath=".\src\Graphics\Textures\SOIL\image_DXT.c"
+						>
+					</File>
+					<File
+						RelativePath=".\src\Graphics\Textures\SOIL\image_DXT.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\Graphics\Textures\SOIL\image_helper.c"
+						>
+					</File>
+					<File
+						RelativePath=".\src\Graphics\Textures\SOIL\image_helper.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\Graphics\Textures\SOIL\SOIL.c"
+						>
+					</File>
+					<File
+						RelativePath=".\src\Graphics\Textures\SOIL\SOIL.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\Graphics\Textures\SOIL\stb_image_aug.c"
+						>
+					</File>
+					<File
+						RelativePath=".\src\Graphics\Textures\SOIL\stb_image_aug.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\Graphics\Textures\SOIL\stbi_DDS_aug.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\Graphics\Textures\SOIL\stbi_DDS_aug_c.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Fonts"
+				>
+				<File
+					RelativePath=".\src\Graphics\Fonts\acgfx_font.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Fonts\acgfx_font.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Fonts\acutil_unicode.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Fonts\acutil_unicode.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="MathLib"
@@ -438,6 +522,22 @@
 				</File>
 				<File
 					RelativePath=".\src\Data\Scripts\test4.lua"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Fonts"
+				>
+				<File
+					RelativePath=".\src\Data\Fonts\Test1.bmfc"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Data\Fonts\Test1.fnt"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Data\Fonts\Test1_0.tga"
 					>
 				</File>
 			</Filter>
