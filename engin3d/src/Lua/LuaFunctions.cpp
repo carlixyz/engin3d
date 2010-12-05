@@ -137,6 +137,7 @@ int CreatePlayer( float posX, float posY, float posZ, float speed, float angSpee
   cBehaviourBase* lpBehaviour = cBehaviourManager::Get().CreateBehaviour( ePLAYER_CONTROLLER );
   lpCharacter->SetActiveBehaviour( lpBehaviour, posX, posY, posZ );
 
+  lpCharacter->SetPosition(cVec3(posX, posY, posZ));
 	return lpCharacter->GetId() ;
 }
 
