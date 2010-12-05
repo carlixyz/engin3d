@@ -10,6 +10,7 @@ class cCharacter
 
 	int miId;
 	cVec3 mPosition;
+  cVec3 mColour;
 	float mfYaw;
 	float mfSpeed;
 	float mfAngSpeed;
@@ -51,6 +52,7 @@ class cCharacter
 
 	  // Setters
 	  void SetPosition( const cVec3 &lPosition );
+    void SetColour( const cVec3 &lColour );
 	  void SetYaw( float lfYaw );
 	  void SetSpeed( float lfSpeed );
 	  void SetAngSpeed( float lfAngSpeed );

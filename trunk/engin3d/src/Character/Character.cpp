@@ -7,6 +7,7 @@ void cCharacter::Init(  int liId )
 {	
 	miId = liId;
 	mPosition = cVec3( 0.0f, 0.0f, 0.0f) ;
+  mColour = cVec3 (1.0f, 0.0f, 0.0f);
 	mfYaw = 0.0f;
 	mfSpeed = 0.0f;
 	mfAngSpeed = 0.0f;
@@ -34,8 +35,12 @@ void cCharacter::Render()
 	// Compose the world matrix
 	cMatrix lWorld;
 	lWorld.LoadIdentity();
-  cLuaManager::Get().CallLua("DrawPath", this->GetId(), (int *)NULL);
-
+  cGraphicManager::Get().SetWorldMatrix(lWorld);
+  //Draw each path 
+  cLuaManager::Get().CallLua("DrawPath", this->GetId(), (int *)NULL);  
+  
+  //Draw the player
+  lWorld.LoadIdentity();
 	lWorld.LoadRotation(cVec3(0.0f, 1.0f, 0.0f), mfYaw);
 	lWorld.SetPosition( mPosition );
 
@@ -45,10 +50,17 @@ void cCharacter::Render()
 	// Draw character ( a dot for position & a line for orientation)
 	// char default orientation it´s looking at +Z axis
 	cGraphicManager::Get().DrawPoint( cVec3(0.0f, 0.0f, 0.0f),
-		cVec3( 1.0f, 0.0f, 0.0f) );
+		mColour );
 
 	cGraphicManager::Get().DrawLine( cVec3(0.0f, 0.0f, 0.0f),
-		cVec3( 0.0f, 0.0f, 1.0f), cVec3(1.0f, 0.0f, 0.0f) );
+		cVec3( 0.0f, 0.0f, 1.0f), mColour );
+
+
+}
+
+void cCharacter::SetColour(const cVec3 &lColour)
+{
+  mColour = lColour;
 }
 
 void cCharacter::SetPosition(const cVec3 &lPosition)

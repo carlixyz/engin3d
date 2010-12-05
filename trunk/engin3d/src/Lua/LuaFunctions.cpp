@@ -5,11 +5,12 @@
 #include "../Graphics/GraphicManager.h"
 
 
-int CreatePatrol( float posX, float posY, float posZ, float speed, float angSpeed )// C++ Foo
+int CreatePatrol( float posX, float posY, float posZ, float speed, float angSpeed, cVec3 colour)// C++ Foo
 {
   cCharacter* lpCharacter = cCharacterManager::Get().CreateCharacter();
   lpCharacter->SetSpeed( speed );
   lpCharacter->SetAngSpeed( angSpeed );
+  lpCharacter->SetColour( colour );
 
   cBehaviourBase* lpBehaviour = cBehaviourManager::Get().CreateBehaviour( ePATROL );
   lpCharacter->SetActiveBehaviour( lpBehaviour, posX, posY, posZ );
@@ -26,7 +27,7 @@ int CreatePatrol( lua_State* lpLuaContext )// Foo for use C++ Foo in Lua
 	int liArgCount = lua_gettop( lpLuaContext );
 
 	// Check if the number of Arg is right
-	assert( liArgCount == 5 );
+	assert( liArgCount == 8 );
 
 	// take the arguments from the stack
 	//( use luaL_checkinteger for ints, luaL_checknumber for floats  )
@@ -35,9 +36,12 @@ int CreatePatrol( lua_State* lpLuaContext )// Foo for use C++ Foo in Lua
 	float lfArg3 = (float) luaL_checknumber( lpLuaContext, 3);
 	float lfArg4 = (float) luaL_checknumber( lpLuaContext, 4);
 	float lfArg5 = (float) luaL_checknumber( lpLuaContext, 5);
+  float lfArg6 = (float) luaL_checknumber( lpLuaContext, 6);
+  float lfArg7 = (float) luaL_checknumber( lpLuaContext, 7);
+	float lfArg8 = (float) luaL_checknumber( lpLuaContext, 8);
 
 	// Insert Here the code to Do something...
-	int liRet = CreatePatrol( lfArg1, lfArg2, lfArg3, lfArg4, lfArg5 );
+	int liRet = CreatePatrol( lfArg1, lfArg2, lfArg3, lfArg4, lfArg5, cVec3(lfArg6, lfArg7, lfArg8) );
 
 	// Introducing the result in the Stack
 	lua_pushinteger( lpLuaContext, liRet );
