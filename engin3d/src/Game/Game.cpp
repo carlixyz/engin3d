@@ -132,8 +132,9 @@ void cGame::Render()
 		cGraphicManager::Get().DrawGrid();
 	
 		cGraphicManager::Get().DrawAxis(); 
-		cGraphicManager::Get().DrawPoint(cVec3( 1.5f, 0.0f, 1.5f),cVec3( 1.0, 0.0, 1.0));
-		cGraphicManager::Get().DrawLine(cVec3( -1.5f, 0.0f, -1.5f), cVec3( -1.5f, 0.0f, 1.5f), cVec3( 1.0f, 1.0f, 0.0f));
+    //Comented because there are too many lines
+	//	cGraphicManager::Get().DrawPoint(cVec3( 1.5f, 0.0f, 1.5f),cVec3( 1.0, 0.0, 1.0));
+	//	cGraphicManager::Get().DrawLine(cVec3( -1.5f, 0.0f, -1.5f), cVec3( -1.5f, 0.0f, 1.5f), cVec3( 1.0f, 1.0f, 0.0f));
 	
 
 	// Character Rendering  
@@ -158,7 +159,7 @@ void cGame::Render()
 		mFont.Write(0, 200,0, "Año Totó pingüino() !¡¿?", 0, FONT_ALIGN_CENTER);// Uncomment this for IA
 
 		mFont.SetColour( 0.0f, 1.0f, 0.0f );
-		mFont.WriteBox(100, 100, 0 ,100 , " Esto es un test \n MultiLinea", 0, FONT_ALIGN_CENTER );
+		mFont.WriteBox(150, 200, 0 ,100 , " Esto es un test \n MultiLinea", 0, FONT_ALIGN_CENTER );
 																			// <<<<<<<<<<<<<<<<<<<<   HASTA AQUI Y COMPILA! ! !
 
 	// 7) Postprocessing
