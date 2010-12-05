@@ -20,6 +20,9 @@ public:
 
 	// This foo it´s for set the target position from anywhere
 	virtual void SetTarget(float posX, float posY, float posZ ) = 0;  
+
+  //Check if the target point is reached
+  virtual bool EndPointReached() = 0;
 };
 
 #endif /* CBEHAVIOURBASE_H */

@@ -1,5 +1,5 @@
 #include "BehaviourManager.h"
-
+#include "Patrol.h"
 bool cBehaviourManager::Init()
 {
 	return true;
@@ -42,6 +42,13 @@ cBehaviourBase* cBehaviourManager::CreateBehaviour( eBehaviours leBehaviour)
 			return lpBehaviour;
 			break;
 		}
+  case ePATROL:
+    {
+      cBehaviourBase* lpBehaviour = new cPatrol();
+      mBehaviours.push_back( lpBehaviour );
+      return lpBehaviour;
+      break;
+    }
 	default:
 		return NULL; //WE DON´T Call all Behaviour´s Init
 	}

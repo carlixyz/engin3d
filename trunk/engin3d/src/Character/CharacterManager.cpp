@@ -77,3 +77,18 @@ void cCharacterManager::DestroyCharacter(cCharacter *lpCharacter)
 
 }
 
+//Search a character by ID
+cCharacter * cCharacterManager::SearchCharacter(int miCharacterId)
+{
+  cCharacterListIt lpCharIterator = mCharacters.begin();
+  //Iterate over all the characters
+  while ( lpCharIterator != mCharacters.end() )
+  {
+    //If its found return it
+    if ( (*lpCharIterator)->GetId() == miCharacterId)
+      return (*lpCharIterator);
+
+    lpCharIterator++;
+  }
+  return NULL;
+}

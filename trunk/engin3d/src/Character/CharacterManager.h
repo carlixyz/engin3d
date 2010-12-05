@@ -36,6 +36,9 @@ class cCharacterManager :  public cSingleton<cCharacterManager>
 
 	  // Delete character from the list and call his Deinit()
 	  void DestroyCharacter( cCharacter* lpCharacter);
+
+    //Search a character by id
+    cCharacter * SearchCharacter(int miCharacterId);
 	
 
  protected:

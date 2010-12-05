@@ -1,6 +1,7 @@
 
 #include "Character.h"
 #include "../Graphics/GraphicManager.h"
+#include "../Lua/LuaManager.h"
 
 void cCharacter::Init(  int liId )
 {	
@@ -33,6 +34,8 @@ void cCharacter::Render()
 	// Compose the world matrix
 	cMatrix lWorld;
 	lWorld.LoadIdentity();
+  cLuaManager::Get().CallLua("DrawPath", this->GetId(), (int *)NULL);
+
 	lWorld.LoadRotation(cVec3(0.0f, 1.0f, 0.0f), mfYaw);
 	lWorld.SetPosition( mPosition );
 
