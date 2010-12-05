@@ -600,6 +600,14 @@
 					RelativePath=".\src\Character\Behaviour\ChaserWithOrientation.h"
 					>
 				</File>
+				<File
+					RelativePath=".\src\Character\Behaviour\Patrol.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Character\Behaviour\Patrol.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter

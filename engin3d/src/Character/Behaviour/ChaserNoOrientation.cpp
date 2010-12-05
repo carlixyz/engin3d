@@ -6,6 +6,7 @@ void cChaserNoOrientation::Init(cCharacter *lpCharacter)
 	// Inicializar los atributos del comportamiento 
 //	mTarget = cVec3( -5.0f, 0.0f, -5.0f); // Not needed for now
 	mpCharacter = lpCharacter;	
+  mbEndReached = false;
 }
 
 void cChaserNoOrientation::Deinit()
@@ -33,6 +34,7 @@ void cChaserNoOrientation::Update(float lfTimestep)
 	{
 //		const cVec3 & lVecPos = mTarget;
 		mpCharacter->SetPosition( mTarget);
+    mbEndReached = true;
 	}
 	else
 	{
@@ -42,8 +44,14 @@ void cChaserNoOrientation::Update(float lfTimestep)
 
 		cVec3 lVecPos = mpCharacter->GetPosition() + ( lfDisplacement * lDistanceVec.Normalize() );
 		mpCharacter->SetPosition(lVecPos);
+    mbEndReached = false;
 	}
 }
 
+//Check if the end point is reached
+bool cChaserNoOrientation::EndPointReached()
+{
+  return mbEndReached;
+}
 
 

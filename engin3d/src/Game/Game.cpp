@@ -136,7 +136,8 @@ void cGame::Render()
 		cGraphicManager::Get().DrawLine(cVec3( -1.5f, 0.0f, -1.5f), cVec3( -1.5f, 0.0f, 1.5f), cVec3( 1.0f, 1.0f, 0.0f));
 	
 
-	// Character Rendering
+	// Character Rendering  
+ 
 		cCharacterManager::Get().Render();
 
 	// 4) Render 3D with transparency
@@ -149,6 +150,9 @@ void cGame::Render()
 	// 6) Render 2D Elements
 	// ---------------------------------------------------------------------------------------
 		// Draw some strings
+  	lWorld.LoadIdentity();
+		cGraphicManager::Get().SetWorldMatrix(lWorld);
+   
 
 		mFont.SetColour( 1.0f, 0.0f, 0.0f);									 // <<<<<<<<<<<<<<<<<<<<  COMENTA  DESDE AQUI ...
 		mFont.Write(0, 200,0, "Año Totó pingüino() !¡¿?", 0, FONT_ALIGN_CENTER);// Uncomment this for IA

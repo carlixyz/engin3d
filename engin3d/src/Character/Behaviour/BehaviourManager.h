@@ -6,13 +6,14 @@
 #include "ChaserNoOrientation.h"
 #include "ChaserSnapOrientation.h"
 #include "ChaserWithOrientation.h"
+
 //#include "BehaviourBase.h" // Not needed included before
 
 	enum eBehaviours{
 		eCHASER_NO_ORIENTATION = 0,
 		eCHASER_SNAP_ORIENTATION,
 		eCHASER_WITH_ORIENTATION,
-
+    ePATROL,
 		eBEHAVIOURS_Count
 	};
 

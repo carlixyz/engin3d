@@ -13,6 +13,9 @@ private:
 	// Target Position
 	cVec3 mTarget; 
 
+  //Reached end point
+  bool mbEndReached;
+
 public:
 	// initialize behaviours attribs 
 	void Init(cCharacter * lpCharacter); 
@@ -25,6 +28,8 @@ public:
 
 	void SetTarget(float posX, float posY, float posZ ); 
 
+  //Check if the target has been reached 
+  bool EndPointReached();
 };
 
 #endif /* CCHASEDISOORIENTED */

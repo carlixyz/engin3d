@@ -6,6 +6,7 @@ void cChaserWithOrientation::Init(cCharacter *lpCharacter)
 	// Inicializar los atributos del comportamiento 
 //	mTarget = cVec3( -5.0f, 0.0f, -5.0f); // Not needed for now
 	mpCharacter = lpCharacter;	
+  mTarget = mpCharacter->GetPosition();
 }
 void cChaserWithOrientation::SetTarget(float posX, float posY, float posZ)
 {
@@ -20,11 +21,12 @@ void cChaserWithOrientation::Deinit()
 
 void cChaserWithOrientation::Update(float lfTimestep)
 {
-
+  mbEndReached = false;
 	//Calcular el vector distancia (diferencia entre la posición del
 	// perseguidor y la posición del objetivo a perseguir )
 	cVec3 lDistanceVec =  mTarget - mpCharacter->GetPosition(); //CharacterPosicion
 
+  if (lDistanceVec.Length() < 0.2f ) {mbEndReached=true; return;}
 	// Calcular la distancia que se movera el perseguidor teniendo en cuenta su velocidad máxima
 	float lfDisplacement = mpCharacter->GetSpeed() * lfTimestep;
 
@@ -45,6 +47,7 @@ void cChaserWithOrientation::Update(float lfTimestep)
 
 		cVec3 lVecPos = mpCharacter->GetPosition() + ( lfDisplacement * lDistanceVec.Normalize() );
 		mpCharacter->SetPosition(lVecPos);
+    
 	}
 	// SMOOTH ORIENTATION
 	if ( lDistanceVec.Length() < 0.1f ) // Poca probabilidad de alcanzár 0.0f
@@ -86,8 +89,13 @@ void cChaserWithOrientation::Update(float lfTimestep)
 	
 	const cVec3 lVecPos  = mpCharacter->GetPosition() + ( lfDisplacement * mpCharacter->GetFront());
 	mpCharacter->SetPosition(lVecPos); // Corregimos la trayectoria modificada por el giro
-
  
+}
+
+//Check if the end point is reached
+bool cChaserWithOrientation::EndPointReached()
+{
+  return mbEndReached;
 }
 
 

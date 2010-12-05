@@ -34,6 +34,7 @@ void cChaserSnapOrientation::Update(float lfTimestep)
 	{
 //		const cVec3 & lVecPos = mTarget;
 		mpCharacter->SetPosition( mTarget);
+    mbEndReached = true;
 	}
 	else
 	{
@@ -43,10 +44,17 @@ void cChaserSnapOrientation::Update(float lfTimestep)
 
 		cVec3 lVecPos = mpCharacter->GetPosition() + ( lfDisplacement * lDistanceVec.Normalize() );
 		mpCharacter->SetPosition(lVecPos);
-
+    mbEndReached = false;
 	}
 	if ( lDistanceVec.Length() > 0.001f ) // Orientación Inmediata del perseguidor
 		mpCharacter->SetYaw( atan2f(lDistanceVec.x, lDistanceVec.z	) );
 
 }
+
+//Check if the end point is reached
+bool cChaserSnapOrientation::EndPointReached()
+{
+  return mbEndReached;
+}
+
 

@@ -178,10 +178,13 @@ void cGraphicManager::ActivateCamera(cCamera *lpCamera)
 
 	// Select The Projection Matrix
 	glMatrixMode(GL_PROJECTION);
+
+  glLoadIdentity();
 	// Set The Projection Matrix
 	glLoadMatrixf( mpActiveCamera->GetProj().AsFloatPointer() );
 	//Refresh the world View matrix
 	RefreshWorldView();
+
 }
 
 // Render Auxiliar Tools
