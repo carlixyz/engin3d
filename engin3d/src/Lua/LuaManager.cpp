@@ -32,6 +32,8 @@ void cLuaManager::Init()
 	// Loading the Lua libraries
 	luaL_openlibs( mpLuaContext );
 
+  //Panic callback
+  lua_atpanic(mpLuaContext, FuncPanic);
 }
 
 bool cLuaManager::DoString(const char *lacStatement)
@@ -87,6 +89,23 @@ bool cLuaManager::CheckError( int liError )
 		return false;
 	}
 	return true;
+}
+
+
+int cLuaManager::FuncPanic(lua_State *lpContext)
+{
+  assert(lpContext);
+	
+	#ifdef _WIN32
+	  DbgOutInt("\n Error: \n",lua_tostring( lpContext, -1 )  );
+  #else	
+		printf( "\n Error: %s\n", lua_tostring( lpContext, -1 ) );
+	#endif
+  
+  //Sacamos el mensaje del top de la pila 
+  lua_pop( lpContext, 1 );
+
+  return 1;
 }
 
 void cLuaManager::Deinit()
