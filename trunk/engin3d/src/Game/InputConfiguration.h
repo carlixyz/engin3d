@@ -4,6 +4,9 @@
 //Define input actions
 enum eInputActions {
   eIA_CloseApplication = 0,
+  eIA_TurnLeft,
+  eIA_TurnRight,
+  eIA_Advance,
   eIA_Count
 };
 
