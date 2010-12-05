@@ -7,6 +7,12 @@ posZ = 0.0
 speed = 2.0
 angSpeed = 1.5
 
+playerX = -5.0
+playerY = 0.0
+playerZ = -5.0
+playerSpeed = 5
+playerAngSpeed = 3
+
 --Inicialize arrays
 lPos = {}
 lPos[1] = {}
@@ -89,5 +95,5 @@ CreatePatrol(  posX, posY, posZ, speed, angSpeed , lColour[1].r, lColour[1].g, l
 CreatePatrol(  posX, posY, posZ, speed, angSpeed , lColour[2].r, lColour[2].g, lColour[2].b ) 
 CreatePatrol(  posX, posY, posZ, speed, angSpeed , lColour[3].r, lColour[3].g, lColour[3].b ) 
 CreatePatrol(  posX, posY, posZ, speed, angSpeed , lColour[4].r, lColour[4].g, lColour[4].b ) 
-CreatePlayer(  posX, posY, posZ, speed, angSpeed , 1.0, 1.0, 1.0 ) 
+CreatePlayer(  playerX, playerY, playerZ, playerSpeed, playerAngSpeed , 1.0, 1.0, 1.0 ) 
 

@@ -28,14 +28,14 @@ void cPlayerController::Update(float lfTimestep)
   if (IsPressed(eIA_TurnRight))
   {
     float lfAngle = mpCharacter->GetAngSpeed() * lfTimestep;
-		mpCharacter->SetYaw( mpCharacter->GetYaw() + lfAngle );
+		mpCharacter->SetYaw( mpCharacter->GetYaw() - lfAngle );
   }
 
   //Turn left
   if (IsPressed(eIA_TurnLeft))
   {
     float lfAngle = mpCharacter->GetAngSpeed() * lfTimestep;
-		mpCharacter->SetYaw( mpCharacter->GetYaw() - lfAngle );
+		mpCharacter->SetYaw( mpCharacter->GetYaw() + lfAngle );
   }
 
 }
