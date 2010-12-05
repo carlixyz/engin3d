@@ -3,9 +3,10 @@
 #include "../Lua/LuaManager.h"
 #include "../Character/CharacterManager.h"
 #include "../Graphics/GraphicManager.h"
+#include "../Character/Behaviour/Patrol.h"
 
 
-int CreatePatrol( float posX, float posY, float posZ, float speed, float angSpeed, cVec3 colour)// C++ Foo
+int CreatePatrol( float posX, float posY, float posZ, float speed, float angSpeed, cVec3 colour, int liEnemyId, float lfAwareRadius)
 {
   cCharacter* lpCharacter = cCharacterManager::Get().CreateCharacter();
   lpCharacter->SetSpeed( speed );
@@ -14,6 +15,10 @@ int CreatePatrol( float posX, float posY, float posZ, float speed, float angSpee
 
   cBehaviourBase* lpBehaviour = cBehaviourManager::Get().CreateBehaviour( ePATROL );
   lpCharacter->SetActiveBehaviour( lpBehaviour, posX, posY, posZ );
+  
+  cPatrol * lpPatrol = (cPatrol *)lpCharacter->GetActiveBehaviour();
+  lpPatrol->SetAwareRadius(lfAwareRadius);
+  lpPatrol->SetEnemyID(liEnemyId);
 
 	return lpCharacter->GetId() ;
 }
@@ -27,7 +32,7 @@ int CreatePatrol( lua_State* lpLuaContext )// Foo for use C++ Foo in Lua
 	int liArgCount = lua_gettop( lpLuaContext );
 
 	// Check if the number of Arg is right
-	assert( liArgCount == 8 );
+	assert( liArgCount == 10 );
 
 	// take the arguments from the stack
 	//( use luaL_checkinteger for ints, luaL_checknumber for floats  )
@@ -39,9 +44,11 @@ int CreatePatrol( lua_State* lpLuaContext )// Foo for use C++ Foo in Lua
   float lfArg6 = (float) luaL_checknumber( lpLuaContext, 6);
   float lfArg7 = (float) luaL_checknumber( lpLuaContext, 7);
 	float lfArg8 = (float) luaL_checknumber( lpLuaContext, 8);
+  int liArg9 = (int) luaL_checkinteger( lpLuaContext, 9);
+  float lfArg10 = (float) luaL_checknumber( lpLuaContext, 10);
 
-	// Insert Here the code to Do something...
-	int liRet = CreatePatrol( lfArg1, lfArg2, lfArg3, lfArg4, lfArg5, cVec3(lfArg6, lfArg7, lfArg8) );
+	// Insert Here the code to create patrol
+	int liRet = CreatePatrol( lfArg1, lfArg2, lfArg3, lfArg4, lfArg5, cVec3(lfArg6, lfArg7, lfArg8),liArg9, lfArg10 );
 
 	// Introducing the result in the Stack
 	lua_pushinteger( lpLuaContext, liRet );
@@ -80,7 +87,7 @@ int SetPatrolTarget( lua_State* lpLuaContext )
 	float lfArg2 = (float) luaL_checknumber( lpLuaContext, 2);
 	float lfArg3 = (float) luaL_checknumber( lpLuaContext, 3);
 	float lfArg4 = (float) luaL_checknumber( lpLuaContext, 4);
-	
+  	
 	// Call to set patrol
   SetPatrolTarget( liArg1, lfArg2, lfArg3, lfArg4 );
 

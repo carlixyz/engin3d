@@ -28,6 +28,8 @@ class cGame : public cSingleton<cGame>
   bool Deinit();
   //Method to get the state of the game
   inline bool HasFinished() { return mbFinish; }
+  //Set the game finished 
+  void SetFinished(bool lbFinish);
  protected:
    cGame() {;}
 };
