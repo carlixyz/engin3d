@@ -1,5 +1,10 @@
 #include "BehaviourManager.h"
+#include "ChaserNoOrientation.h"
+#include "ChaserSnapOrientation.h"
+#include "ChaserWithOrientation.h"
 #include "Patrol.h"
+#include "PlayerController.h"
+
 bool cBehaviourManager::Init()
 {
 	return true;
@@ -45,6 +50,13 @@ cBehaviourBase* cBehaviourManager::CreateBehaviour( eBehaviours leBehaviour)
   case ePATROL:
     {
       cBehaviourBase* lpBehaviour = new cPatrol();
+      mBehaviours.push_back( lpBehaviour );
+      return lpBehaviour;
+      break;
+    }
+  case ePLAYER_CONTROLLER:
+    {
+      cBehaviourBase* lpBehaviour = new cPlayerController();
       mBehaviours.push_back( lpBehaviour );
       return lpBehaviour;
       break;

@@ -608,6 +608,14 @@
 					RelativePath=".\src\Character\Behaviour\Patrol.h"
 					>
 				</File>
+				<File
+					RelativePath=".\src\Character\Behaviour\PlayerController.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Character\Behaviour\PlayerController.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter

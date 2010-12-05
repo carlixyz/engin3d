@@ -28,8 +28,9 @@ lPos[2][5] = {x=0.0, y=0.0, z=5.0}
 
 --Patrol 3
 lPos[3][1] = {x=0.0, y=0.0, z=3.0}
-lPos[3][2] = {x=3.0, y=0.0, z=-3.0}
-lPos[3][3] = {x=-3.0, y=0.0, z=-3.0}
+lPos[3][2] = {x=-3.0, y=0.0, z=-3.0}
+lPos[3][3] = {x=3.0, y=0.0, z=-3.0}
+
 
 --Patrol 4
 lPos[4][1] = {x=2.0, y=0.0, z=2.0}
@@ -70,13 +71,15 @@ function NextEndPoint( liCharacterId )
 end
 
 function DrawPath( liCharacterId )
-    lPointCount = table.getn(lPos[liCharacterId])
-	for i = 1,lPointCount do  
-		i2 = (i%lPointCount)+1
+	if liCharacterId <= table.getn(lPos) then
+		lPointCount = table.getn(lPos[liCharacterId])
+		for i = 1,lPointCount do  
+			i2 = (i%lPointCount)+1
 	    
-		DrawLine(lPos[liCharacterId][i].x, lPos[liCharacterId][i].y, lPos[liCharacterId][i].z,
-		         lPos[liCharacterId][i2].x, lPos[liCharacterId][i2].y, lPos[liCharacterId][i2].z,
-		         lColour[liCharacterId].r, lColour[liCharacterId].g, lColour[liCharacterId].b)
+			DrawLine(lPos[liCharacterId][i].x, lPos[liCharacterId][i].y, lPos[liCharacterId][i].z,
+			         lPos[liCharacterId][i2].x, lPos[liCharacterId][i2].y, lPos[liCharacterId][i2].z,
+				     lColour[liCharacterId].r, lColour[liCharacterId].g, lColour[liCharacterId].b)
+		end
 	end
 end
 
@@ -86,4 +89,5 @@ CreatePatrol(  posX, posY, posZ, speed, angSpeed , lColour[1].r, lColour[1].g, l
 CreatePatrol(  posX, posY, posZ, speed, angSpeed , lColour[2].r, lColour[2].g, lColour[2].b ) 
 CreatePatrol(  posX, posY, posZ, speed, angSpeed , lColour[3].r, lColour[3].g, lColour[3].b ) 
 CreatePatrol(  posX, posY, posZ, speed, angSpeed , lColour[4].r, lColour[4].g, lColour[4].b ) 
+CreatePlayer(  posX, posY, posZ, speed, angSpeed , 1.0, 1.0, 1.0 ) 
 
