@@ -198,3 +198,7 @@ bool cGame::Deinit()
   return lbResult;
 }
  
+void cGame::SetFinished(bool lbFinish)
+{
+  mbFinish = lbFinish;
+}
