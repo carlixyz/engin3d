@@ -29,7 +29,8 @@ class cLuaManager : public cSingleton<cLuaManager>
 
 		inline lua_State* GetContext() { return mpLuaContext; }
 		bool CheckError( int liError );
-		
+		static int FuncPanic(lua_State * lpContext);
+
 		template < class Z>
 			bool CallLua( const char* lacFuncName, Z* lpRet );	
 		template <class T, class Z>
