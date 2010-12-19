@@ -16,6 +16,7 @@ class cGame : public cSingleton<cGame>
   cCamera m3DCamera;
   cCamera m2DCamera;
   cFont mFont;
+  cResourceHandle mScene;
  
  public:
   //Method to initialize the game
