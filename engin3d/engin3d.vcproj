@@ -364,6 +364,26 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Meshes"
+				>
+				<File
+					RelativePath=".\src\Graphics\Meshes\Mesh.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Meshes\Mesh.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Meshes\MeshManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Meshes\MeshManager.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="MathLib"

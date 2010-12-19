@@ -1,6 +1,9 @@
 #ifndef SCENE_H
 #define SCENE_H
 #include "../../Utility/Resource.h"
+#include "../../Utility/ResourceHandle.h"
+
+struct aiScene;
 
 class cScene : public cResource
 {
@@ -13,6 +16,10 @@ class cScene : public cResource
     void Update(float lfTimeStep);
     void Render();
   private:
+    void ProcessScene( const aiScene* lpScene );
+    typedef std::vector<cResourceHandle> cResourceHandleList;
+    typedef cResourceHandleList::iterator cResourceHandleListIt;
+    cResourceHandleList mMeshList;
     std::string macFile;
     bool mbLoaded;
 };

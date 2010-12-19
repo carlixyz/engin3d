@@ -5,6 +5,8 @@
 #include "../Input/InputManager.h"
 #include "../Character/CharacterManager.h"
 #include "../Graphics/Textures/TextureManager.h"
+#include "../Gameplay/Scene/SceneManager.h"
+#include "../Gameplay/Scene/Scene.h"
 
 #ifdef _WIN32
   #include <windows.h>
@@ -80,8 +82,10 @@ bool cGame::Init()
   RegisterLuaFunctions(); // C++ Functions Registered into Lua
 
   // REMEMBER THE FOLDERS STRUCTURE TO ACCESS THE FILES 
-  cLuaManager::Get().DoFile( "Src/Data/Scripts/CreatePatrol.lua"  );
-//  cLuaManager::Get().DoString( "CreatePatrol( 5, 0, 5.5, 2.1, 3)" );
+  cLuaManager::Get().DoFile( "./Src/Data/Scripts/CreatePatrol.lua"  );
+
+  cSceneManager::Get().Init(1);
+  mScene = cSceneManager::Get().LoadResource("TestLevel", "./Src/Data/Scene/dragonsmall.DAE");
 
   return lbResult;
 }
@@ -165,6 +169,11 @@ void cGame::Render()
 	// 7) Postprocessing
 	// ---------------------------------------------------------------------------------------
 
+  //Render scene
+  glDisable(GL_TEXTURE_2D);
+ ((cScene *)mScene.GetResource())->Render();
+  glEnable(GL_TEXTURE_2D);
+
 	// 8) Swap Buffers
 	// ---------------------------------------------------------------------------------------
 		cGraphicManager::Get().SwapBuffer();
@@ -188,7 +197,14 @@ bool cGame::Deinit()
   // Font Deinit
   mFont.Deinit();
 
+  //Texture manager
   cTextureManager::Get().Deinit();
+
+  //Scene deinit
+  ((cScene *)mScene.GetResource())->Deinit();
+
+  //Scene manager
+  cSceneManager::Get().Deinit();
 
   //Deinit graphic manager
   bool lbResult = cGraphicManager::Get().Deinit();
