@@ -128,7 +128,15 @@ void cMesh::RenderMesh()
   {
     glBindBuffer(GL_ARRAY_BUFFER, mVboNormals);
     assert(glGetError() == GL_NO_ERROR);
-    glTexCoordPointer(2, GL_FLOAT, sizeof(float) * 2, 0);
+    glNormalPointer(GL_FLOAT, sizeof(float) * 3, 0);
+    assert(glGetError() == GL_NO_ERROR);
+  }
+
+  if (mbHasTexture)
+  {
+    glBindBuffer(GL_ARRAY_BUFFER, mVboTexture);
+    assert(glGetError() == GL_NO_ERROR);
+    glTexCoordPointer(2, GL_FLOAT, sizeof(float)*2, 0);
     assert(glGetError() == GL_NO_ERROR);
   }
 
