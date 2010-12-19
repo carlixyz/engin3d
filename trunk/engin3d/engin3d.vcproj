@@ -873,6 +873,30 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="Gameplay"
+			>
+			<Filter
+				Name="Scene"
+				>
+				<File
+					RelativePath=".\src\Gameplay\Scene\Scene.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Gameplay\Scene\Scene.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Gameplay\Scene\SceneManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Gameplay\Scene\SceneManager.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
 		<File
 			RelativePath=".\src\main.cpp"
 			>
