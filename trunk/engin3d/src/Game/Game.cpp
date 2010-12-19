@@ -37,8 +37,8 @@ bool cGame::Init()
   float lfAspect = (float)mProperties.muiWidth/(float)mProperties.muiHeight;
   m3DCamera.SetPerspective(45.0f, lfAspect, 0.1f, 100.0f);
 //  m3DCamera.SetLookAt( cVec3(0.001f, 10.0f, 0.0f), cVec3(0.0f, 0.0f, 0.0f) ); // Camera Used for IA
-  m3DCamera.SetLookAt( cVec3(5.0f, 5.f, 5.f), cVec3(0.0f, 0.0f, 0.0f) );		// Camera Used for Jesus "+"
-
+  //m3DCamera.SetLookAt( cVec3(5.0f, 5.f, 5.f), cVec3(0.0f, 0.0f, 0.0f) );		// Camera Used for Jesus "+"
+  m3DCamera.SetLookAt( cVec3(15.0f, 15.f, 15.f), cVec3(0.0f, 0.0f, 0.0f) );		// Camera Used for Jesus "+"
 
   	// * 2D Camera * // Uncomment this for IA
   float lfRight = (float) mProperties.muiWidth / 2.0f;
@@ -140,6 +140,10 @@ void cGame::Render()
 	//	cGraphicManager::Get().DrawPoint(cVec3( 1.5f, 0.0f, 1.5f),cVec3( 1.0, 0.0, 1.0));
 	//	cGraphicManager::Get().DrawLine(cVec3( -1.5f, 0.0f, -1.5f), cVec3( -1.5f, 0.0f, 1.5f), cVec3( 1.0f, 1.0f, 0.0f));
 	
+  //Render scene
+  glDisable(GL_TEXTURE_2D);
+  ((cScene *)mScene.GetResource())->Render();
+  glEnable(GL_TEXTURE_2D);
 
 	// Character Rendering  
  
@@ -169,11 +173,7 @@ void cGame::Render()
 	// 7) Postprocessing
 	// ---------------------------------------------------------------------------------------
 
-  //Render scene
-  glDisable(GL_TEXTURE_2D);
- ((cScene *)mScene.GetResource())->Render();
-  glEnable(GL_TEXTURE_2D);
-
+  
 	// 8) Swap Buffers
 	// ---------------------------------------------------------------------------------------
 		cGraphicManager::Get().SwapBuffer();
