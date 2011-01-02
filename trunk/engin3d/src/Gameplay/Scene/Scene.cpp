@@ -4,15 +4,12 @@
 #include "../../Graphics/Meshes/assimp/Include/aiScene.h"
 #include "../../Graphics/Meshes/assimp/Include/aiPostProcess.h"
 
-//#include <assimp.hpp>	// we have already included this files in the project
-//#include <aiScene.h>	// so why don´t use them...
-//#include <aiPostProcess.h>
-
 #include <cassert>
+
 #include "../../Graphics/Meshes/MeshManager.h"
 #include "../../Graphics/Meshes/Mesh.h"
-#include "../../Graphics/Materials/MaterialData.h"
 #include "../../Graphics/Materials/MaterialManager.h"
+#include "../../Graphics/Materials/MaterialData.h"
 #include "../../Utility/FileUtils.h"
 
 
@@ -71,12 +68,13 @@ void cScene::ProcessScene( const aiScene* lpScene )
   }
 
   //Materials
-  assert( lpScene->HasMaterials());
+  if ( lpScene->HasMaterials())
+  {
 
   cMaterialManager::Get().Init(lpScene->mNumMaterials);
 
-  for (unsigned luiIndex = 0; luiIndex < lpScene->mNumMaterials; ++luiIndex )
-  {
+	 for (unsigned luiIndex = 0; luiIndex < lpScene->mNumMaterials; ++luiIndex )
+	 {
 	  // Access the material name
 	  aiString lName;
 	  lpScene->mMaterials[luiIndex]->Get(AI_MATKEY_NAME, lName);
@@ -92,6 +90,8 @@ void cScene::ProcessScene( const aiScene* lpScene )
 
 	  // Save the material on a vector in the Scene
 	  mMaterialList.push_back(lHandle);
+	 }
+
   }
 }
 
@@ -105,6 +105,10 @@ void cScene::Render(void)
 
 	// Set the material 
 	void * lpResource = mMaterialList[luiMaterialIndex].GetResource();
+	((cMaterial *)lpResource)->SetMaterial();
+
+	// Render Mesh
+	lpResource = mMeshList[luiIndex].GetResource();
 	((cMesh *)lpResource)->RenderMesh();
 	}
 

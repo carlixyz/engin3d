@@ -6,10 +6,6 @@
 #include "../../Graphics/Meshes/assimp/Include/aiScene.h"
 #include "../../Graphics/Meshes/assimp/Include/aiPostProcess.h"
 
-//#include <assimp.hpp>	// we have already included this files in the project
-//#include <aiScene.h>	// so why don´t use them ?...
-//#include <aiPostProcess.h>
-
 #include <cassert>
 
 //Init mesh into memory

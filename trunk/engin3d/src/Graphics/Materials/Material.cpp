@@ -3,19 +3,10 @@
 #include "../GLHeaders.h"
 #include <cassert>
 
-/*
-#include "../../Graphics/Meshes/assimp/Include/assimp.hpp"
-#include "../../Graphics/Meshes/assimp/Include/aiScene.h"
-#include "../../Graphics/Meshes/assimp/Include/aiPostProcess.h"
-
-#include "../../Graphics/Meshes/assimp/Include/aiMaterial.h"
-*/
-#include "../../Graphics/Meshes/assimp/Include/aiTypes.h"
-
 #include "MaterialData.h"
 #include "../../Utility/FileUtils.h"
-#include "../../Graphics/Textures/Texture.h"
 #include "../../Graphics/Textures/TextureManager.h"
+#include "../../Graphics/Meshes/assimp/Include/aiMaterial.h"
 
 //Init material into memory
 bool cMaterial::Init( const std::string &lacNameID, 
