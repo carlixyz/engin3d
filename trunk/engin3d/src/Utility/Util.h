@@ -1,5 +1,6 @@
 #ifndef UTIL_H
 #define	UTIL_H
+
 #ifdef _WIN32
   #include <windows.h>
   #define GetMiliSeconds() timeGetTime()
@@ -13,4 +14,5 @@
     return ltTime.tv_usec/1000.0f;
   }
 #endif
-#endif
+
+#endif // UTIL_H

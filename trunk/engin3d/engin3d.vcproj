@@ -197,6 +197,14 @@
 			Name="Utility"
 			>
 			<File
+				RelativePath=".\src\Utility\FileUtils.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Utility\FileUtils.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Utility\InternalResource.h"
 				>
 			</File>
@@ -381,6 +389,30 @@
 				</File>
 				<File
 					RelativePath=".\src\Graphics\Meshes\MeshManager.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Materials"
+				>
+				<File
+					RelativePath=".\src\Graphics\Materials\Material.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Materials\Material.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Materials\MaterialData.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Materials\MaterialManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Materials\MaterialManager.h"
 					>
 				</File>
 			</Filter>
