@@ -3,6 +3,7 @@
 
 #include "../../Utility/ResourceManager.h"
 #include "../../Utility/Singleton.h"
+#include "Texture.h"
 
 
 class cTextureManager : public cResourceManager,
