@@ -5,6 +5,7 @@
 #include "../Input/InputManager.h"
 #include "../Character/CharacterManager.h"
 #include "../Graphics/Textures/TextureManager.h"
+#include "../Graphics/Materials/MaterialManager.h"
 #include "../Gameplay/Scene/SceneManager.h"
 #include "../Gameplay/Scene/Scene.h"
 
@@ -37,7 +38,6 @@ bool cGame::Init()
   float lfAspect = (float)mProperties.muiWidth/(float)mProperties.muiHeight;
   m3DCamera.SetPerspective(45.0f, lfAspect, 0.1f, 100.0f);
 //  m3DCamera.SetLookAt( cVec3(0.001f, 10.0f, 0.0f), cVec3(0.0f, 0.0f, 0.0f) ); // Camera Used for IA
-  //m3DCamera.SetLookAt( cVec3(5.0f, 5.f, 5.f), cVec3(0.0f, 0.0f, 0.0f) );		// Camera Used for Jesus "+"
   m3DCamera.SetLookAt( cVec3(15.0f, 15.f, 15.f), cVec3(0.0f, 0.0f, 0.0f) );		// Camera Used for Jesus "+"
 
   	// * 2D Camera * // Uncomment this for IA
@@ -49,11 +49,8 @@ bool cGame::Init()
   m2DCamera.SetOrtho(lfLeft,lfRight,lfBottom,lfTop, 0.1f, 100.0f);
   m2DCamera.SetLookAt( cVec3(0.0f,0.0f,1.0f), cVec3(0.0f, 0.f, 0.f) );
 
-  // Init the font
-  cTextureManager::Get().Init( 256 ); // <- Cuanto Debería ser luiMaxSize para las texturas ??????????
-//  mFont.Init( "./Src/Data/Fonts/Test1.fnt" );					// <<<<<<<<<<<<<<<<<<<< EL PROBLEMA ANDA POR AQUI: COMENTA  ESTO Y COMPILA! ! !
-
- 
+  // Init the texture manager
+  cTextureManager::Get().Init( 256 ); // <- Cuanto Debería ser para texturas ?? 
 
   // Window Creation
   bool lbResult =  cWindow::Get().Init( mProperties)  ;
@@ -74,6 +71,8 @@ bool cGame::Init()
   cCharacterManager::Get().Init();
 
    mFont.Init( "./Src/Data/Fonts/Test1.fnt" );
+
+  cMaterialManager::Get().Init( 4 );
    // Behaviour Setting
   cBehaviourManager::Get().Init() ;
 
@@ -136,14 +135,14 @@ void cGame::Render()
 		cGraphicManager::Get().DrawGrid();
 	
 		cGraphicManager::Get().DrawAxis(); 
-    //Comented because there are too many lines
-	//	cGraphicManager::Get().DrawPoint(cVec3( 1.5f, 0.0f, 1.5f),cVec3( 1.0, 0.0, 1.0));
+    
+	//	cGraphicManager::Get().DrawPoint(cVec3( 1.5f, 0.0f, 1.5f),cVec3( 1.0, 0.0, 1.0));//Comented because there are too many lines
 	//	cGraphicManager::Get().DrawLine(cVec3( -1.5f, 0.0f, -1.5f), cVec3( -1.5f, 0.0f, 1.5f), cVec3( 1.0f, 1.0f, 0.0f));
 	
-  //Render scene
-  glDisable(GL_TEXTURE_2D);
+	 //Render scene
+//  glDisable(GL_TEXTURE_2D);
   ((cScene *)mScene.GetResource())->Render();
-  glEnable(GL_TEXTURE_2D);
+//  glEnable(GL_TEXTURE_2D);
 
 	// Character Rendering  
  
@@ -163,12 +162,12 @@ void cGame::Render()
 		cGraphicManager::Get().SetWorldMatrix(lWorld);
    
 
-		mFont.SetColour( 1.0f, 0.0f, 0.0f);									 // <<<<<<<<<<<<<<<<<<<<  COMENTA  DESDE AQUI ...
-		mFont.Write(0, 200,0, "Año Totó pingüino() !¡¿?", 0, FONT_ALIGN_CENTER);// Uncomment this for IA
+		mFont.SetColour( 1.0f, 0.0f, 0.0f);									 
+		mFont.Write(0, 200,0, "Año Totó pingüino() !¡¿?", 0, FONT_ALIGN_CENTER);
 
 		mFont.SetColour( 0.0f, 1.0f, 0.0f );
 		mFont.WriteBox(150, 200, 0 ,100 , " Esto es un test \n MultiLinea", 0, FONT_ALIGN_CENTER );
-																			// <<<<<<<<<<<<<<<<<<<<   HASTA AQUI Y COMPILA! ! !
+																			
 
 	// 7) Postprocessing
 	// ---------------------------------------------------------------------------------------
@@ -193,6 +192,7 @@ bool cGame::Deinit()
 
   //Deinit Lua Manager
   cLuaManager::Get().Deinit();
+
 
   // Font Deinit
   mFont.Deinit();
