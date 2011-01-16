@@ -38,7 +38,7 @@ bool cGame::Init()
   float lfAspect = (float)mProperties.muiWidth/(float)mProperties.muiHeight;
   m3DCamera.SetPerspective(45.0f, lfAspect, 0.1f, 100.0f);
 //  m3DCamera.SetLookAt( cVec3(0.001f, 10.0f, 0.0f), cVec3(0.0f, 0.0f, 0.0f) ); // Camera Used for IA
-  m3DCamera.SetLookAt( cVec3(15.0f, 15.f, 15.f), cVec3(0.0f, 0.0f, 0.0f) );		// Camera Used for Jesus "+"
+  m3DCamera.SetLookAt( cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );		// Camera Used for Jesus "+"
 
   	// * 2D Camera * // Uncomment this for IA
   float lfRight = (float) mProperties.muiWidth / 2.0f;
@@ -48,7 +48,7 @@ bool cGame::Init()
   m2DCamera.Init();
   m2DCamera.SetOrtho(lfLeft,lfRight,lfBottom,lfTop, 0.1f, 100.0f);
   m2DCamera.SetLookAt( cVec3(0.0f,0.0f,1.0f), cVec3(0.0f, 0.f, 0.f) );
-
+  
   // Init the texture manager
   cTextureManager::Get().Init( 256 ); // <- Cuanto Debería ser para texturas ?? 
 
@@ -199,9 +199,6 @@ bool cGame::Deinit()
 
   //Texture manager
   cTextureManager::Get().Deinit();
-
-  //Scene deinit
-  ((cScene *)mScene.GetResource())->Deinit();
 
   //Scene manager
   cSceneManager::Get().Deinit();

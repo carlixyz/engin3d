@@ -12,10 +12,12 @@
 #include "../../Graphics/Materials/MaterialData.h"
 #include "../../Utility/FileUtils.h"
 
+#include <iostream>
 
 //Init 
 bool cScene::Init(const std::string &lacNameId, const std::string &lacFile)
 {
+
   macFile = lacFile;
   mbLoaded = false;
 
@@ -46,9 +48,14 @@ bool cScene::Init(const std::string &lacNameId, const std::string &lacFile)
 //Deinit
 void cScene::Deinit()
 {
-	  cMaterialManager::Get().Deinit();
-	  
-	  cMeshManager::Get().Deinit();
+  for(unsigned luiIndex=0; luiIndex < mObjectList.size(); ++luiIndex)
+  {
+    mObjectList[luiIndex]->Deinit();
+    delete mObjectList[luiIndex];
+  }
+
+  cMaterialManager::Get().Deinit();  
+	cMeshManager::Get().Deinit();
 }
 
 //ProcessScene
@@ -93,23 +100,82 @@ void cScene::ProcessScene( const aiScene* lpScene )
 	 }
 
   }
+
+  
+  //conver nodes to objects
+  if (lpScene->mRootNode)
+  {
+    cMatrix lMatrix;
+    lMatrix.LoadIdentity();
+    ConvertNodesToObjects(lpScene->mRootNode, lMatrix);
+  }
+  
 }
 
 //Render scene
 void cScene::Render(void)
 {
-	for ( unsigned luiIndex = 0; luiIndex < mMeshList.size(); ++luiIndex)
-	{
-	// Get material index
-	unsigned luiMaterialIndex  = mMeshMaterialIndexList[luiIndex];
+  for(unsigned luiIndex = 0; luiIndex < mObjectList.size();++luiIndex)
+  {
+    mObjectList[luiIndex]->Render();
+  }
 
-	// Set the material 
-	void * lpResource = mMaterialList[luiMaterialIndex].GetResource();
-	((cMaterial *)lpResource)->SetMaterial();
+}
 
-	// Render Mesh
-	lpResource = mMeshList[luiIndex].GetResource();
-	((cMesh *)lpResource)->RenderMesh();
-	}
+//Plain the hierarchy
+void cScene::ConvertNodesToObjects( aiNode * lpNode, cMatrix lTransform)
+{
+  // Create a new scene object for the node if this has meshes
+  cMatrix lNodeTransform( cVec4 ( lpNode->mTransformation.a1,
+    lpNode->mTransformation.b1,
+    lpNode->mTransformation.c1,
+    lpNode->mTransformation.d1),
+    cVec4 ( lpNode->mTransformation.a2,
+    lpNode->mTransformation.b2,
+    lpNode->mTransformation.c2,
+    lpNode->mTransformation.d2),
+    cVec4 ( lpNode->mTransformation.a3,
+    lpNode->mTransformation.b3,
+    lpNode->mTransformation.c3,
+    lpNode->mTransformation.d3),
+    cVec4 ( lpNode->mTransformation.a4,
+    lpNode->mTransformation.b4,
+    lpNode->mTransformation.c4,
+    lpNode->mTransformation.d4));
 
+  lTransform = lNodeTransform * lTransform;
+
+  if ( lpNode->mNumMeshes > 0)
+  {
+    cObject *lpObject = new cObject;
+    lpObject->Init();
+    lpObject->SetName( lpNode->mName.data );
+    lpObject->SetWorldMatrix(lTransform);
+
+    for (unsigned luiIndex=0; luiIndex<lpNode->mNumMeshes; ++luiIndex)
+    {
+      unsigned luiMeshIndex = lpNode->mMeshes[luiIndex];
+      unsigned luiMaterialIndex;
+      luiMaterialIndex = mMeshMaterialIndexList[luiMeshIndex];
+      lpObject->AddMesh(mMeshList[luiMeshIndex], 
+        mMaterialList[luiMaterialIndex]);
+    }
+    mObjectList.push_back(lpObject);
+  }
+
+  //Recursive call
+  for(unsigned luiIndex = 0; luiIndex<lpNode->mNumChildren; ++luiIndex)
+  {
+    ConvertNodesToObjects(lpNode->mChildren[luiIndex], lTransform);
+  }
+
+}
+
+//Update scene
+void cScene::Update(float lfTimeStep)
+{
+  for(unsigned luiIndex=0; luiIndex<mObjectList.size();++luiIndex)
+  {
+    mObjectList[luiIndex]->Update(lfTimeStep);
+  }
 }
