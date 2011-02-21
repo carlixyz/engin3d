@@ -5,6 +5,7 @@ void cChaserWithOrientation::Init(cCharacter *lpCharacter)
 {  
 	// Inicializar los atributos del comportamiento 
 //	mTarget = cVec3( -5.0f, 0.0f, -5.0f); // Not needed for now
+	assert(lpCharacter);
 	mpCharacter = lpCharacter;	
   mTarget = mpCharacter->GetPosition();
 }
@@ -34,9 +35,9 @@ void cChaserWithOrientation::Update(float lfTimestep)
 	// a la distancia que hay a su objetivo, se mueve solo hasta el punto objetivo
 	// ( para no pasarse ). Si no, se mueve la distancia establecida
 	// (para irse acercando poco a poco al objetivo )
-	if ( lfDisplacement >= lDistanceVec.Length() )
+/*	if ( lfDisplacement >= lDistanceVec.Length() )
 	{
-//		const cVec3 & lVecPos = mTarget;
+	//	const cVec3 & lVecPos = mTarget;
 		mpCharacter->SetPosition( mTarget);
 	}
 	else
@@ -47,8 +48,8 @@ void cChaserWithOrientation::Update(float lfTimestep)
 
 		cVec3 lVecPos = mpCharacter->GetPosition() + ( lfDisplacement * lDistanceVec.Normalize() );
 		mpCharacter->SetPosition(lVecPos);
-    
-	}
+    }
+*/
 	// SMOOTH ORIENTATION
 	if ( lDistanceVec.Length() < 0.1f ) // Poca probabilidad de alcanzár 0.0f
 	{

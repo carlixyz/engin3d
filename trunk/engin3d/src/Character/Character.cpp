@@ -1,5 +1,5 @@
-
 #include "Character.h"
+
 #include "../Graphics/GraphicManager.h"
 #include "../Lua/LuaManager.h"
 
@@ -85,8 +85,12 @@ void cCharacter::SetAngSpeed(float lfAngSpeed)
 
 void cCharacter::SetActiveBehaviour(cBehaviourBase *lpBehaviour)
 {	
-		mpActiveBehaviour = lpBehaviour;
-		mpActiveBehaviour->Init(this);
+	if ( mpActiveBehaviour )	mpActiveBehaviour->Deinit();
+	
+	 mpActiveBehaviour = lpBehaviour;
+
+	if ( mpActiveBehaviour )	mpActiveBehaviour->Init(this);
+	
 }
 void cCharacter::SetActiveBehaviour( cBehaviourBase * lpBehaviour, float posX, float posY, float posZ )
 {
