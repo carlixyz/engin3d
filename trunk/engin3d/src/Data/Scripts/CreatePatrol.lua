@@ -4,8 +4,8 @@
 posX = 0.0
 posY = 0.0
 posZ = 0.0
-speed = 2.0
-angSpeed = 1.5
+speed = 2.5
+angSpeed = 3.0
 
 playerX = -5.0
 playerY = 0.0

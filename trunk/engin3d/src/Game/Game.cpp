@@ -1,8 +1,8 @@
 #include "Game.h"
 
-#include "../Lua/LuaManager.h"
 #include "InputConfiguration.h"
 #include "../Input/InputManager.h"
+#include "../Lua/LuaManager.h"
 #include "../Character/CharacterManager.h"
 #include "../Graphics/Textures/TextureManager.h"
 #include "../Graphics/Materials/MaterialManager.h"
@@ -24,13 +24,11 @@ bool cGame::Init()
   mbFinish = false;
 //  mfTimeElapsed = 0.0f; // not Needed
 
-  //Init window
+    //Init window
   cApplicationProperties mProperties;
-  mProperties.macApplicationName = "Test 1";
-  mProperties.mbFullscreen = false;
-  mProperties.muiBits = 16;
-  mProperties.muiWidth = 640 ;
-  mProperties.muiHeight = 480;
+  assert( mProperties.LoadXML("./Src/Data/XML/Config.xml") );
+
+   //cApplicationProperties mProperties = LoadProperties("./Src/Data/XML/Config.xml");
 
     // Window Creation
   bool lbResult =  cWindow::Get().Init( mProperties)  ;

@@ -8,6 +8,11 @@ Debug &Debug::ToOutput(void)
 	
 	return dbgInstance; 
 }
+std::fstream &  Debug::ToFile(const char *FileName)
+{
+	static std::fstream out( FileName, std::ios::out );
+	return out;
+}
 
 void Debug::ToOutput(const char *format, ...)
 {
@@ -52,6 +57,7 @@ void Debug::ToMsgBox(const char *format, ...)
 
 	  MessageBox( NULL, buf, "Debug Message Box", MB_OK );
 }
+
 
 Debug &Debug::Endl(Debug &dbgInstance)
   {

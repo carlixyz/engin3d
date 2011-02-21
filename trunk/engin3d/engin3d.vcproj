@@ -41,11 +41,11 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;.\src\Graphics\Meshes\assimp\include&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				AdditionalIncludeDirectories=".\src\Graphics\Meshes\assimp\include;.\src\Libraries\TinyXML\include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;TIXML_USE_STL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
@@ -62,9 +62,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib OpenGL32.lib GLu32.lib assimp.lib"
+				AdditionalDependencies="winmm.lib OpenGL32.lib GLu32.lib assimp.lib tinyxmld_STL.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;.\src\Graphics\Meshes\assimp\lib&quot;"
+				AdditionalLibraryDirectories=".\src\Graphics\Meshes\assimp\lib;.\src\Libraries\TinyXML\lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -74,6 +74,8 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				UseUnicodeResponseFiles="true"
+				UpdateFileHashes="true"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -118,9 +120,9 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;.\src\Graphics\Meshes\assimp\include&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
-				RuntimeLibrary="2"
+				AdditionalIncludeDirectories=".\src\Graphics\Meshes\assimp\include;.\src\Libraries\TinyXML\include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;TIXML_USE_STL"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -138,9 +140,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib OpenGL32.lib GLu32.lib assimp.lib"
+				AdditionalDependencies="winmm.lib OpenGL32.lib GLu32.lib assimp.lib tinyxml_STL.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;.\src\Graphics\Meshes\assimp\lib&quot;"
+				AdditionalLibraryDirectories=".\src\Graphics\Meshes\assimp\lib;.\src\Libraries\TinyXML\lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -152,6 +154,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				UseUnicodeResponseFiles="false"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -242,6 +245,10 @@
 			</File>
 			<File
 				RelativePath=".\src\Utility\Util.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Utility\XMLReader.h"
 				>
 			</File>
 		</Filter>
@@ -572,6 +579,18 @@
 		<Filter
 			Name="Libraries"
 			>
+			<Filter
+				Name="TinyXML"
+				>
+				<File
+					RelativePath=".\src\Libraries\TinyXML\include\tinystr.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Libraries\TinyXML\include\tinyxml.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Data"
