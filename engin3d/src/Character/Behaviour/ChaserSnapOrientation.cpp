@@ -4,6 +4,7 @@
 void cChaserSnapOrientation::Init(cCharacter *lpCharacter)
 { // Inicializar los atributos del comportamiento 
 //	mTarget = cVec3( -5.0f, 0.0f, -5.0f); // Not needed for now
+    assert(lpCharacter);
 	mpCharacter = lpCharacter;	
 }
 

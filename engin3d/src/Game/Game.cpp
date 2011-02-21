@@ -8,6 +8,7 @@
 #include "../Graphics/Materials/MaterialManager.h"
 #include "../Gameplay/Scene/SceneManager.h"
 #include "../Gameplay/Scene/Scene.h"
+#include "../Utility/Debug.h"
 
 #ifdef _WIN32
   #include <windows.h>
@@ -31,8 +32,11 @@ bool cGame::Init()
   mProperties.muiWidth = 640 ;
   mProperties.muiHeight = 480;
 
-  //Init Camera  
+    // Window Creation
+  bool lbResult =  cWindow::Get().Init( mProperties)  ;
 
+  //Init Camera  
+ 
 	// 3D Camera	
   m3DCamera.Init();
   float lfAspect = (float)mProperties.muiWidth/(float)mProperties.muiHeight;
@@ -51,9 +55,6 @@ bool cGame::Init()
   
   // Init the texture manager
   cTextureManager::Get().Init( 256 ); // <- Cuanto Debería ser para texturas ?? 
-
-  // Window Creation
-  bool lbResult =  cWindow::Get().Init( mProperties)  ;
 
    //Init Input Manager
   cInputManager::Get().Init(kaActionMapping, eIA_Count);

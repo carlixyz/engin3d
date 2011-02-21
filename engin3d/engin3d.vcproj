@@ -197,6 +197,14 @@
 			Name="Utility"
 			>
 			<File
+				RelativePath=".\src\Utility\Debug.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Utility\Debug.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Utility\FileUtils.cpp"
 				>
 			</File>

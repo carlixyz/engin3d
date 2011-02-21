@@ -1,4 +1,5 @@
 #include "BehaviourManager.h"
+
 #include "ChaserNoOrientation.h"
 #include "ChaserSnapOrientation.h"
 #include "ChaserWithOrientation.h"
@@ -29,6 +30,7 @@ cBehaviourBase* cBehaviourManager::CreateBehaviour( eBehaviours leBehaviour)
 	case eCHASER_NO_ORIENTATION:
 		{
 			cBehaviourBase* lpBehaviour = new cChaserNoOrientation();
+			assert(lpBehaviour);
 			mBehaviours.push_back( lpBehaviour );
 			return lpBehaviour;
 			break;
@@ -36,6 +38,7 @@ cBehaviourBase* cBehaviourManager::CreateBehaviour( eBehaviours leBehaviour)
 	case eCHASER_SNAP_ORIENTATION:
 		{
 			cBehaviourBase* lpBehaviour = new cChaserSnapOrientation();
+			assert(lpBehaviour);
 			mBehaviours.push_back( lpBehaviour );
 			return lpBehaviour;
 			break;
@@ -43,6 +46,7 @@ cBehaviourBase* cBehaviourManager::CreateBehaviour( eBehaviours leBehaviour)
 	case eCHASER_WITH_ORIENTATION:
 		{
 			cBehaviourBase* lpBehaviour = new cChaserWithOrientation();
+			assert(lpBehaviour);
 			mBehaviours.push_back( lpBehaviour );
 			return lpBehaviour;
 			break;
@@ -50,6 +54,7 @@ cBehaviourBase* cBehaviourManager::CreateBehaviour( eBehaviours leBehaviour)
   case ePATROL:
     {
       cBehaviourBase* lpBehaviour = new cPatrol();
+	  assert(lpBehaviour);
       mBehaviours.push_back( lpBehaviour );
       return lpBehaviour;
       break;
@@ -57,6 +62,7 @@ cBehaviourBase* cBehaviourManager::CreateBehaviour( eBehaviours leBehaviour)
   case ePLAYER_CONTROLLER:
     {
       cBehaviourBase* lpBehaviour = new cPlayerController();
+	  assert(lpBehaviour);
       mBehaviours.push_back( lpBehaviour );
       return lpBehaviour;
       break;
@@ -71,6 +77,7 @@ void cBehaviourManager::DestroyBehaviour(cBehaviourBase *lpBehaviour)
 {
 		// Recorremos la Lista de objetos...
 	cBehaviourListIt lpBehaviourIt = mBehaviours.begin();
+	assert(lpBehaviour);
 	while ( lpBehaviourIt != mBehaviours.end()  )
 	{		
 		 if( (*lpBehaviourIt) == lpBehaviour ) // si encontramos el mismo objeto ...
@@ -81,6 +88,7 @@ void cBehaviourManager::DestroyBehaviour(cBehaviourBase *lpBehaviour)
 			 
 			 // y luego lo eliminamos de la lista
 			 lpBehaviourIt = mBehaviours.erase(lpBehaviourIt); // Borrar el PUNTERO al objeto
+			 break;
 		 }
 		 else // sino seguimos buscando ...
 		 {
