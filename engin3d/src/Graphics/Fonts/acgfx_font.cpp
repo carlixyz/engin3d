@@ -902,8 +902,8 @@ void CFontLoaderTextFormat::InterpretChar(string &str, int start)
 		else if( token == "chnl" )
 			chnl = strtol(value.c_str(), 0, 10);
 
-		//if( pos == str.size() ) break;  //orig Jesús
-		if( pos2 >= str.size() -1 ) break;  //Yorman  y José Manuel (añadido)
+		if( pos == str.size() ) break;  //orig Jesús
+		//if( pos2 >= str.size() -1 ) break;  //Yorman  y José Manuel (añadido)
 	}
 
 	// Store the attributes
@@ -983,8 +983,8 @@ void CFontLoaderTextFormat::InterpretInfo(string &str, int start)
 		if( token == "outline" )
 			outlineThickness = (short)strtol(value.c_str(), 0, 10);
 
-		//if( pos >= str.size() ) break; //orig Jesús
-		if( pos2 >= str.size() -1) 	break; //Yorman  y José Manuel (añadido)
+		if( pos == str.size() ) break; //orig Jesús
+		//if( pos2 >= str.size() -1) 	break; //Yorman  y José Manuel (añadido)
 
 
 	}
@@ -1019,8 +1019,8 @@ void CFontLoaderTextFormat::InterpretPage(string &str, int start, const char *fo
 		else if( token == "file" )
 			file = value.substr(1, value.length()-2);
 
-		//if( pos == str.size() ) break; //orig Jesús
-		if( pos2 >= str.size() - 1) break; //Yorman  y José Manuel (añadido)
+		if( pos == str.size() ) break; //orig Jesús
+		//if( pos2 >= str.size() - 1) break; //Yorman  y José Manuel (añadido)
 	}
 
 	LoadPage(id, file.c_str(), fontFile);

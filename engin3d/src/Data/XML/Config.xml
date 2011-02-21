@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<Application>
+	<Window>
+		<Property Name		= "Engin3d!" />
+		<Property Width		= "640"	   />
+		<Property Height	= "480"    />
+		<Property Bits		= "16"	   />
+		<Property Fullscreen	= "false"  />
+	</Window>
+</Application>

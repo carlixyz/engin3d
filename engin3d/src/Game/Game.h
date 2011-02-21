@@ -6,7 +6,6 @@
 #include "../Graphics/Fonts/acutil_unicode.h"
 
 
-
 class cGame : public cSingleton<cGame>
 {
  private:  
@@ -17,8 +16,9 @@ class cGame : public cSingleton<cGame>
   cCamera m2DCamera;
   cFont mFont;
   cResourceHandle mScene;
- 
- public:
+
+
+public:
   //Method to initialize the game
   bool Init();
   // Method to update the game
