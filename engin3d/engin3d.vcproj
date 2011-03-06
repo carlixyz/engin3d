@@ -247,10 +247,6 @@
 				RelativePath=".\src\Utility\Util.h"
 				>
 			</File>
-			<File
-				RelativePath=".\src\Utility\XMLReader.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Window"
@@ -632,6 +628,14 @@
 				</File>
 				<File
 					RelativePath=".\src\Data\Fonts\Test1_0.tga"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="XML"
+				>
+				<File
+					RelativePath=".\src\Data\XML\Config.xml"
 					>
 				</File>
 			</Filter>
