@@ -25,7 +25,7 @@ bool cScene::Init(const std::string &lacNameId, const std::string &lacFile)
   Assimp::Importer lImporter;
 
   //Load the scene
-  const aiScene* lpScene = lImporter.ReadFile( lacFile.c_str(),
+  const aiScene* lpScene = lImporter.ReadFile( macFile.c_str(),
     aiProcess_CalcTangentSpace |
     aiProcess_Triangulate      |
     aiProcess_JoinIdenticalVertices |

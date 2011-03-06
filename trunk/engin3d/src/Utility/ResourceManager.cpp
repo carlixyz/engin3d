@@ -1,5 +1,10 @@
 #include "ResourceManager.h"
+
+#include <cassert>
 #include "ResourceHandle.h"
+
+#include <tinystr.h>
+#include <tinyxml.h>
 
 
 void cResourceManager::Init(unsigned int luiMaxSize)
@@ -116,8 +121,10 @@ cResourceHandle cResourceManager::LoadResource(std::string lacNameID, const std:
 	cResourceHandle lHandle = FindResource( lacNameID );
 	if (!lHandle.IsValidHandle() )
 	{
-		// Load the resource fromt the File
-		cResource * lpResource = LoadResourceInternal( lacNameID, lacFile );
+		std::string lacPath = ReadXml( lacNameID, lacFile);//check Load from a XML
+
+		// Load the resource from the File
+		cResource * lpResource = LoadResourceInternal( lacNameID, lacPath );
 
 		if (lpResource)
 		{ 
@@ -175,4 +182,33 @@ cResourceHandle cResourceManager::AddResourceToPool(cResource *lpResource)
 	return lHandle;
 }
 
+std::string cResourceManager::ReadXml(std::string lacNameID, const std::string &lacPath)
+{
+	if ( lacPath.substr(lacPath.find_last_of(".") + 1) == "xml"  ) // Check if it has a ".xml" extension
+	{
+		TiXmlDocument doc( lacPath );
+	  
+		if ( doc.LoadFile() )  // If xml document큦 loaded 
+		{
+			TiXmlHandle docHandle( &doc );
+			TiXmlElement *pElem ;
+			TiXmlAttribute* pAttrib; 
+	
+			pElem = docHandle.FirstChildElement("Application").FirstChildElement("Resources").FirstChildElement().ToElement();
+	 
+		 // seeking in: <DOC> / <Application> / <Resources> / <Resource(Attrib)> 
 
+			while ( pElem )
+			{
+				pAttrib = pElem->FirstAttribute();
+
+				if ( pAttrib->ValueStr() == lacNameID )// if ( pAttrib->Name() == "name" )
+			 	 	return	(pAttrib->Next()->ValueStr());// if ( pAttrib->Next()->Name() == "file" )
+				else
+					pElem = pElem->NextSiblingElement();
+
+			} 	// else It means that there is something wrong inside XML or the folder큦 path address	
+		}	return "./Src/Data/Scene/fail.DAE"; // Return default Resource 큦 path
+
+	}	return lacPath; // or else it큦 just a diferent extension (.dae, .dds, .jpg, etc)
+}

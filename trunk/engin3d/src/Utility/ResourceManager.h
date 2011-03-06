@@ -1,19 +1,18 @@
 #ifndef RESOURCE_MANAGER_H
 #define RESOURCE_MANAGER_H
 
-#include <cassert>
 #include <vector>
 #include <list>
 #include "InternalResource.h"
 
-
 class cResourceHandle; // Foward Declaration
 
-class cResourceManager
+class cResourceManager 
 {
 public:
 	void Init( unsigned luiMaxSize );
 	void Deinit();
+
 
 	cResourceHandle FindResource( std::string lacNameID ); 
 
@@ -41,5 +40,7 @@ protected:
 				{ return NULL; };								// Load Resources from memory
 
 	cResource * GetResource( cResourceHandle *lpHandle );	
+
+	std::string ReadXml(std::string lacNameID, const std::string &lacFile); 
 };
 #endif

@@ -2,9 +2,10 @@
 #define	APROP_H
 
 #include <string>
-#include "..\Utility\XMLReader.h"
+#include <tinystr.h>
+#include <tinyxml.h>
 
-struct cApplicationProperties : public cXMLReader
+struct cApplicationProperties
 {
 // General Application Parameters
 	std::string macApplicationName;
@@ -14,40 +15,40 @@ struct cApplicationProperties : public cXMLReader
 	bool mbFullscreen;
 
 // inline File properties Loader 
-	inline bool LoadXML(const char *File){ // inline foo: We call this just only one time so why not..
+	inline bool LoadXML(const std::string &File){ // inline foo: We call this just only one time so why not..
 	  TiXmlDocument doc( File );
 	  
   if ( doc.LoadFile() )
   {
 	  TiXmlHandle docHandle( &doc ); //  document´s handle
-	  TiXmlElement *pElem; 
+	  TiXmlElement *pProperty; 
 	  TiXmlAttribute* pAttrib; 
 	
-	  pElem = docHandle.FirstChildElement("Application").FirstChildElement("Window").FirstChildElement("Property").ToElement();
+	  pProperty = docHandle.FirstChildElement("Application").FirstChildElement("Window").FirstChildElement("Property").ToElement();
 	 
-	  assert(pElem); // seeking in: <DOC> / <Application> / <Window> / <property (Attrib)> 
+	   // seeking in: <DOC> / <Application> / <Window> / <property (Attrib)> 
 
-	  for(TiXmlElement *pProperty = pElem ; pProperty ; pProperty = pProperty->NextSiblingElement() )
+	  for( assert(pProperty) ; pProperty ; pProperty = pProperty->NextSiblingElement() )
 	  {
-	  pAttrib = pProperty->FirstAttribute();
+		pAttrib = pProperty->FirstAttribute();
 
-  		if( !strcmp( pAttrib->Name(), "Name") ){
+		if(  pAttrib->NameTStr() == "Name" ){
 			 this->macApplicationName = pAttrib->ValueStr(); // Properties.macApplicationName
 			  continue;}
 
-		else if( !strcmp( pAttrib->Name(), "Width" ) ){
+		else if( pAttrib->NameTStr() == "Width"  ){
 			 this->muiWidth = atoi( pAttrib->Value() ); // Properties.muiWidth
 			 continue;}		
 
-		else if( !strcmp( pAttrib->Name(), "Height" ) ){
-			  this->muiHeight = atoi( pAttrib->Value()); // Properties.muiHeight
+		else if( pAttrib->NameTStr() == "Height" ){
+			this->muiHeight = atoi( pAttrib->Value()); // Properties.muiHeight
 			 continue;}
        
-		else if( !strcmp( pAttrib->Name(), "Bits" ) ) {
+		else if( pAttrib->NameTStr() ==  "Bits"  ) {
 			 this->muiBits = atoi( pAttrib->Value() ) ; // Properties.muiBits
 			 continue;}
 
-   		  else if( !strcmp( pAttrib->Name(), "Fullscreen")   )
+   		else if( pAttrib->NameTStr() ==  "Fullscreen"   )
 			 this->mbFullscreen = ( pAttrib->Value() == "true" );// Properties.mbFullscreen
 	  
 	  }	return true;
