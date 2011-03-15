@@ -17,7 +17,7 @@ public:
 
 	inline bool IsValidHandle()	{ return muiKey != kuiInvalidKey; } // Check in
 
-	inline void Invalidate()	{ muiKey = kuiInvalidKey; } // Setter for Free Resource
+	inline void Invalidate()	{ muiKey = kuiInvalidKey; } // Setter to Free one Resource
 
 protected:
 	

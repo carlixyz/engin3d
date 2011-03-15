@@ -355,19 +355,27 @@
 				Name="Fonts"
 				>
 				<File
-					RelativePath=".\src\Graphics\Fonts\acgfx_font.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\Graphics\Fonts\acgfx_font.h"
-					>
-				</File>
-				<File
 					RelativePath=".\src\Graphics\Fonts\acutil_unicode.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\src\Graphics\Fonts\acutil_unicode.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Fonts\Font.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Fonts\Font.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Fonts\FontManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Fonts\FontManager.h"
 					>
 				</File>
 			</Filter>

@@ -10,18 +10,17 @@ class cResourceHandle; // Foward Declaration
 class cResourceManager 
 {
 public:
-	void Init( unsigned luiMaxSize );
+	void Init( unsigned luiMaxSize );							// must assign 1 slot al least for start
 	void Deinit();
 
-
-	cResourceHandle FindResource( std::string lacNameID ); 
+	cResourceHandle SearchResource( std::string lacNameID );	// Find Resources loaded in Managers
 
 	void UnloadResource( cResourceHandle * lpHandle );			
-																// File Resources Loader
-	cResourceHandle LoadResource( std::string lacNameID, const std::string &lacFile );
-																// Memory Resources Loader
+																
+	cResourceHandle LoadResource( std::string lacNameID, const std::string &lacFile = "./Src/Data/XML/Config.xml" );
+																// File Resources Loader ( by default loads from a Xml)
 	cResourceHandle LoadResource( std::string lacNameID, void * lpMemoryData, int luiTypeID );
-
+																// Memory Resources Loader
 protected:	
 	friend class cResourceHandle;
 	// Attribs	

@@ -4,6 +4,8 @@
 #include "../../Utility/ResourceManager.h"
 #include "../../Utility/Singleton.h"
 
+#include "Scene.h"
+
 class cSceneManager : public cResourceManager,
   public cSingleton<cSceneManager>
 {

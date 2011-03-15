@@ -5,7 +5,7 @@
 template<typename T> class cSingleton
 {
   public:
-    static T& Get()
+    static T& Get()// Return Singleton instance
     {
       //Return the static reference to itself.
       //To be used instead the constructor.

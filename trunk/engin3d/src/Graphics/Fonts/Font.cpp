@@ -1,3 +1,7 @@
+#include "font.h"
+#include <stdio.h>
+#include "../GLHeaders.h"
+
 /*
    AngelCode Tool Box Library
    Copyright (c) 2007-2008 Andreas Jonsson
@@ -27,12 +31,7 @@
 
 // THIS VERSION IS NOT THE ORIGINAL VERSION OF THE LIBRARY!
 
-#include <stdio.h>
-//#include "../GLHeaders.h"
 
-#include "acgfx_font.h"
-#include <windows.h>
-#include <gl/gl.h>
 #include "acutil_unicode.h"
 // This is a modification of the original code <
 #include "../Textures/TextureManager.h"
@@ -40,7 +39,6 @@
 #include <cassert>
 #pragma warning( disable : 4996 )
 
-//#include "..\..\Utility\Debug.h" // Remember to Build a Debug.h and .cpp (or stole the one from David)
 // > This is a modification of the original code
 
 #define LOG(X) printf X
@@ -118,6 +116,7 @@ cFont::cFont()
 	hasOutline = false;
 	encoding = NONE;
    SetColour(1.0f, 1.0f, 1.0f);
+   mbLoaded = false;
 }
 
 void cFont::Deinit()
@@ -136,7 +135,28 @@ void cFont::Deinit()
    }
    // > This is a modification of the original code 
 }
+bool cFont::Init(const std::string &lacNameID, const std::string &lacFile) // Virtual Implementation
+{
+		// Load the font
+	FILE *f = fopen(lacFile.c_str(), "rb");
+	
+	// Determine format by reading the first bytes of the file
+	char str[4] = {0};
+	fread(str, 3, 1, f);
+	fseek(f, 0, SEEK_SET);
 
+	CFontLoader *loader = 0;
+	if( strcmp(str, "BMF") == 0 )
+		loader = new CFontLoaderBinaryFormat(f, this, lacFile.c_str());
+	else
+		loader = new CFontLoaderTextFormat(f, this, lacFile.c_str());
+
+	mbLoaded = (loader->Load() == 0) ; // Success (else return -1)
+	delete loader;
+	
+	return mbLoaded ;
+}
+/*
 int cFont::Init(const char *fontFile)
 {
 	// Load the font
@@ -158,7 +178,7 @@ int cFont::Init(const char *fontFile)
 
 	return r;
 }
-
+*/
 void cFont::SetTextEncoding(EFontTextEncoding encoding)
 {
 	this->encoding = encoding;
@@ -713,6 +733,7 @@ int CFontLoaderTextFormat::Load()
 {
 	string line;
 
+	
 
 	while( !feof(f) )
 	{
