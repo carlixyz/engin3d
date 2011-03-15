@@ -11,6 +11,8 @@
  
   <Resources>
     <Scene name ="TestLevel" file="./Src/Data/Scene/dragonsmall.DAE" info="Model" />
+    <Scene name ="LoadFailed" file="./Src/Data/Scene/fail.DAE" info="Model" />
+    <Font name ="Font1" file="./Src/Data/Fonts/Test1.fnt" info="Font" />
   </Resources>
   
 </Application>

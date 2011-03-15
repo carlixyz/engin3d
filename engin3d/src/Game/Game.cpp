@@ -7,8 +7,7 @@
 #include "../Graphics/Textures/TextureManager.h"
 #include "../Graphics/Materials/MaterialManager.h"
 #include "../Gameplay/Scene/SceneManager.h"
-#include "../Gameplay/Scene/Scene.h"
-#include "../Utility/Debug.h"
+//#include "../Utility/Debug.h"
 
 #ifdef _WIN32
   #include <windows.h>
@@ -38,7 +37,7 @@ bool cGame::Init()
   float lfAspect = (float)mProperties.muiWidth/(float)mProperties.muiHeight;
   m3DCamera.SetPerspective(45.0f, lfAspect, 0.1f, 100.0f);
 //  m3DCamera.SetLookAt( cVec3(0.001f, 10.0f, 0.0f), cVec3(0.0f, 0.0f, 0.0f) ); // Camera Used for IA
-  m3DCamera.SetLookAt( cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );		// Camera Used for Jesus "+"
+  m3DCamera.SetLookAt( cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );		// Camera Used for Jesus 
 
   	// * 2D Camera * // Uncomment this for IA
   float lfRight = (float) mProperties.muiWidth / 2.0f;
@@ -61,13 +60,13 @@ bool cGame::Init()
     lbResult = cGraphicManager::Get().Init( &cWindow::Get() );
 
     //If something failed kill the window
-    if (!lbResult)
-      cWindow::Get().Deinit();
+    if (!lbResult) cWindow::Get().Deinit();
   }
   // Character Manager initialization
   cCharacterManager::Get().Init();
 
-   mFont.Init( "./Src/Data/Fonts/Test1.fnt" );
+  cFontManager::Get().Init( 1);//same as LoadResource("Font1","./Src/Data/Fonts/Test1.fnt" );
+  mFontHandle = cFontManager::Get().LoadResource("Font1");
 
   cMaterialManager::Get().Init( 4 );
    // Behaviour Setting
@@ -133,9 +132,6 @@ void cGame::Render()
 		cGraphicManager::Get().DrawGrid();
 	
 		cGraphicManager::Get().DrawAxis(); 
-    
-	//	cGraphicManager::Get().DrawPoint(cVec3( 1.5f, 0.0f, 1.5f),cVec3( 1.0, 0.0, 1.0));//Comented because there are too many lines
-	//	cGraphicManager::Get().DrawLine(cVec3( -1.5f, 0.0f, -1.5f), cVec3( -1.5f, 0.0f, 1.5f), cVec3( 1.0f, 1.0f, 0.0f));
 	
 	 //Render scene
 //  glDisable(GL_TEXTURE_2D);
@@ -158,14 +154,14 @@ void cGame::Render()
 		// Draw some strings
   	lWorld.LoadIdentity();
 		cGraphicManager::Get().SetWorldMatrix(lWorld);
-   
+  
+	//	cFont * lpFont = (cFont*)mFontHandle.GetResource();
+		cFont * lpFont = (cFont*)cFontManager::Get().SearchResource("Font1").GetResource();
+		lpFont->SetColour( 1.0f, 0.0f, 0.0f);
+		lpFont->Write(0, 200,0, "Año Totó pingüino() !¡¿?", 0, FONT_ALIGN_CENTER);
 
-		mFont.SetColour( 1.0f, 0.0f, 0.0f);									 
-		mFont.Write(0, 200,0, "Año Totó pingüino() !¡¿?", 0, FONT_ALIGN_CENTER);
-
-		mFont.SetColour( 0.0f, 1.0f, 0.0f );
-		mFont.WriteBox(150, 200, 0 ,100 , " Esto es un test \n MultiLinea", 0, FONT_ALIGN_CENTER );
-																			
+		lpFont->SetColour( 0.0f, 1.0f, 0.0f );
+		lpFont->WriteBox(150, 200, 0 ,100 , " Esto es un test \n MultiLinea", 0, FONT_ALIGN_CENTER );																		
 
 	// 7) Postprocessing
 	// ---------------------------------------------------------------------------------------
@@ -191,9 +187,9 @@ bool cGame::Deinit()
   //Deinit Lua Manager
   cLuaManager::Get().Deinit();
 
-
   // Font Deinit
-  mFont.Deinit();
+  cFontManager::Get().Deinit();
+//  mFont.Deinit();
 
   //Texture manager
   cTextureManager::Get().Deinit();

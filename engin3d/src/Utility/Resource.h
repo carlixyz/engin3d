@@ -18,7 +18,7 @@ public:
 
 	virtual void Reload()				{ ; }
 
-	bool IsThisResource( const std::string &lacNameID )
+	bool IsThisResource( const std::string &lacNameID ) // Check Resource Id
 										{ return macNameID == lacNameID; }
 
 	inline void SetNameID( const std::string &lacNameID )     // Setter

@@ -65,7 +65,7 @@ cResource * cResourceManager::GetResource(cResourceHandle *lpHandle)
 	return NULL;
 }
 
-cResourceHandle cResourceManager::FindResource(std::string lacNameID)
+cResourceHandle cResourceManager::SearchResource(std::string lacNameID)
 {
 	cResourceHandle lHandle;
 	for ( unsigned luiIndex = 0; luiIndex < muiMaxSize; ++luiIndex )
@@ -118,7 +118,7 @@ void cResourceManager::UnloadResource(cResourceHandle *lpHandle)
 
 cResourceHandle cResourceManager::LoadResource(std::string lacNameID, const std::string &lacFile)
 {
-	cResourceHandle lHandle = FindResource( lacNameID );
+	cResourceHandle lHandle = SearchResource( lacNameID );
 	if (!lHandle.IsValidHandle() )
 	{
 		std::string lacPath = ReadXml( lacNameID, lacFile);//check Load from a XML
@@ -142,7 +142,7 @@ cResourceHandle cResourceManager::LoadResource(std::string lacNameID, const std:
 }
 cResourceHandle cResourceManager::LoadResource(std::string lacNameID, void * lpMemoryData, int luiTypeID )
 {
-	cResourceHandle lHandle = FindResource( lacNameID );
+	cResourceHandle lHandle = SearchResource( lacNameID );
 	if (!lHandle.IsValidHandle() )
 	{
 		// Load the resource From memory
@@ -165,7 +165,7 @@ cResourceHandle cResourceManager::LoadResource(std::string lacNameID, void * lpM
 
 cResourceHandle cResourceManager::AddResourceToPool(cResource *lpResource)
 {
-	assert( mFreeResourceSlot.size() > 0 );
+	assert( mFreeResourceSlot.size() > 0 ); //  you must Init at least one slot
 
 	unsigned luiNext = *mFreeResourceSlot.begin();
 	mFreeResourceSlot.pop_front();

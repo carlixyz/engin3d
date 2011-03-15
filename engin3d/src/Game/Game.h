@@ -2,9 +2,7 @@
 #define	CGAME_H
 #include "../Utility/Singleton.h"
 #include "../Graphics/GraphicManager.h"
-#include "../Graphics/Fonts/acgfx_font.h"
-#include "../Graphics/Fonts/acutil_unicode.h"
-
+#include "../Graphics/Fonts/FontManager.h"
 
 class cGame : public cSingleton<cGame>
 {
@@ -14,9 +12,9 @@ class cGame : public cSingleton<cGame>
 //  float mfTimeElapsed;
   cCamera m3DCamera;
   cCamera m2DCamera;
-  cFont mFont;
+ // cFont mFont;
   cResourceHandle mScene;
-
+  cResourceHandle mFontHandle;
 
 public:
   //Method to initialize the game
