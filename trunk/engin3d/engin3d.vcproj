@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\src\Graphics\Meshes\assimp\include;.\src\Libraries\TinyXML\include"
+				AdditionalIncludeDirectories="&quot;$(CG_INC_PATH)&quot;;.\src\Graphics\Meshes\assimp\include;.\src\Libraries\TinyXML\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;TIXML_USE_STL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,9 +62,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib OpenGL32.lib GLu32.lib assimp.lib tinyxmld_STL.lib"
+				AdditionalDependencies="winmm.lib cg.lib cgGL.lib OpenGL32.lib GLu32.lib assimp.lib tinyxmld_STL.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories=".\src\Graphics\Meshes\assimp\lib;.\src\Libraries\TinyXML\lib"
+				AdditionalLibraryDirectories="&quot;$(CG_LIB_PATH)&quot;;.\src\Graphics\Meshes\assimp\lib;.\src\Libraries\TinyXML\lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".\src\Graphics\Meshes\assimp\include;.\src\Libraries\TinyXML\include"
+				AdditionalIncludeDirectories="&quot;$(CG_INC_PATH)&quot;;.\src\Graphics\Meshes\assimp\include;.\src\Libraries\TinyXML\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;TIXML_USE_STL"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -140,9 +140,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib OpenGL32.lib GLu32.lib assimp.lib tinyxml_STL.lib"
+				AdditionalDependencies="winmm.lib cg.lib cgGL.lib OpenGL32.lib GLu32.lib assimp.lib tinyxml_STL.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories=".\src\Graphics\Meshes\assimp\lib;.\src\Libraries\TinyXML\lib"
+				AdditionalLibraryDirectories="&quot;$(CG_LIB_PATH)&quot;;.\src\Graphics\Meshes\assimp\lib;.\src\Libraries\TinyXML\lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"

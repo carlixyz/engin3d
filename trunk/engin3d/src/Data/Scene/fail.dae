@@ -17,16 +17,16 @@
   </asset>
   <library_images>
     <image id="Map__2-image" name="Map__2">
-      <init_from>file://C:\Users\Usuario\Desktop\fail\Sketchy_Lines_Wavy_45_A.jpg</init_from>
+      <init_from>file://C:\Users\Usuario\Desktop\fail\failed.jpg</init_from>
     </image>
   </library_images>
   <library_materials>
-    <material id="Sketchy_Lines_Wavy_45_A" name="Sketchy_Lines_Wavy_45_A">
-      <instance_effect url="#Sketchy_Lines_Wavy_45_A-fx"/>
+    <material id="failed" name="failed">
+      <instance_effect url="#failed-fx"/>
     </material>
   </library_materials>
   <library_effects>
-    <effect id="Sketchy_Lines_Wavy_45_A-fx" name="Sketchy_Lines_Wavy_45_A">
+    <effect id="failed-fx" name="failed">
       <profile_COMMON>
         <technique sid="standard">
           <phong>
@@ -4020,7 +4020,7 @@
         <vertices id="fail-lib-Vertex">
           <input semantic="POSITION" source="#fail-lib-Position"/>
         </vertices>
-        <polygons material="Sketchy_Lines_Wavy_45_A" count="792">
+        <polygons material="failed" count="792">
           <input semantic="VERTEX" offset="0" source="#fail-lib-Vertex"/>
           <input semantic="NORMAL" offset="1" source="#fail-lib-Normal0"/>
           <input semantic="TEXCOORD" offset="2" set="0" source="#fail-lib-UV0"/>
@@ -4827,7 +4827,7 @@
         <instance_geometry url="#fail-lib">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Sketchy_Lines_Wavy_45_A" target="#Sketchy_Lines_Wavy_45_A"/>
+              <instance_material symbol="failed" target="#failed"/>
             </technique_common>
           </bind_material>
         </instance_geometry>

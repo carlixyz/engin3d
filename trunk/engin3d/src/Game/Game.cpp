@@ -25,7 +25,7 @@ bool cGame::Init()
 
     //Init window
   cApplicationProperties mProperties;
-  assert( mProperties.LoadXML("./Src/Data/XML/Config.xml") );
+  mProperties.LoadXML("./Src/Data/XML/Config.xml");
 
     // Window Creation
   bool lbResult =  cWindow::Get().Init( mProperties)  ;
@@ -81,7 +81,7 @@ bool cGame::Init()
 
   cSceneManager::Get().Init(1);
 //  mScene = cSceneManager::Get().LoadResource("TestLevel", "./Src/Data/Scene/dragonsmall.DAE");
-  mScene = cSceneManager::Get().LoadResource("TestLevel", "./Src/Data/XML/Config.xml");
+  mScene = cSceneManager::Get().LoadResource("TestLevel");
 
   return lbResult;
 }
