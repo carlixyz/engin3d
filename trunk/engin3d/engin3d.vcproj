@@ -247,6 +247,42 @@
 				RelativePath=".\src\Utility\Util.h"
 				>
 			</File>
+			<Filter
+				Name="Input"
+				>
+				<File
+					RelativePath=".\src\Input\GenericDevice.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Input\InputAction.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Input\InputAction.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Input\InputEntry.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Input\InputManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Input\InputManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Input\Keyboard.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Input\Keyboard.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Window"
@@ -306,50 +342,6 @@
 					RelativePath=".\src\Graphics\Textures\TextureManager.h"
 					>
 				</File>
-				<Filter
-					Name="SOIL"
-					>
-					<File
-						RelativePath=".\src\Graphics\Textures\SOIL\image_DXT.c"
-						>
-					</File>
-					<File
-						RelativePath=".\src\Graphics\Textures\SOIL\image_DXT.h"
-						>
-					</File>
-					<File
-						RelativePath=".\src\Graphics\Textures\SOIL\image_helper.c"
-						>
-					</File>
-					<File
-						RelativePath=".\src\Graphics\Textures\SOIL\image_helper.h"
-						>
-					</File>
-					<File
-						RelativePath=".\src\Graphics\Textures\SOIL\SOIL.c"
-						>
-					</File>
-					<File
-						RelativePath=".\src\Graphics\Textures\SOIL\SOIL.h"
-						>
-					</File>
-					<File
-						RelativePath=".\src\Graphics\Textures\SOIL\stb_image_aug.c"
-						>
-					</File>
-					<File
-						RelativePath=".\src\Graphics\Textures\SOIL\stb_image_aug.h"
-						>
-					</File>
-					<File
-						RelativePath=".\src\Graphics\Textures\SOIL\stbi_DDS_aug.h"
-						>
-					</File>
-					<File
-						RelativePath=".\src\Graphics\Textures\SOIL\stbi_DDS_aug_c.h"
-						>
-					</File>
-				</Filter>
 			</Filter>
 			<Filter
 				Name="Fonts"
@@ -432,6 +424,26 @@
 				</File>
 				<File
 					RelativePath=".\src\Graphics\Materials\MaterialManager.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Effects"
+				>
+				<File
+					RelativePath=".\src\Graphics\Effects\Effect.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Effects\Effect.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Effects\EffectManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Effects\EffectManager.h"
 					>
 				</File>
 			</Filter>
@@ -543,42 +555,50 @@
 					>
 				</File>
 			</Filter>
-		</Filter>
-		<Filter
-			Name="Input"
-			>
-			<File
-				RelativePath=".\src\Input\GenericDevice.h"
+			<Filter
+				Name="SOIL"
 				>
-			</File>
-			<File
-				RelativePath=".\src\Input\InputAction.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\Input\InputAction.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\Input\InputEntry.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\Input\InputManager.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\Input\InputManager.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\Input\Keyboard.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\Input\Keyboard.h"
-				>
-			</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\SOIL\image_DXT.c"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\SOIL\image_DXT.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\SOIL\image_helper.c"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\SOIL\image_helper.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\SOIL\SOIL.c"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\SOIL\SOIL.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\SOIL\stb_image_aug.c"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\SOIL\stb_image_aug.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\SOIL\stbi_DDS_aug.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Textures\SOIL\stbi_DDS_aug_c.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Libraries"

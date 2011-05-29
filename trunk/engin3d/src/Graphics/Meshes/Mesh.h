@@ -11,8 +11,7 @@ class cMesh : public cResource
 {
   public:
     cMesh() { mbLoaded = false; }
-    virtual bool Init ( const std::string &lacNameID,
-      void * lpMemoryData, int luiTypeID);
+    virtual bool Init ( const std::string &lacNameID, void * lpMemoryData, int luiTypeID);
     virtual void Deinit();
     virtual bool IsLoaded() { return mbLoaded; }
     void RenderMesh();

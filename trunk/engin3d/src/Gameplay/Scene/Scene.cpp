@@ -1,8 +1,8 @@
 #include "Scene.h"
 
-#include "../../Graphics/Meshes/assimp/Include/assimp.hpp"
-#include "../../Graphics/Meshes/assimp/Include/aiScene.h"
-#include "../../Graphics/Meshes/assimp/Include/aiPostProcess.h"
+#include <assimp.hpp>
+#include <aiScene.h>
+#include <aiPostProcess.h>
 
 #include <cassert>
 
@@ -67,8 +67,7 @@ void cScene::ProcessScene( const aiScene* lpScene )
     char lacMeshName[512];
     sprintf( lacMeshName, "%s_%d", macFile.c_str(), luiIndex);
     cResourceHandle lHandle;
-    lHandle = cMeshManager::Get().LoadResource(lacMeshName, 
-      lpScene->mMeshes[luiIndex], 0);
+    lHandle = cMeshManager::Get().LoadResource( lacMeshName, lpScene->mMeshes[luiIndex], 0);
     mMeshList.push_back(lHandle);
 	int liMaterialIndex = lpScene->mMeshes[luiIndex]->mMaterialIndex;
 	mMeshMaterialIndexList.push_back(liMaterialIndex);

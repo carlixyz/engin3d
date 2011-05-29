@@ -6,6 +6,7 @@
 #include "../Character/CharacterManager.h"
 #include "../Graphics/Textures/TextureManager.h"
 #include "../Graphics/Materials/MaterialManager.h"
+#include "../Graphics/Effects/EffectManager.h"
 #include "../Gameplay/Scene/SceneManager.h"
 //#include "../Utility/Debug.h"
 
@@ -23,70 +24,64 @@ bool cGame::Init()
   mbFinish = false;
 //  mfTimeElapsed = 0.0f; // not Needed
 
-    //Init window
-  cApplicationProperties mProperties;
-  mProperties.LoadXML("./Src/Data/XML/Config.xml");
+    // window Init & Creation
+  cApplicationProperties lProperties;
 
-    // Window Creation
-  bool lbResult =  cWindow::Get().Init( mProperties)  ;
+  if ( !lProperties.LoadXML("./Src/Data/XML/Config.xml") )
+	 OutputDebugString("\n XML Load: FAILED\n");
 
-  //Init Camera  
- 
-	// 3D Camera	
-  m3DCamera.Init();
-  float lfAspect = (float)mProperties.muiWidth/(float)mProperties.muiHeight;
-  m3DCamera.SetPerspective(45.0f, lfAspect, 0.1f, 100.0f);
-//  m3DCamera.SetLookAt( cVec3(0.001f, 10.0f, 0.0f), cVec3(0.0f, 0.0f, 0.0f) ); // Camera Used for IA
-  m3DCamera.SetLookAt( cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );		// Camera Used for Jesus 
+  bool lbResult  =  cWindow::Get().Init( lProperties );
 
-  	// * 2D Camera * // Uncomment this for IA
-  float lfRight = (float) mProperties.muiWidth / 2.0f;
-  float lfLeft = -lfRight;
-  float lfTop = (float) mProperties.muiHeight / 2.0f;
-  float lfBottom = -lfTop;
-  m2DCamera.Init();
-  m2DCamera.SetOrtho(lfLeft,lfRight,lfBottom,lfTop, 0.1f, 100.0f);
-  m2DCamera.SetLookAt( cVec3(0.0f,0.0f,1.0f), cVec3(0.0f, 0.f, 0.f) );
-  
-  // Init the texture manager
-  cTextureManager::Get().Init( 256 ); // <- Cuanto Debería ser para texturas ?? 
-
-   //Init Input Manager
-  cInputManager::Get().Init(kaActionMapping, eIA_Count);
-
-  //Init OpenGL
-  if (lbResult)
+  if (lbResult) //Init OpenGL
   {
     lbResult = cGraphicManager::Get().Init( &cWindow::Get() );
 
     //If something failed kill the window
     if (!lbResult) cWindow::Get().Deinit();
   }
-  // Character Manager initialization
+
+	// 3D Camera	
+  m3DCamera.Init();
+  float lfAspect = (float)lProperties.muiWidth/(float)lProperties.muiHeight;
+  m3DCamera.SetPerspective(45.0f, lfAspect, 0.1f, 100.0f);
+//  m3DCamera.SetLookAt( cVec3(0.001f, 10.0f, 0.0f), cVec3(0.0f, 0.0f, 0.0f) ); // Camera Used for IA
+  m3DCamera.SetLookAt( cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );		// Camera Used for Jesus 
+
+   // 2D Camera 
+  float lfRight = (float) lProperties.muiWidth / 2.0f;
+  float lfLeft = -lfRight;
+  float lfTop = (float) lProperties.muiHeight  / 2.0f;
+  float lfBottom = -lfTop;
+  m2DCamera.Init();
+  m2DCamera.SetOrtho(lfLeft,lfRight,lfBottom,lfTop, 0.1f, 100.0f);
+  m2DCamera.SetLookAt( cVec3(0.0f,0.0f,1.0f), cVec3(0.0f, 0.f, 0.f) );
+    
+  // Init Texture manager
+  cTextureManager::Get().Init( 256 ); // <- how many for textures ?? 
+  cMaterialManager::Get().Init( 4 );
+  cEffectManager::Get().Init( 4 );
+
+   //Init Input Manager
+  cInputManager::Get().Init(kaActionMapping, eIA_Count);
+
+  cSceneManager::Get().Init(1);
+  mScene = cSceneManager::Get().LoadResource("TestLevel");
+//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Src/Data/Scene/dragonsmall.DAE");
+
+  // Character & Behaviour Manager initialization
   cCharacterManager::Get().Init();
+  cBehaviourManager::Get().Init() ;
+
+  // Init LuaManager
+  cLuaManager::Get().Init();
+  cLuaManager::Get().DoFile( "./Src/Data/Scripts/CreatePatrol.lua"  );
 
   cFontManager::Get().Init( 1);//same as LoadResource("Font1","./Src/Data/Fonts/Test1.fnt" );
   mFontHandle = cFontManager::Get().LoadResource("Font1");
 
-  cMaterialManager::Get().Init( 4 );
-   // Behaviour Setting
-  cBehaviourManager::Get().Init() ;
-
-	// Init LuaManager
-  cLuaManager::Get().Init();
-  RegisterLuaFunctions(); // C++ Functions Registered into Lua
-
-  // REMEMBER THE FOLDERS STRUCTURE TO ACCESS THE FILES 
-  cLuaManager::Get().DoFile( "./Src/Data/Scripts/CreatePatrol.lua"  );
-
-  cSceneManager::Get().Init(1);
-//  mScene = cSceneManager::Get().LoadResource("TestLevel", "./Src/Data/Scene/dragonsmall.DAE");
-  mScene = cSceneManager::Get().LoadResource("TestLevel");
-
   return lbResult;
 }
 
-// Method to update the game
 void cGame::Update(float lfTimeStep)
 {
   cWindow::Get().Update();
@@ -100,9 +95,7 @@ void cGame::Update(float lfTimeStep)
   //Update time
 //  mfTimeElapsed += lfTimeStep;
   
-	mbFinish = mbFinish || 
-             cWindow::Get().GetCloseApplication() ||
-             IsPressed(eIA_CloseApplication);
+	mbFinish = mbFinish || cWindow::Get().GetCloseApplication() || IsPressed(eIA_CloseApplication);
 	if (mbFinish)
 	{ 
 		return;
@@ -120,7 +113,6 @@ void cGame::Render()
   	// ---------------------------------------------------------------------------------------
 		cGraphicManager::Get().ActivateCamera( &m3DCamera );
 
-
   // 3) Render Solid 3D
   	// ---------------------------------------------------------------------------------------
 	// Set the world matrix
@@ -130,7 +122,6 @@ void cGame::Render()
   
 	//Render Debug Lines
 		cGraphicManager::Get().DrawGrid();
-	
 		cGraphicManager::Get().DrawAxis(); 
 	
 	 //Render scene
@@ -139,8 +130,7 @@ void cGame::Render()
 //  glEnable(GL_TEXTURE_2D);
 
 	// Character Rendering  
- 
-		cCharacterManager::Get().Render();
+ 		cCharacterManager::Get().Render();
 
 	// 4) Render 3D with transparency
 	// ---------------------------------------------------------------------------------------
@@ -175,26 +165,23 @@ void cGame::Render()
 //Method to deinitialize the game
 bool cGame::Deinit()
 {
-  //Deinit Input Manager
+  //Deinit all Managers
   cInputManager::Get().Deinit();
 
-  //Deinit CharacterManager
   cCharacterManager::Get().Deinit();
 
-  // Behaviour Setting
   cBehaviourManager::Get().Deinit() ;
 
-  //Deinit Lua Manager
   cLuaManager::Get().Deinit();
 
-  // Font Deinit
   cFontManager::Get().Deinit();
-//  mFont.Deinit();
+  //  mFont.Deinit();
+  cEffectManager::Get().Deinit();
 
-  //Texture manager
+  cMaterialManager::Get().Deinit();
+
   cTextureManager::Get().Deinit();
 
-  //Scene manager
   cSceneManager::Get().Deinit();
 
   //Deinit graphic manager

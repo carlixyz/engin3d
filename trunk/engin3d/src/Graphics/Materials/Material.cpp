@@ -5,8 +5,8 @@
 
 #include "MaterialData.h"
 #include "../../Utility/FileUtils.h"
-#include "../../Graphics/Textures/TextureManager.h"
-#include "../../Graphics/Meshes/assimp/Include/aiMaterial.h"
+#include "../Textures/TextureManager.h"
+#include <aiMaterial.h>
 
 //Init material into memory
 bool cMaterial::Init( const std::string &lacNameID, 

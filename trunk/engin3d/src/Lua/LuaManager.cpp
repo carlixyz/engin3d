@@ -34,6 +34,9 @@ void cLuaManager::Init()
 
   //Panic callback
   lua_atpanic(mpLuaContext, FuncPanic);
+
+  // C++ Functions Registered into Lua
+  RegisterLuaFunctions(); 
 }
 
 bool cLuaManager::DoString(const char *lacStatement)
