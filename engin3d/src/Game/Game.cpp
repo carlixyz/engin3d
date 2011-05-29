@@ -22,7 +22,7 @@ bool cGame::Init()
  
   //Init time and exit attribute
   mbFinish = false;
-//  mfTimeElapsed = 0.0f; // not Needed
+  mfTimeElapsed = 0.0f; 
 
     // window Init & Creation
   cApplicationProperties lProperties;
@@ -58,7 +58,7 @@ bool cGame::Init()
     
   // Init Texture manager
   cTextureManager::Get().Init( 256 ); // <- how many for textures ?? 
-  cMaterialManager::Get().Init( 4 );
+  cMaterialManager::Get().Init( 16 );
   cEffectManager::Get().Init( 4 );
 
    //Init Input Manager
@@ -93,7 +93,7 @@ void cGame::Update(float lfTimeStep)
   cCharacterManager::Get().Update(lfTimeStep);
 
   //Update time
-//  mfTimeElapsed += lfTimeStep;
+  mfTimeElapsed += lfTimeStep;
   
 	mbFinish = mbFinish || cWindow::Get().GetCloseApplication() || IsPressed(eIA_CloseApplication);
 	if (mbFinish)
@@ -126,7 +126,7 @@ void cGame::Render()
 	
 	 //Render scene
 //  glDisable(GL_TEXTURE_2D);
-  ((cScene *)mScene.GetResource())->Render();
+		((cScene *)mScene.GetResource())->Render();
 //  glEnable(GL_TEXTURE_2D);
 
 	// Character Rendering  
@@ -138,12 +138,13 @@ void cGame::Render()
 	// 5) Activate 2D Camera
 	// ---------------------------------------------------------------------------------------
 		cGraphicManager::Get().ActivateCamera( &m2DCamera ); // comment this for IA
+		lWorld.LoadIdentity();
+		cGraphicManager::Get().SetWorldMatrix(lWorld);
 
 	// 6) Render 2D Elements
 	// ---------------------------------------------------------------------------------------
 		// Draw some strings
-  	lWorld.LoadIdentity();
-		cGraphicManager::Get().SetWorldMatrix(lWorld);
+        glEnable(GL_TEXTURE_2D);
   
 	//	cFont * lpFont = (cFont*)mFontHandle.GetResource();
 		cFont * lpFont = (cFont*)cFontManager::Get().SearchResource("Font1").GetResource();
@@ -151,7 +152,8 @@ void cGame::Render()
 		lpFont->Write(0, 200,0, "Año Totó pingüino() !¡¿?", 0, FONT_ALIGN_CENTER);
 
 		lpFont->SetColour( 0.0f, 1.0f, 0.0f );
-		lpFont->WriteBox(150, 200, 0 ,100 , " Esto es un test \n MultiLinea", 0, FONT_ALIGN_CENTER );																		
+		lpFont->WriteBox(150, 200, 0 ,100 , " Esto es un test \n MultiLinea", 0, FONT_ALIGN_CENTER );	
+		
 
 	// 7) Postprocessing
 	// ---------------------------------------------------------------------------------------

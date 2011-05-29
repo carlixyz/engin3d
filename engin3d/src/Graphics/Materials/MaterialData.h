@@ -4,7 +4,6 @@
 #include <string>
 #include <aiMaterial.h>
 
-
 struct cMaterialData
 {
 	std::string macPath;		// Textures folder path 

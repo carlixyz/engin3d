@@ -184,6 +184,7 @@ cResourceHandle cResourceManager::AddResourceToPool(cResource *lpResource)
 
 std::string cResourceManager::ReadXml(std::string lacNameID, const std::string &lacPath)
 {
+
 	if ( lacPath.substr(lacPath.find_last_of(".") + 1) == "xml"  ) // Check if it has a ".xml" extension
 	{
 		TiXmlDocument doc( lacPath );
@@ -208,6 +209,7 @@ std::string cResourceManager::ReadXml(std::string lacNameID, const std::string &
 					pElem = pElem->NextSiblingElement();// else keep seeking the next Element..
 
 			} 	// or else It means that there is something wrong inside XML or the folder´s path address	
+			
 		}	return "./Src/Data/Scene/fail.DAE"; // Return default Resource ´s path
 
 	}	return lacPath; // or else it´s just a diferent extension (.dae, .dds, .jpg, etc)

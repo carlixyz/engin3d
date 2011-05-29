@@ -1,13 +1,19 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
-#include <string>
+#include <vector>
+#include <sstream>
 #include "MaterialData.h"
+
 #include "../../Utility/Resource.h"
 #include "../../Utility/ResourceHandle.h"
 
-//struct aiMaterial;
-
+struct cTextureData
+{
+	std::string macShaderTextureID;	// Shader Textures 
+	cResourceHandle mTexture;
+};
+//---------------------------------------------------------------------------------------
 class cMaterial : public cResource
 {
   public:
@@ -16,11 +22,15 @@ class cMaterial : public cResource
     virtual bool Init ( const std::string &lacNameID, void * lpMemoryData, int liTypeID);
     virtual void Deinit();
     virtual bool IsLoaded() { return mbLoaded; }
-	void SetMaterial();
+	void PrepareRender();
+	bool SetFirstPass();
+	bool SetNextPass();
  
 private:
-    cResourceHandle mDiffuseTexture;
-
+	void ReadAllTextures(aiMaterial * lpAiMaterial, cMaterialData * lpMaterialData);
+	std::string macFile;
+	std::vector<cTextureData> maTextureData;
+    cResourceHandle mEffect;
     bool mbLoaded;
 };
 

@@ -169,6 +169,8 @@ void cGraphicManager::RefreshWorldView()
 	lWorldView = mWorldMatrix * lWorldView;
 	// Set the View Matrix
 	glLoadMatrixf( lWorldView.AsFloatPointer() );
+	// Update World view Projection for shader Effects
+	mWVPMatrix = lWorldView * mpActiveCamera->GetProj();
 }
 
 void cGraphicManager::ActivateCamera(cCamera *lpCamera)
