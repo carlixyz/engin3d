@@ -56,7 +56,7 @@ void cPatrol::Update(float lfTimestep)
     mpBehaviour->Update(lfTimestep);
 
     //If the control point is reached
-    if (mpBehaviour->EndPointReached())
+  if (mpBehaviour->EndPointReached())
     {
       //Update to the next point
       bool lbOk = cLuaManager::Get().CallLua("NextEndPoint", mpCharacter->GetId(), (int *) NULL);

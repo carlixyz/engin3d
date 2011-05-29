@@ -2,7 +2,7 @@
 #define MAT_DATA_H
 
 #include <string>
-#include "../../Graphics/Meshes/assimp/Include/aiMaterial.h"
+#include <aiMaterial.h>
 
 
 struct cMaterialData

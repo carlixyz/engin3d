@@ -2,9 +2,9 @@
 
 #include "../GLHeaders.h"
 
-#include "../../Graphics/Meshes/assimp/Include/assimp.hpp"
-#include "../../Graphics/Meshes/assimp/Include/aiScene.h"
-#include "../../Graphics/Meshes/assimp/Include/aiPostProcess.h"
+#include <assimp.hpp>
+#include <aiScene.h>
+#include <aiPostProcess.h>
 
 #include <cassert>
 

@@ -7,15 +7,14 @@
 
 struct cApplicationProperties
 {
-// General Application Parameters
 	std::string macApplicationName;
 	unsigned muiWidth;
 	unsigned muiHeight;
 	unsigned muiBits;
 	bool mbFullscreen;
 
-// inline File properties Loader 
-	inline bool LoadXML(const std::string &File){ // inline foo: We call this just only one time so why not..
+// Config properties Loader 
+	inline bool LoadXML(const std::string &File) { // inline foo: We call this just only one time so why not..
 	  TiXmlDocument doc( File );
 	  
   if ( doc.LoadFile() )
@@ -25,8 +24,7 @@ struct cApplicationProperties
 	  TiXmlAttribute* pAttrib; 
 	
 	  pProperty = docHandle.FirstChildElement("Application").FirstChildElement("Window").FirstChildElement("Property").ToElement();
-	 
-	   // seeking in: <DOC> / <Application> / <Window> / <property (Attrib)> 
+	  // seeking in: <DOC> / <Application> / <Window> / <property (Attrib)> 
 
 	  for( assert(pProperty) ; pProperty ; pProperty = pProperty->NextSiblingElement() )
 	  {
@@ -36,25 +34,26 @@ struct cApplicationProperties
 			 this->macApplicationName = pAttrib->ValueStr(); // Properties.macApplicationName
 			  continue;}
 
-		else if( pAttrib->NameTStr() == "Width"  ){
+		if( pAttrib->NameTStr() == "Width"  ){
 			 this->muiWidth = atoi( pAttrib->Value() ); // Properties.muiWidth
 			 continue;}		
 
-		else if( pAttrib->NameTStr() == "Height" ){
+		if( pAttrib->NameTStr() == "Height" ){
 			this->muiHeight = atoi( pAttrib->Value()); // Properties.muiHeight
 			 continue;}
        
-		else if( pAttrib->NameTStr() ==  "Bits"  ) {
+		if( pAttrib->NameTStr() ==  "Bits"  ) {
 			 this->muiBits = atoi( pAttrib->Value() ) ; // Properties.muiBits
 			 continue;}
 
-   		else if( pAttrib->NameTStr() ==  "Fullscreen"   )
+   		if( pAttrib->NameTStr() ==  "Fullscreen"   )
 			 this->mbFullscreen = ( pAttrib->Value() == "true" );// Properties.mbFullscreen
 	  
 	  }	return true;
 
-  }else return false;
-	}
+  }else return false; 
+ }
+
 };
 #endif
 /*	Example:

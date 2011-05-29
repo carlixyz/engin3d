@@ -196,18 +196,18 @@ std::string cResourceManager::ReadXml(std::string lacNameID, const std::string &
 	
 			pElem = docHandle.FirstChildElement("Application").FirstChildElement("Resources").FirstChildElement().ToElement();
 	 
-		 // seeking in: <DOC> / <Application> / <Resources> / <Resource(Attrib)> 
+		 // seeking in: <DOC> / <Application> / <Resources> / <Resource(Attribs: name = "someId" file = "somePath")> 
 
 			while ( pElem )
 			{
 				pAttrib = pElem->FirstAttribute();
 
-				if ( pAttrib->ValueStr() == lacNameID )// if ( pAttrib->Name() == "name" )
-			 	 	return	(pAttrib->Next()->ValueStr());// if ( pAttrib->Next()->Name() == "file" )
+				if ( pAttrib->ValueStr() == lacNameID )// assert ( pAttrib->NameTStr() == "name" )
+			 	 	return	(pAttrib->Next()->ValueStr());// assert ( pAttrib->Next()->NameTStr() == "file" )
 				else
-					pElem = pElem->NextSiblingElement();
+					pElem = pElem->NextSiblingElement();// else keep seeking the next Element..
 
-			} 	// else It means that there is something wrong inside XML or the folder큦 path address	
+			} 	// or else It means that there is something wrong inside XML or the folder큦 path address	
 		}	return "./Src/Data/Scene/fail.DAE"; // Return default Resource 큦 path
 
 	}	return lacPath; // or else it큦 just a diferent extension (.dae, .dds, .jpg, etc)
