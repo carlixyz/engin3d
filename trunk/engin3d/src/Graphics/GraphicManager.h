@@ -1,3 +1,6 @@
+#ifndef GRAPHIC_MANAGER_H
+#define GRAPHIC_MANAGER_H
+
 #include "../Utility/Singleton.h"
 #include "GLHeaders.h"
 #include "Camera.h"
@@ -5,6 +8,7 @@
 #include "../MathLib/MathLib.h"
 
 class cWindow;
+
 class cGraphicManager : public cSingleton <cGraphicManager>
 {
   private:
@@ -13,6 +17,7 @@ class cGraphicManager : public cSingleton <cGraphicManager>
     HGLRC mHRC;
 	cCamera * mpActiveCamera;
 	cMatrix mWorldMatrix;
+	cMatrix mWVPMatrix;	//World view Projection for shader Effects
 
   public:
     bool Init( cWindow * lpWindow );
@@ -31,8 +36,13 @@ class cGraphicManager : public cSingleton <cGraphicManager>
 	void DrawGrid();
 	void DrawAxis();
 
+	cCamera * GetActiveCamera() { return mpActiveCamera; }
+	const cMatrix &GetWVPMatrix() { return mWVPMatrix; }
+
     friend class cSingleton<cGraphicManager>;
   protected:
     cGraphicManager() { ; }
  
 };
+
+#endif

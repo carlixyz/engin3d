@@ -24,17 +24,27 @@ void cObject::Render()
 {
   //Set the world matrix
   cGraphicManager::Get().SetWorldMatrix(mWorldMatrix);
+
   for (unsigned luiIndex = 0; luiIndex < mMeshHandles.size(); ++luiIndex)
   {
     //Set the material
-    cResource * lpResource;
-    lpResource = mMaterialHandles[luiIndex].GetResource();
-    assert(lpResource);
-    ((cMaterial*)lpResource)->SetMaterial();
+    cMaterial * lpMaterial = ( cMaterial * ) mMaterialHandles[luiIndex].GetResource();
+	//Set the Mesh
+	cMesh *lpMesh		   = (cMesh *) mMeshHandles[luiIndex].GetResource();
+    
+	// Prepare all the parameters for the render
+	lpMaterial->PrepareRender();
 
-    //Render Mesh
-    lpResource = mMeshHandles[luiIndex].GetResource();
-    assert(lpResource);
-    ((cMesh *)lpResource)->RenderMesh();
+	// Set the first pass
+	bool lbContinue = lpMaterial->SetFirstPass();
+
+	while (lbContinue)
+	{
+		//Render Mesh
+		lpMesh->RenderMesh();
+		// Prepare the next Pass
+		lbContinue = lpMaterial->SetNextPass();
+	}
   }
+
 }

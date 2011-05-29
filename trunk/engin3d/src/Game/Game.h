@@ -9,10 +9,12 @@ class cGame : public cSingleton<cGame>
  private:  
   friend class cSingleton<cGame>;
   bool mbFinish;
-//  float mfTimeElapsed;
+//float mfAcTime;
+  float mfTimeElapsed;
+
+// cFont mFont;
   cCamera m3DCamera;
   cCamera m2DCamera;
- // cFont mFont;
   cResourceHandle mScene;
   cResourceHandle mFontHandle;
 
@@ -29,6 +31,8 @@ public:
   inline bool HasFinished() { return mbFinish; }
   //Set the game finished 
   void SetFinished(bool lbFinish);
+
+  inline float GetAcumulatedTime() { return mfTimeElapsed; }
  protected:
    cGame() {;}
 };

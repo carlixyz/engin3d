@@ -1,7 +1,6 @@
 #ifndef MATERIAL_MANAGER_H
 #define MATERIAL_MANAGER_H
 
-
 #include "../../Utility/ResourceManager.h"
 #include "../../Utility/Singleton.h"
 #include "Material.h"

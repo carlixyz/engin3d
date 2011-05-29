@@ -1,3 +1,6 @@
+#ifndef CAMERA_H
+#define CAMERA_H
+
 #include "../MathLib/MathLib.h"
 
 class cCamera
@@ -32,3 +35,5 @@ public:
 };
 // GL_MODELVIEW = WorldMatrix * ViewMatrix
 // GL_PROJECTION = ProyectionMatrix
+
+#endif
