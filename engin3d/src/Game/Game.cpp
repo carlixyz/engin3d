@@ -45,7 +45,7 @@ bool cGame::Init()
   float lfAspect = (float)lProperties.muiWidth/(float)lProperties.muiHeight;
   m3DCamera.SetPerspective(45.0f, lfAspect, 0.1f, 100.0f);
 //  m3DCamera.SetLookAt( cVec3(0.001f, 10.0f, 0.0f), cVec3(0.0f, 0.0f, 0.0f) ); // Camera Used for IA
-  m3DCamera.SetLookAt( cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );		// Camera Used for Jesus 
+  m3DCamera.SetLookAt( cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f , 0.0f, 0.0f) );		// Camera Used for Jesus 
 
    // 2D Camera 
   float lfRight = (float) lProperties.muiWidth / 2.0f;
@@ -86,15 +86,15 @@ void cGame::Update(float lfTimeStep)
 {
   cWindow::Get().Update();
 
+    //Update time
+  mfTimeElapsed += lfTimeStep;
+
   //Update Input manager
   cInputManager::Get().Update(lfTimeStep);
 
   // Character Update
   cCharacterManager::Get().Update(lfTimeStep);
-
-  //Update time
-  mfTimeElapsed += lfTimeStep;
-  
+ 
 	mbFinish = mbFinish || cWindow::Get().GetCloseApplication() || IsPressed(eIA_CloseApplication);
 	if (mbFinish)
 	{ 

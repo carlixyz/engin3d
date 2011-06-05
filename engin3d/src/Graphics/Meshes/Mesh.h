@@ -2,8 +2,8 @@
 #define MESH_H
 
 #include <string>
+#include <vector>
 #include "../../Utility/Resource.h"
-
 
 struct aiMesh;
 
@@ -20,7 +20,9 @@ class cMesh : public cResource
     bool mbLoaded;
     unsigned mVboVertices;
     unsigned mVboNormals;
-    unsigned mVboTexture;
+ // unsigned mVboTexture;
+	std::vector<unsigned> maVboTexture;
+
     unsigned mVboIndex;
     bool mbHasNormals;
     bool mbHasTexture;
