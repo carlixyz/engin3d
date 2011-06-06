@@ -9,10 +9,10 @@ class cGame : public cSingleton<cGame>
  private:  
   friend class cSingleton<cGame>;
   bool mbFinish;
-//float mfAcTime;
+//float mfAcTime; // not needed, same as Time elapsed
   float mfTimeElapsed;
 
-// cFont mFont;
+// cFont mFont; // Added with font manager
   cCamera m3DCamera;
   cCamera m2DCamera;
   cResourceHandle mScene;
