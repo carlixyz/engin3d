@@ -35,7 +35,6 @@ bool cGame::Init()
   if (lbResult) //Init OpenGL
   {
     lbResult = cGraphicManager::Get().Init( &cWindow::Get() );
-
     //If something failed kill the window
     if (!lbResult) cWindow::Get().Deinit();
   }
@@ -61,7 +60,6 @@ bool cGame::Init()
   cMaterialManager::Get().Init( 16 );
   cEffectManager::Get().Init( 4 );
 
-   //Init Input Manager
   cInputManager::Get().Init(kaActionMapping, eIA_Count);
 
   cSceneManager::Get().Init(1);
@@ -89,10 +87,7 @@ void cGame::Update(float lfTimeStep)
     //Update time
   mfTimeElapsed += lfTimeStep;
 
-  //Update Input manager
   cInputManager::Get().Update(lfTimeStep);
-
-  // Character Update
   cCharacterManager::Get().Update(lfTimeStep);
  
 	mbFinish = mbFinish || cWindow::Get().GetCloseApplication() || IsPressed(eIA_CloseApplication);
@@ -177,7 +172,7 @@ bool cGame::Deinit()
   cLuaManager::Get().Deinit();
 
   cFontManager::Get().Deinit();
-  //  mFont.Deinit();
+  //  mFont.Deinit(); // not needed
   cEffectManager::Get().Deinit();
 
   cMaterialManager::Get().Deinit();

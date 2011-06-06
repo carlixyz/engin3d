@@ -33,7 +33,7 @@ VS_OUTPUT myvs( const VS_INPUT IN )
 {
 	VS_OUTPUT OUT;
 	float4 position = float4(IN.position, 1.0);
-	OUT.position = mul( worldViewProj, position );
+	OUT.position = mul( WorldViewProj, position );
 	OUT.tex0 = IN.tex0;
 	return OUT;
 }
@@ -44,7 +44,9 @@ VS_OUTPUT myvs( const VS_INPUT IN )
 //-----------------------------------------------------------------------------
 float4 myps( VS_OUTPUT IN ): COLOR
 {
-	return tex2D(Diffuse_0, IN.tex0);
+	return tex2D(Diffuse_0, IN.tex0) ;
+	// se puede lograr transparencia alpha si se cambia la linea anterior por:
+	// return tex2D(Diffuse_0, IN.tex0)  * float4(1.0,1.0,1.0,0.75) 
 }
 
 //-----------------------------------------------------------------------------
