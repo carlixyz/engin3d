@@ -447,6 +447,34 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Skeletal"
+				>
+				<File
+					RelativePath=".\src\Graphics\Skeletal\SkeletalCoreModel.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Skeletal\SkeletalCoreModel.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Skeletal\SkeletalManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Skeletal\SkeletalManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Skeletal\SkeletalMesh.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Graphics\Skeletal\SkeletalMesh.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="MathLib"

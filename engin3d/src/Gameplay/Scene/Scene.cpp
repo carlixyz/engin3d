@@ -62,12 +62,13 @@ void cScene::Deinit()
 void cScene::ProcessScene( const aiScene* lpScene )
 {
   cMeshManager::Get().Init(lpScene->mNumMeshes);
-  for (unsigned luiIndex = 0; luiIndex< lpScene->mNumMeshes; ++luiIndex)
+
+  // Meshes
+  for (unsigned luiIndex = 0; luiIndex < lpScene->mNumMeshes; ++luiIndex)
   {
     char lacMeshName[512];
     sprintf( lacMeshName, "%s_%d", macFile.c_str(), luiIndex);
-    cResourceHandle lHandle;
-    lHandle = cMeshManager::Get().LoadResource( lacMeshName, lpScene->mMeshes[luiIndex], 0);
+    cResourceHandle lHandle = cMeshManager::Get().LoadResource( lacMeshName, lpScene->mMeshes[luiIndex], kuiStaticMesh);
     mMeshList.push_back(lHandle);
 	int liMaterialIndex = lpScene->mMeshes[luiIndex]->mMaterialIndex;
 	mMeshMaterialIndexList.push_back(liMaterialIndex);

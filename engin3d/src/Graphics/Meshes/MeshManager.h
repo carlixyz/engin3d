@@ -11,7 +11,6 @@ class cMeshManager :  public cResourceManager,
   protected:
     cMeshManager() { ; }
   private:  
-    virtual cResource * LoadResourceInternal( std::string lacNameID,
-      void * lpMemoryData, int luiTypeID );
+    virtual cResource * LoadResourceInternal( std::string lacNameID, void * lpMemoryData, int luiTypeID );
 };
 #endif

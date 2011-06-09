@@ -10,7 +10,7 @@ class cResourceHandle; // Foward Declaration
 class cResourceManager 
 {
 public:
-	void Init( unsigned luiMaxSize );							// must assign 1 slot al least for start
+	virtual void Init( unsigned luiMaxSize );							// must assign 1 slot al least for start
 	void Deinit();
 
 	cResourceHandle SearchResource( std::string lacNameID );	// Find Resources loaded in Managers
