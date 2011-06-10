@@ -7,6 +7,8 @@ enum eInputActions {
   eIA_TurnLeft,
   eIA_TurnRight,
   eIA_Advance,
+  eIA_PlayJog,
+  eIA_PlaySalute,
   eIA_Count
 };
 
