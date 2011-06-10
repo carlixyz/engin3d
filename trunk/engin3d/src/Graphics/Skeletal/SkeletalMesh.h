@@ -17,7 +17,7 @@ class cSkeletalMesh : public cMesh
 							int liDataType) ;
 		virtual void Deinit();
 		virtual void Update(float lfTimeStep);
-		virtual void RenderMesh() {;}
+		virtual void RenderMesh();
 		virtual bool IsLoaded() { return (mpCal3DModel != NULL); }
 		
 		void RenderSkeleton();

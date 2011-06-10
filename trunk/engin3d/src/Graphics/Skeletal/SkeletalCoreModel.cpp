@@ -84,6 +84,9 @@ bool cSkeletalCoreModel::Init(const std::string &lacNameID, const std::string &l
 		// store the mesh index
 		mMeshIndexes.push_back(liMeshIndex);
 	}
+
+	this->CreateBuffers();
+
 	return true;
 }
 void cSkeletalCoreModel::Deinit()

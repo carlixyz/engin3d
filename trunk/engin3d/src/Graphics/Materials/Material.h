@@ -19,7 +19,9 @@ class cMaterial : public cResource
   public:
     cMaterial() { mbLoaded = false; }
 
-    virtual bool Init ( const std::string &lacNameID, void * lpMemoryData, int liTypeID);
+    virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int liTypeID);
+	virtual bool Init( const std::string &lacNameID, const std::string &lacFile );
+
     virtual void Deinit();
     virtual bool IsLoaded() { return mbLoaded; }
 	void PrepareRender();

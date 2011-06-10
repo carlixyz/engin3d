@@ -8,7 +8,7 @@ class cObject
 public:
   void Init();
   void Deinit(){};
-  virtual void Update( float lfTimeStep){};
+  virtual void Update( float lfTimeStep);
   virtual void Render();
   inline std::string GetName() { return macName;}
   inline void SetName( const std::string &lacName) {macName = lacName; }

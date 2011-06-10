@@ -13,7 +13,8 @@ class cMaterialManager :  public cResourceManager,
   protected:
     cMaterialManager() { ; }
   private:  
-    virtual cResource * LoadResourceInternal( std::string lacNameID,
-							  void * lpMemoryData, int liTypeID );
+    virtual cResource * LoadResourceInternal( std::string lacNameID, void * lpMemoryData, int liTypeID );
+	virtual cResource * LoadResourceInternal( std::string lacNameID, const std::string &lacFile );
+
 };
 #endif
