@@ -11,7 +11,7 @@
  
   <Resources>
     <Material name ="Test" effect = "Simple" technique = "Technique0" />
-    <Scene name ="TestLevel" file="./Src/Data/Scene/dragonsmall.DAE" info="staticModel" />
+    <Scene name ="Dragon" file="./Src/Data/Scene/dragonsmall.DAE" info="staticModel" />
     <Scene name ="LoadFailed" file="./Src/Data/Scene/fail.DAE" info="staticModel" />
     <Scene name ="Ring" file="./Src/Data/Scene/RingO.dae" info="staticModel" />
     <Font name ="Font1" file="./Src/Data/Fonts/Test1.fnt" info="Font" />

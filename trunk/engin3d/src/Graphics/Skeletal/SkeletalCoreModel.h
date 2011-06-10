@@ -28,12 +28,12 @@ class cSkeletalMesh;
 class cSkeletalCoreModel : public cResource
 {
 	public:
-		cSkeletalCoreModel()	{ mpCoreModel = NULL; }
+		cSkeletalCoreModel()										{ mpCoreModel = NULL; }
 		friend class cSkeletalMesh;
 
 		virtual bool Init( const std::string &lacNameID, const std::string &lacFile );
 		virtual void Deinit();
-		virtual bool IsLoaded()	{ return (mpCoreModel != NULL ); }
+		virtual bool IsLoaded()										{ return (mpCoreModel != NULL ); }
 		sAnimationDef *GetAnimationDef(const std::string lacAnim);
 
 	private:

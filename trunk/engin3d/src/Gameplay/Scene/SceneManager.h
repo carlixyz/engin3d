@@ -14,8 +14,7 @@ class cSceneManager : public cResourceManager,
   protected:
     cSceneManager() { ; } //Protected constructor
   private:
-    virtual cResource * LoadResourceInternal( std::string lacNameID, 
-      const std::string &lacFile);
+    virtual cResource * LoadResourceInternal( std::string lacNameID, const std::string &lacFile);
 };
 #endif
 

@@ -6,8 +6,11 @@
 #include "../Character/CharacterManager.h"
 #include "../Graphics/Textures/TextureManager.h"
 #include "../Graphics/Materials/MaterialManager.h"
+#include "../Graphics/Skeletal/SkeletalManager.h"
 #include "../Graphics/Effects/EffectManager.h"
+#include "../Graphics/Meshes/MeshManager.h"
 #include "../Gameplay/Scene/SceneManager.h"
+
 //#include "../Utility/Debug.h"
 
 #ifdef _WIN32
@@ -26,17 +29,13 @@ bool cGame::Init()
 
     // window Init & Creation
   cApplicationProperties lProperties;
-
-  if ( !lProperties.LoadXML("./Src/Data/XML/Config.xml") )
-	 OutputDebugString("\n XML Load: FAILED\n");
+  if ( !lProperties.LoadXML("./Src/Data/XML/Config.xml") ) OutputDebugString("\n Config XML Load: FAILED\n");
 
   bool lbResult  =  cWindow::Get().Init( lProperties );
-
   if (lbResult) //Init OpenGL
   {
     lbResult = cGraphicManager::Get().Init( &cWindow::Get() );
-    //If something failed kill the window
-    if (!lbResult) cWindow::Get().Deinit();
+    if (!lbResult) cWindow::Get().Deinit();     //If something failed kill the window
   }
 
 	// 3D Camera	
@@ -54,29 +53,36 @@ bool cGame::Init()
   m2DCamera.Init();
   m2DCamera.SetOrtho(lfLeft,lfRight,lfBottom,lfTop, 0.1f, 100.0f);
   m2DCamera.SetLookAt( cVec3(0.0f,0.0f,1.0f), cVec3(0.0f, 0.f, 0.f) );
-    
-  // Init Texture manager
-  cTextureManager::Get().Init( 256 ); // <- how many for textures ?? 
-  cMaterialManager::Get().Init( 16 );
-  cEffectManager::Get().Init( 4 );
 
   cInputManager::Get().Init(kaActionMapping, eIA_Count);
 
-  cSceneManager::Get().Init(1);
-  mScene = cSceneManager::Get().LoadResource("TestLevel");
-//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Src/Data/Scene/dragonsmall.DAE");
+  // Init Texture manager
+  cMaterialManager::Get().Init( 15 );
+  cTextureManager::Get().Init( 5 ); 
+  cFontManager::Get().Init( 1);
+  cEffectManager::Get().Init( 5 );
+  cMeshManager::Get().Init(5);
+  cSceneManager::Get().Init(5); // some conflict with SkeletalManager
+  cSkeletalManager::Get().Init(5);
 
   // Character & Behaviour Manager initialization
   cCharacterManager::Get().Init();
   cBehaviourManager::Get().Init() ;
 
-  // Init LuaManager
   cLuaManager::Get().Init();
   cLuaManager::Get().DoFile( "./Src/Data/Scripts/CreatePatrol.lua"  );
 
-  cFontManager::Get().Init( 1);//same as LoadResource("Font1","./Src/Data/Fonts/Test1.fnt" );
-  mFontHandle = cFontManager::Get().LoadResource("Font1");
+  // Multiple Resources Loading
+  // mScene = cSceneManager::Get().LoadResource("Dragon"); // some conflict with SkeletalManager
+  //mScene = cSceneManager::Get().LoadResource("Dragon", "./Src/Data/Scene/dragonsmall.DAE");
 
+  cSkeletalManager::Get().LoadResource("Skeleton", "./Src/Data/Skeletal/SkeletonModel.xml");
+  mSkeletalMesh = cMeshManager::Get().LoadResource("Skeleton1", "Skeleton", kuiSkeletalMesh);
+  cSkeletalMesh *lpSkeletonMesh = (cSkeletalMesh *) mSkeletalMesh.GetResource();
+  lpSkeletonMesh->PlayAnim("Idle", 1.0f, 1.0f);
+
+  mFontHandle = cFontManager::Get().LoadResource("Font1");  //same as LoadResource("Font1","./Src/Data/Fonts/Test1.fnt" );
+ 
   return lbResult;
 }
 
@@ -89,6 +95,9 @@ void cGame::Update(float lfTimeStep)
 
   cInputManager::Get().Update(lfTimeStep);
   cCharacterManager::Get().Update(lfTimeStep);
+
+  cSkeletalMesh *lpSkeletonMesh = (cSkeletalMesh *) mSkeletalMesh.GetResource();
+  lpSkeletonMesh->Update(lfTimeStep);
  
 	mbFinish = mbFinish || cWindow::Get().GetCloseApplication() || IsPressed(eIA_CloseApplication);
 	if (mbFinish)
@@ -120,12 +129,13 @@ void cGame::Render()
 		cGraphicManager::Get().DrawAxis(); 
 	
 	 //Render scene
-//  glDisable(GL_TEXTURE_2D);
-		((cScene *)mScene.GetResource())->Render();
-//  glEnable(GL_TEXTURE_2D);
+//		((cScene *)mScene.GetResource())->Render(); // some conflict with SkeletalManager
 
 	// Character Rendering  
  		cCharacterManager::Get().Render();
+
+	cSkeletalMesh *lpSkeletonMesh = (cSkeletalMesh *) mSkeletalMesh.GetResource();
+	lpSkeletonMesh->RenderSkeleton();
 
 	// 4) Render 3D with transparency
 	// ---------------------------------------------------------------------------------------
@@ -139,7 +149,6 @@ void cGame::Render()
 	// 6) Render 2D Elements
 	// ---------------------------------------------------------------------------------------
 		// Draw some strings
-        glEnable(GL_TEXTURE_2D);
   
 	//	cFont * lpFont = (cFont*)mFontHandle.GetResource();
 		cFont * lpFont = (cFont*)cFontManager::Get().SearchResource("Font1").GetResource();
@@ -172,14 +181,16 @@ bool cGame::Deinit()
   cLuaManager::Get().Deinit();
 
   cFontManager::Get().Deinit();
-  //  mFont.Deinit(); // not needed
+
   cEffectManager::Get().Deinit();
 
   cMaterialManager::Get().Deinit();
 
   cTextureManager::Get().Deinit();
 
-  cSceneManager::Get().Deinit();
+  cSkeletalManager::Get().Deinit();
+
+  cSceneManager::Get().Deinit(); // some conflict with SkeletalManager
 
   //Deinit graphic manager
   bool lbResult = cGraphicManager::Get().Deinit();

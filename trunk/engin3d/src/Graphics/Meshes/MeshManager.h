@@ -2,6 +2,7 @@
 #define MESH_MANAGER_H
 #include "../../Utility/ResourceManager.h"
 #include "../../Utility/Singleton.h"
+#include "Mesh.h"
 
 class cMeshManager :  public cResourceManager,
   public cSingleton<cMeshManager>

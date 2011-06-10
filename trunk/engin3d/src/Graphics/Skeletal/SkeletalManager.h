@@ -4,8 +4,9 @@
 #include <string>
 #include "../../Utility/ResourceManager.h"
 #include "../../Utility/Singleton.h"
+#include "SkeletalMesh.h"
 
-class cSkeletalMesh;
+//class cSkeletalMesh;
 class cSkeletalManager :  public cResourceManager,
 						  public cSingleton<cSkeletalManager>
 {

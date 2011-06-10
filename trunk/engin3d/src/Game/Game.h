@@ -12,11 +12,11 @@ class cGame : public cSingleton<cGame>
 //float mfAcTime; // not needed, same as Time elapsed
   float mfTimeElapsed;
 
-// cFont mFont; // Added with font manager
   cCamera m3DCamera;
   cCamera m2DCamera;
   cResourceHandle mScene;
   cResourceHandle mFontHandle;
+  cResourceHandle mSkeletalMesh;
 
 public:
   //Method to initialize the game

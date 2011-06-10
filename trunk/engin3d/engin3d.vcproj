@@ -695,6 +695,14 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Skeletal"
+				>
+				<File
+					RelativePath=".\src\Data\Skeletal\SkeletonModel.xml"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Character"
