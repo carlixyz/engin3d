@@ -1,6 +1,6 @@
 #include "SkeletalManager.h"
 #include "SkeletalCoreModel.h"
-#include "SkeletalMesh.h"
+//#include "SkeletalMesh.h"
 #include "cal3d/cal3d.h"
 #include "../../Utility/ResourceHandle.h"
 
@@ -28,7 +28,7 @@ cSkeletalMesh * cSkeletalManager::CreateSkeletalMesh(const std::string &lacCoreM
 	if (lHandle.IsValidHandle())
 	{
 		cSkeletalCoreModel * lpCoreModel = (cSkeletalCoreModel *)lHandle.GetResource();
-		cSkeletalMesh *lpSkeletalMesh = new cSkeletalMesh;
+		cSkeletalMesh* lpSkeletalMesh = new cSkeletalMesh;
 
 		if ( lpSkeletalMesh->Init("", lpCoreModel, 0) )
 		{

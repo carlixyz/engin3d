@@ -20,11 +20,11 @@ bool cSkeletalCoreModel::Init(const std::string &lacNameID, const std::string &l
 	bool lbLoadOk = doc.LoadFile();
 	if ( lbLoadOk )
 	{
-		OutputDebugString("SkeletalCoreModel - XML Load: OK\n");
+		OutputDebugString("SkeletalCoreModel->Init - XML Load: OK\n");
 	}
 	else
 	{
-		OutputDebugString("SkeletalCoreModel - XML Load: FAILED\n");
+		OutputDebugString("SkeletalCoreModel->Init - XML Load: FAILED\n");
 		return false;
 	}
 

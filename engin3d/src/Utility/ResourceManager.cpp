@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include "ResourceHandle.h"
+#include "../Graphics/GLHeaders.h" // this it큦 for OutputDebugString foo
 
 #include <tinystr.h>
 #include <tinyxml.h>
@@ -121,7 +122,7 @@ cResourceHandle cResourceManager::LoadResource(std::string lacNameID, const std:
 	cResourceHandle lHandle = SearchResource( lacNameID );
 	if (!lHandle.IsValidHandle() )
 	{
-		std::string lacPath = ReadXml( lacNameID, lacFile);//check Load from a XML
+		std::string &lacPath = ReadXml( lacNameID, lacFile);//check Load from a "Default.XML"
 
 		// Load the resource from the File
 		cResource * lpResource = LoadResourceInternal( lacNameID, lacPath );
@@ -184,8 +185,7 @@ cResourceHandle cResourceManager::AddResourceToPool(cResource *lpResource)
 
 std::string cResourceManager::ReadXml(std::string lacNameID, const std::string &lacPath)
 {
-
-	if ( lacPath.substr(lacPath.find_last_of(".") + 1) == "xml"  ) // Check if it has a ".xml" extension
+	if ( lacPath.substr(lacPath.find_last_of("/") + 1) == "Config.xml"  ) // first Check if it큦 our default file
 	{
 		TiXmlDocument doc( lacPath );
 	  
@@ -196,9 +196,10 @@ std::string cResourceManager::ReadXml(std::string lacNameID, const std::string &
 			TiXmlAttribute* pAttrib; 
 	
 			pElem = docHandle.FirstChildElement("Application").FirstChildElement("Resources").FirstChildElement().ToElement();
-	 
-		 // seeking in: <DOC> / <Application> / <Resources> / <Resource(Attribs: name = "someId" file = "somePath")> 
-
+			// seeking in: <DOC> / <Application> / <Resources> / <Resource(Attribs: name = "someId" file = "somePath")> 
+	
+			assert( pElem );// if not: file corruption (something wrong inside XML or some folder큦 path address )
+			
 			while ( pElem )
 			{
 				pAttrib = pElem->FirstAttribute();
@@ -207,10 +208,10 @@ std::string cResourceManager::ReadXml(std::string lacNameID, const std::string &
 			 	 	return	(pAttrib->Next()->ValueStr());// assert ( pAttrib->Next()->NameTStr() == "file" )
 				else
 					pElem = pElem->NextSiblingElement();// else keep seeking the next Element..
-
-			} 	// or else It means that there is something wrong inside XML or the folder큦 path address	
-			
-		}	return "./Src/Data/Scene/fail.DAE"; // Return default Resource 큦 path
-
-	}	return lacPath; // or else it큦 just a diferent extension (.dae, .dds, .jpg, etc)
+			}					
+		}
+		OutputDebugString("\n Resource not found in default list \n"); // else send an fail message..
+	//	return "./Src/Data/Scene/fail.DAE"; // Return default Resource 큦 path
+	}
+	return lacPath; // or else it큦 just a diferent thing,so go on..
 }

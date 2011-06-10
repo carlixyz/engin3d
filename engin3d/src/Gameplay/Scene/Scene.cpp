@@ -17,7 +17,6 @@
 //Init 
 bool cScene::Init(const std::string &lacNameId, const std::string &lacFile)
 {
-
   macFile = lacFile;
   mbLoaded = false;
 
@@ -26,10 +25,10 @@ bool cScene::Init(const std::string &lacNameId, const std::string &lacFile)
 
   //Load the scene
   const aiScene* lpScene = lImporter.ReadFile( macFile.c_str(),
-    aiProcess_CalcTangentSpace |
-    aiProcess_Triangulate      |
-    aiProcess_JoinIdenticalVertices |
-    aiProcess_SortByPType);
+  aiProcess_CalcTangentSpace |
+  aiProcess_Triangulate      |
+  aiProcess_JoinIdenticalVertices |
+  aiProcess_SortByPType);
 
   // If the import failed, report it
   if (!lpScene)
@@ -77,7 +76,6 @@ void cScene::ProcessScene( const aiScene* lpScene )
   //Materials
   if ( lpScene->HasMaterials())
   {
-
   cMaterialManager::Get().Init(lpScene->mNumMaterials);
 
 	 for (unsigned luiIndex = 0; luiIndex < lpScene->mNumMaterials; ++luiIndex )

@@ -7,6 +7,7 @@
 
 static int kuiStaticMesh = 0;
 static int kuiSkeletalMesh = 1;
+
 struct aiMesh;
 
 class cMesh : public cResource
@@ -16,9 +17,9 @@ class cMesh : public cResource
     virtual bool Init ( const std::string &lacNameID, void * lpMemoryData, int luiTypeID);
 	void Reload( void * lpMemoryData );
     virtual void Deinit();
-    virtual bool IsLoaded() { return mbLoaded; }
+    virtual bool IsLoaded()					{ return mbLoaded; }
     virtual void RenderMesh();
-	virtual void Update(float lfTimestep) {}
+	virtual void Update(float lfTimestep)	{ }
 
   protected:
     bool mbLoaded; 
@@ -28,7 +29,8 @@ class cMesh : public cResource
     unsigned mVboNormals; 
 	std::vector<unsigned> maVboTexture; 
     unsigned mVboIndex; 
-    bool mbHasNormals; // not used anymore ?
+
+	bool mbHasNormals; // 
     bool mbHasTexture;  //
 };
 
