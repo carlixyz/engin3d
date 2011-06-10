@@ -96,4 +96,67 @@ void cSkeletalMesh::RenderSkeleton(void)
 	lWorld.LoadIdentity();
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
 }
+void cSkeletalMesh::RenderMesh()
+{
+   // Position
+   glBindBuffer(GL_ARRAY_BUFFER, mpCoreModel->mVboVertices);
+   assert(glGetError() == GL_NO_ERROR);
+   glVertexPointer(3, GL_FLOAT, sizeof(float) * 3, 0);
+   assert(glGetError() == GL_NO_ERROR);
+
+   // Normals
+   glBindBuffer(GL_ARRAY_BUFFER, mpCoreModel->mVboNormals);
+   assert(glGetError() == GL_NO_ERROR);
+   glNormalPointer(GL_FLOAT, sizeof(float) * 3, 0);
+   assert(glGetError() == GL_NO_ERROR);
+   
+// This line has been added
+//-----------------------------------------------------------------
+// Set all the UV channels to the render
+   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+   assert(mpCoreModel->maVboTexture.size() <= 3);
+   static GLenum meTextureChannelEnum[] = { GL_TEXTURE0, GL_TEXTURE1, GL_TEXTURE2, GL_TEXTURE3 };
+   
+   for(unsigned luiTexCoordChannel = 0; luiTexCoordChannel < mpCoreModel->maVboTexture.size(); ++luiTexCoordChannel)
+   {
+	   // Texture coordinates
+	   glClientActiveTexture(meTextureChannelEnum[luiTexCoordChannel]);
+	   glBindBuffer(GL_ARRAY_BUFFER, mpCoreModel->maVboTexture[luiTexCoordChannel]);
+	   assert(glGetError() == GL_NO_ERROR);
+
+	   glTexCoordPointer(2, GL_FLOAT, sizeof(float)*2, 0);
+	   assert(glGetError() == GL_NO_ERROR); 
+   }
+
+   // Bone Index
+   glClientActiveTexture( meTextureChannelEnum[mpCoreModel->maVboTexture.size()]);
+   glBindBuffer(GL_ARRAY_BUFFER, mpCoreModel->mVboBoneIx);
+   assert(glGetError() == GL_NO_ERROR);
+   glTexCoordPointer(4, GL_FLOAT, sizeof(float)*4, 0);
+   assert(glGetError() == GL_NO_ERROR); 
+
+   // Weights
+   glBindBuffer(GL_ARRAY_BUFFER, mpCoreModel->mVboWeight);
+   assert(glGetError() == GL_NO_ERROR);
+   glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(unsigned char) * 4, 0);
+   assert(glGetError() == GL_NO_ERROR);
+
+   // Index
+   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mpCoreModel->mVboIndex);
+   assert(glGetError() == GL_NO_ERROR);
+
+   glEnableClientState(GL_VERTEX_ARRAY);
+   glEnableClientState(GL_NORMAL_ARRAY);
+   glEnableClientState(GL_COLOR_ARRAY);
+   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+   glDrawRangeElements(GL_TRIANGLES, 0, mpCoreModel->muiIndexCount, mpCoreModel->muiIndexCount, GL_UNSIGNED_INT, NULL);
+
+   assert(glGetError() == GL_NO_ERROR);
+
+   glDisableClientState(GL_COLOR_ARRAY);
+   glDisableClientState(GL_VERTEX_ARRAY);
+   glDisableClientState(GL_NORMAL_ARRAY);
+   glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+}
+
 

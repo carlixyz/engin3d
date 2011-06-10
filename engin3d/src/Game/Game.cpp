@@ -73,15 +73,28 @@ bool cGame::Init()
   cLuaManager::Get().DoFile( "./Src/Data/Scripts/CreatePatrol.lua"  );
 
   // Multiple Resources Loading
+    mFontHandle = cFontManager::Get().LoadResource("Font1");  //same as LoadResource("Font1","./Src/Data/Fonts/Test1.fnt" );
+
   // mScene = cSceneManager::Get().LoadResource("Dragon"); // some conflict with SkeletalManager
   //mScene = cSceneManager::Get().LoadResource("Dragon", "./Src/Data/Scene/dragonsmall.DAE");
 
+
+	//  just more testing code, forget it later
+// ------------------------------------ For testing porpouses ------------------------------------
   cSkeletalManager::Get().LoadResource("Skeleton", "./Src/Data/Skeletal/SkeletonModel.xml");
   mSkeletalMesh = cMeshManager::Get().LoadResource("Skeleton1", "Skeleton", kuiSkeletalMesh);
   cSkeletalMesh *lpSkeletonMesh = (cSkeletalMesh *) mSkeletalMesh.GetResource();
   lpSkeletonMesh->PlayAnim("Idle", 1.0f, 1.0f);
 
-  mFontHandle = cFontManager::Get().LoadResource("Font1");  //same as LoadResource("Font1","./Src/Data/Fonts/Test1.fnt" );
+  cResourceHandle lMaterial = cMaterialManager::Get().LoadResource( "Skeleton", "./Src/Data/Material/SkeletonMaterial.xml");
+  assert(lMaterial.IsValidHandle() );
+  mObject.AddMesh(mSkeletalMesh, lMaterial);
+  cMatrix lMatrix;
+  lMatrix.LoadScale(0.01f);
+  mObject.SetWorldMatrix(lMatrix);
+// ------------------------------------ For testing porpouses ------------------------------------
+
+
  
   return lbResult;
 }
@@ -96,10 +109,11 @@ void cGame::Update(float lfTimeStep)
   cInputManager::Get().Update(lfTimeStep);
   cCharacterManager::Get().Update(lfTimeStep);
 
+  // ------------------------------------ For testing porpouses ------------------------------------
   cSkeletalMesh *lpSkeletonMesh = (cSkeletalMesh *) mSkeletalMesh.GetResource();
   lpSkeletonMesh->Update(lfTimeStep);
+  mObject.Update(lfTimeStep);
 
-  // Some simple tests with animation
   static bool mbJogging = false;
   if (BecomePressed( eIA_PlayJog ) && !mbJogging)
   {
@@ -122,6 +136,8 @@ void cGame::Update(float lfTimeStep)
   {
 	  lpSkeletonMesh->StopAnim("Wave", 0.1f);
   }
+// ------------------------------------ For testing porpouses ------------------------------------
+
  
 	mbFinish = mbFinish || cWindow::Get().GetCloseApplication() || IsPressed(eIA_CloseApplication);
 	if (mbFinish)
@@ -158,8 +174,12 @@ void cGame::Render()
 	// Character Rendering  
  		cCharacterManager::Get().Render();
 
+// ------------------------------------ For testing porpouses ------------------------------------
+	mObject.Render();
 	cSkeletalMesh *lpSkeletonMesh = (cSkeletalMesh *) mSkeletalMesh.GetResource();
 	lpSkeletonMesh->RenderSkeleton();
+// ------------------------------------ For testing porpouses ------------------------------------
+
 
 	// 4) Render 3D with transparency
 	// ---------------------------------------------------------------------------------------

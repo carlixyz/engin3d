@@ -4,6 +4,9 @@
 #include "../Graphics/GraphicManager.h"
 #include "../Graphics/Fonts/FontManager.h"
 
+// ------------------------------------ For testing porpouses ------------------------------------
+#include "../Gameplay/Scene/Object.h" // Just for testing porpouses, quit everything later
+
 class cGame : public cSingleton<cGame>
 {
  private:  
@@ -16,7 +19,12 @@ class cGame : public cSingleton<cGame>
   cCamera m2DCamera;
   cResourceHandle mScene;
   cResourceHandle mFontHandle;
+
+  // ------------------------------------ For testing porpouses ------------------------------------
   cResourceHandle mSkeletalMesh;
+  cObject mObject;
+  // ------------------------------------ For testing porpouses ------------------------------------
+
 
 public:
   //Method to initialize the game

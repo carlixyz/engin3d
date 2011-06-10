@@ -1,0 +1,5 @@
+<Material effectName="skeletalEffect" effectPath="./Src/Data/Shader/simple.fx">
+  
+	<Texture name="Diffuse_0" file="./Src/Data/Scene/images/n-200.dds"/>
+  
+</Material>

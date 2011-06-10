@@ -703,6 +703,26 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Material"
+				>
+				<File
+					RelativePath=".\src\Data\Material\SkeletonMaterial.xml"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Shader"
+				>
+				<File
+					RelativePath="..\..\..\Repositories\proyecto-galaxy-olympics\auroraengine\AuroraEngine\AuroraEngine\Data\Shader\simple.fx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Data\Shader\skeletal.fx"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Character"

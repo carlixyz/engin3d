@@ -48,3 +48,13 @@ void cObject::Render()
   }
 
 }
+
+void cObject::Update( float lfTimestep )
+{
+   for ( unsigned luiIndex = 0; luiIndex < mMeshHandles.size(); 
+                                                         ++luiIndex )
+   {
+      cMesh *lpMesh = (cMesh *)mMeshHandles[luiIndex].GetResource();
+      lpMesh->Update(lfTimestep);
+   }
+}
