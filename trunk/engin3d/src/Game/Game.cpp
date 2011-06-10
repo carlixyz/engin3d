@@ -98,6 +98,30 @@ void cGame::Update(float lfTimeStep)
 
   cSkeletalMesh *lpSkeletonMesh = (cSkeletalMesh *) mSkeletalMesh.GetResource();
   lpSkeletonMesh->Update(lfTimeStep);
+
+  // Some simple tests with animation
+  static bool mbJogging = false;
+  if (BecomePressed( eIA_PlayJog ) && !mbJogging)
+  {
+	  mbJogging = true;
+	  lpSkeletonMesh->PlayAnim("Jog", 1.0f, 0.1f);
+	  lpSkeletonMesh->StopAnim("Idle", 0.1f);
+  }
+  else if( IsReleased( eIA_PlayJog ) && mbJogging)
+  {
+	  mbJogging = false;
+	  lpSkeletonMesh->PlayAnim("Idle", 1.0f, 0.1f);
+	  lpSkeletonMesh->StopAnim("Jog", 0.1f);
+  }
+
+    if (BecomePressed( eIA_PlaySalute ))
+  {
+	  lpSkeletonMesh->PlayAnim("Wave", 1.0f, 0.1f);
+  }
+  else if( IsReleased( eIA_PlaySalute ) )
+  {
+	  lpSkeletonMesh->StopAnim("Wave", 0.1f);
+  }
  
 	mbFinish = mbFinish || cWindow::Get().GetCloseApplication() || IsPressed(eIA_CloseApplication);
 	if (mbFinish)

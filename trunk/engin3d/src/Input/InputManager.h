@@ -10,6 +10,8 @@
 
 //Macro defined to have the code a little bit clean
 #define IsPressed(ACTION) cInputManager::Get().GetAction(ACTION).GetIsPressed()
+#define BecomePressed(ACTION) cInputManager::Get().GetAction(ACTION).GetBecomePressed()
+#define IsReleased(ACTION) cInputManager::Get().GetAction(ACTION).GetIsReleased()
 
 class OIS::InputManager;
 
