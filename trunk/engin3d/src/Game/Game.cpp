@@ -73,9 +73,9 @@ bool cGame::Init()
   cLuaManager::Get().DoFile( "./Src/Data/Scripts/CreatePatrol.lua"  );
 
   // Multiple Resources Loading
-    mFontHandle = cFontManager::Get().LoadResource("Font1");  //same as LoadResource("Font1","./Src/Data/Fonts/Test1.fnt" );
+  mFontHandle = cFontManager::Get().LoadResource("Font1");  //same as LoadResource("Font1","./Src/Data/Fonts/Test1.fnt" );
 
-  // mScene = cSceneManager::Get().LoadResource("Dragon"); // some conflict with SkeletalManager
+//  mScene = cSceneManager::Get().LoadResource("Dragon"); // some conflict with SkeletalManager
   //mScene = cSceneManager::Get().LoadResource("Dragon", "./Src/Data/Scene/dragonsmall.DAE");
 
 

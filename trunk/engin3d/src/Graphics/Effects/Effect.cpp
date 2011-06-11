@@ -148,3 +148,41 @@ void cEffect::SetParam(const std::string &lacName, cResourceHandle lParamValue)
 		cgGLSetupSampler(lParam, luiTextureHandle);
 	}
 }
+void cEffect::SetParam(const std::string &lacName, const float * lfParam, unsigned liCount )
+{
+   static const unsigned kuiAuxiliarBuffer = 256 * 4;
+   static float gFullArray[kuiAuxiliarBuffer];
+   CGparameter lParam = cgGetNamedEffectParameter(mEffect, lacName.c_str());
+   if (lParam)
+   {
+      int liNRows = cgGetParameterRows(lParam);
+	  int liNCols = cgGetParameterColumns(lParam);
+	  int liASize = cgGetArrayTotalSize(lParam);
+	  int liNTotal = liNRows*liNCols;
+
+	  if (liASize > 0)
+	  {
+		  liNTotal *= liASize;
+		  if ( liCount < liNTotal )
+		  {
+			  assert(kuiAuxiliarBuffer > liNTotal);
+			  assert(kuiAuxiliarBuffer > liCount);
+
+			  memcpy(gFullArray, lfParam, sizeof(float) * liCount);
+			  cgSetParameterValuefr(lParam, liNTotal, gFullArray);
+		  }
+		  else
+		  {
+			  cgSetParameterValuefr(lParam, liCount, lfParam);
+		  }
+		  
+		  CGerror err = cgGetError();
+
+		  if (err != CG_NO_ERROR)
+		  {
+			OutputDebugStr(cgGetErrorString( err ));
+			OutputDebugStr("\n");
+		  }
+	  }
+   }
+}

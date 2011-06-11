@@ -96,6 +96,50 @@ void cSkeletalMesh::RenderSkeleton(void)
 	lWorld.LoadIdentity();
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
 }
+
+void cSkeletalMesh::PrepareRender(cResourceHandle lMaterial)
+{
+	struct sMatrix3x4 {
+		float r00, r01, r02, tx;
+		float r10, r11, r12, ty;
+		float r20, r21, r22, tz;
+		};
+
+	sMatrix3x4 lMatrices[ 80 ];
+	
+	typedef std::vector< CalBone * > cVBones;
+
+	const cVBones &lBones = mpCal3DModel->getSkeleton()->getVectorBone( );
+
+	int liBoneCount = lBones.size();
+	assert(liBoneCount <= 80);
+	
+	for( unsigned luiIndex = 0; luiIndex < (unsigned)liBoneCount; ++luiIndex )
+     {
+		 const CalMatrix &lCalMatrix = lBones[ luiIndex ]->getTransformMatrix( );
+		 const CalVector &lCalTrans = lBones[ luiIndex ]->getTranslationBoneSpace( );
+
+		 // Convert the CalMatrix in a 3x4 transposed matrix
+		 lMatrices[ luiIndex ].r00 = lCalMatrix.dxdx;
+		 lMatrices[ luiIndex ].r01 = lCalMatrix.dxdy;
+		 lMatrices[ luiIndex ].r02 = lCalMatrix.dxdz;
+		 lMatrices[ luiIndex ].tx  = lCalTrans.x;
+		 lMatrices[ luiIndex ].r10 = lCalMatrix.dydx;
+		 lMatrices[ luiIndex ].r11 = lCalMatrix.dydy;
+		 lMatrices[ luiIndex ].r12 = lCalMatrix.dydz;
+		 lMatrices[ luiIndex ].ty  = lCalTrans.y;
+		 lMatrices[ luiIndex ].r20 = lCalMatrix.dzdx;
+		 lMatrices[ luiIndex ].r21 = lCalMatrix.dzdy;
+		 lMatrices[ luiIndex ].r22 = lCalMatrix.dzdz;
+		 lMatrices[ luiIndex ].tz  = lCalTrans.z;
+	}
+	
+	cMaterial* lpMaterial = (cMaterial*)lMaterial.GetResource();
+	cEffect * lpEffect = (cEffect *)lpMaterial->GetEffect().GetResource();
+	
+	lpEffect->SetParam("BonesRow", &lMatrices[0].r00, lBones.size( ) * 12 );
+}
+
 void cSkeletalMesh::RenderMesh()
 {
    // Position

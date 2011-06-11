@@ -34,6 +34,7 @@ void cObject::Render()
     
 	// Prepare all the parameters for the render
 	lpMaterial->PrepareRender();
+	lpMesh->PrepareRender(mMaterialHandles[luiIndex]);
 
 	// Set the first pass
 	bool lbContinue = lpMaterial->SetFirstPass();
@@ -42,11 +43,11 @@ void cObject::Render()
 	{
 		//Render Mesh
 		lpMesh->RenderMesh();
+
 		// Prepare the next Pass
 		lbContinue = lpMaterial->SetNextPass();
 	}
   }
-
 }
 
 void cObject::Update( float lfTimestep )
