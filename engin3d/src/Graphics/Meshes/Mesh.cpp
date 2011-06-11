@@ -139,6 +139,9 @@ void cMesh::Deinit()
   glDeleteBuffers(1, &mVboIndex);
 }
 
+
+
+
 //Render mesh
 void cMesh::RenderMesh()
 {

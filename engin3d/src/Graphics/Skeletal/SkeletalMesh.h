@@ -19,7 +19,8 @@ class cSkeletalMesh : public cMesh
 		virtual void Update(float lfTimeStep);
 		virtual void RenderMesh();
 		virtual bool IsLoaded() { return (mpCal3DModel != NULL); }
-		
+
+		void PrepareRender(cResourceHandle lMaterial);		
 		void RenderSkeleton();
 		bool PlayAnim(const std::string &lacAnimName,
 						float lfWeight, float lfDelayIn, float lfDelayOut = 0.0f );

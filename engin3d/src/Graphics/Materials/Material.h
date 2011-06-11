@@ -27,6 +27,8 @@ class cMaterial : public cResource
 	void PrepareRender();
 	bool SetFirstPass();
 	bool SetNextPass();
+
+	cResourceHandle GetEffect() { return mEffect; }
  
 private:
 	void ReadAllTextures(aiMaterial * lpAiMaterial, cMaterialData * lpMaterialData);
