@@ -57,11 +57,11 @@ bool cGame::Init()
   cInputManager::Get().Init(kaActionMapping, eIA_Count);
 
   // Init Texture manager
-  cMaterialManager::Get().Init( 15 );
-  cTextureManager::Get().Init( 5 ); 
+  cMaterialManager::Get().Init( 20 );
+  cTextureManager::Get().Init( 20 ); 
   cFontManager::Get().Init( 1);
   cEffectManager::Get().Init( 5 );
-  cMeshManager::Get().Init(5);
+  cMeshManager::Get().Init(20);
   cSceneManager::Get().Init(5); // some conflict with SkeletalManager
   cSkeletalManager::Get().Init(5);
 
@@ -75,7 +75,7 @@ bool cGame::Init()
   // Multiple Resources Loading
   mFontHandle = cFontManager::Get().LoadResource("Font1");  //same as LoadResource("Font1","./Src/Data/Fonts/Test1.fnt" );
 
-//  mScene = cSceneManager::Get().LoadResource("Dragon"); // some conflict with SkeletalManager
+  mScene = cSceneManager::Get().LoadResource("Dragon"); // some conflict with SkeletalManager
   //mScene = cSceneManager::Get().LoadResource("Dragon", "./Src/Data/Scene/dragonsmall.DAE");
 
 
@@ -93,8 +93,6 @@ bool cGame::Init()
   lMatrix.LoadScale(0.01f);
   mObject.SetWorldMatrix(lMatrix);
 // ------------------------------------ For testing porpouses ------------------------------------
-
-
  
   return lbResult;
 }
@@ -169,7 +167,7 @@ void cGame::Render()
 		cGraphicManager::Get().DrawAxis(); 
 	
 	 //Render scene
-//		((cScene *)mScene.GetResource())->Render(); // some conflict with SkeletalManager
+		((cScene *)mScene.GetResource())->Render(); // some conflict with SkeletalManager
 
 	// Character Rendering  
  		cCharacterManager::Get().Render();

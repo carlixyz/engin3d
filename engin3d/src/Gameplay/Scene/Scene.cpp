@@ -60,7 +60,7 @@ void cScene::Deinit()
 //ProcessScene
 void cScene::ProcessScene( const aiScene* lpScene )
 {
-  cMeshManager::Get().Init(lpScene->mNumMeshes);
+//  cMeshManager::Get().Init(lpScene->mNumMeshes); // Use this here or in Game.cpp
 
   // Meshes
   for (unsigned luiIndex = 0; luiIndex < lpScene->mNumMeshes; ++luiIndex)
@@ -76,7 +76,8 @@ void cScene::ProcessScene( const aiScene* lpScene )
   //Materials
   if ( lpScene->HasMaterials())
   {
-  cMaterialManager::Get().Init(lpScene->mNumMaterials);
+//  cMaterialManager::Get().Init(lpScene->mNumMaterials); // Use this here or in Game.cpp
+
 
 	 for (unsigned luiIndex = 0; luiIndex < lpScene->mNumMaterials; ++luiIndex )
 	 {
