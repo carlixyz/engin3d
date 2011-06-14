@@ -154,7 +154,7 @@ void cMaterial::PrepareRender()
 
 	// Set Propierties
 	cMatrix lWVPMatrix = cGraphicManager::Get().GetWVPMatrix();
-	lpEffect->SetParam("WorldViewProj", lWVPMatrix );
+	lpEffect->SetParam("worldViewProj", lWVPMatrix );
 	cCamera * lpCamera = cGraphicManager::Get().GetActiveCamera();
 	cVec3 lCameraPos = lpCamera->GetView().GetPosition();
 	lpEffect->SetParam("cameraPos", lCameraPos );

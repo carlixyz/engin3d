@@ -54,7 +54,7 @@ bool cGame::Init()
   m2DCamera.SetOrtho(lfLeft,lfRight,lfBottom,lfTop, 0.1f, 100.0f);
   m2DCamera.SetLookAt( cVec3(0.0f,0.0f,1.0f), cVec3(0.0f, 0.f, 0.f) );
 
-  cInputManager::Get().Init(kaActionMapping, eIA_Count);
+ 
 
   // Init Texture manager
   cMaterialManager::Get().Init( 20 );
@@ -64,6 +64,7 @@ bool cGame::Init()
   cMeshManager::Get().Init(20);
   cSceneManager::Get().Init(5); // some conflict with SkeletalManager
   cSkeletalManager::Get().Init(5);
+  cInputManager::Get().Init(kaActionMapping, eIA_Count);
 
   // Character & Behaviour Manager initialization
   cCharacterManager::Get().Init();
@@ -213,6 +214,8 @@ void cGame::Render()
 //Method to deinitialize the game
 bool cGame::Deinit()
 {
+
+
   //Deinit all Managers
   cInputManager::Get().Deinit();
 

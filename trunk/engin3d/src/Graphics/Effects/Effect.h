@@ -27,7 +27,7 @@ class cEffect : public cResource
 		void SetParam( const std::string &lacName, const cVec3 &lParam );
 		void SetParam( const std::string &lacName, const cVec4 &lParam );
 		void SetParam( const std::string &lacName, cResourceHandle lParam );
-		void SetParam(const std::string &lacName, const float * lfParam, unsigned liCount );
+		void SetParam(const std::string &lacName, const float * lfParam, int liCount ); // originally: unsigned liCount
 
 	private:
 		std::string macFile;

@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "../MathLib/MathLib.h"
+#include "../Libraries/MathLib/MathLib.h"
 
 class cCamera
 {
