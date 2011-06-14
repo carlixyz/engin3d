@@ -5,7 +5,7 @@
 #include "GLHeaders.h"
 #include "Camera.h"
 #include "../Window/Window.h"
-#include "../MathLib/MathLib.h"
+#include "../Libraries/MathLib/MathLib.h"
 
 class cWindow;
 

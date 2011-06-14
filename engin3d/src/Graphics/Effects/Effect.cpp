@@ -148,7 +148,7 @@ void cEffect::SetParam(const std::string &lacName, cResourceHandle lParamValue)
 		cgGLSetupSampler(lParam, luiTextureHandle);
 	}
 }
-void cEffect::SetParam(const std::string &lacName, const float * lfParam, unsigned liCount )
+void cEffect::SetParam(const std::string &lacName, const float * lfParam, int liCount )
 {
    static const unsigned kuiAuxiliarBuffer = 256 * 4;
    static float gFullArray[kuiAuxiliarBuffer];

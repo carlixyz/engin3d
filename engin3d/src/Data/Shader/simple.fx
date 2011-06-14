@@ -33,7 +33,7 @@ VS_OUTPUT myvs( const VS_INPUT IN )
 {
 	VS_OUTPUT OUT;
 	float4 position = float4(IN.position, 1.0);
-	OUT.position = mul( WorldViewProj, position );
+	OUT.position = mul( worldViewProj, position );
 	OUT.tex0 = IN.tex0;
 	return OUT;
 }
@@ -59,7 +59,12 @@ technique Technique0
         Zenable  = true;
         CullFaceEnable = false;
 
+//        VertexShader = compile vp30 myvs();
+//        PixelShader  = compile fp30 myps();
+        
         VertexShader = compile arbvp1 myvs();
         PixelShader  = compile arbfp1 myps();
+        
+        
     }
 }

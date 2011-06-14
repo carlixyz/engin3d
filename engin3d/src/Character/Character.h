@@ -1,7 +1,7 @@
 #ifndef CCHARACTER_H
 #define	CCHARACTER_H
 
-#include "../MathLib/MathLib.h"
+#include "../Libraries/MathLib/MathLib.h"
 #include "Behaviour/BehaviourManager.h"
 
 class cCharacter 
