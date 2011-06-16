@@ -3,12 +3,13 @@
 #include <assimp.hpp>
 #include <aiScene.h>
 #include <aiPostProcess.h>
-#include <cassert>
 #include "SkeletalCoreModel.h"
 #include "../GraphicManager.h"
-#include "../../MathLib/MathLib.h"
+#include "../../Libraries/MathLib/MathLib.h"
 #include "../Materials/Material.h"
 #include "../Effects/Effect.h"
+
+#include <cassert>
 
 bool cSkeletalMesh::Init(const std::string &lacNameID, void *lpMemoryData, int liDataType)
 {
@@ -124,10 +125,12 @@ void cSkeletalMesh::PrepareRender(cResourceHandle lMaterial)
 		 lMatrices[ luiIndex ].r01 = lCalMatrix.dxdy;
 		 lMatrices[ luiIndex ].r02 = lCalMatrix.dxdz;
 		 lMatrices[ luiIndex ].tx  = lCalTrans.x;
+
 		 lMatrices[ luiIndex ].r10 = lCalMatrix.dydx;
 		 lMatrices[ luiIndex ].r11 = lCalMatrix.dydy;
 		 lMatrices[ luiIndex ].r12 = lCalMatrix.dydz;
 		 lMatrices[ luiIndex ].ty  = lCalTrans.y;
+
 		 lMatrices[ luiIndex ].r20 = lCalMatrix.dzdx;
 		 lMatrices[ luiIndex ].r21 = lCalMatrix.dzdy;
 		 lMatrices[ luiIndex ].r22 = lCalMatrix.dzdz;

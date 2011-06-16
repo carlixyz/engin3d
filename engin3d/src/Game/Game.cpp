@@ -127,14 +127,10 @@ void cGame::Update(float lfTimeStep)
 	  lpSkeletonMesh->StopAnim("Jog", 0.1f);
   }
 
-    if (BecomePressed( eIA_PlaySalute ))
-  {
-	  lpSkeletonMesh->PlayAnim("Wave", 1.0f, 0.1f);
-  }
-  else if( IsReleased( eIA_PlaySalute ) )
-  {
-	  lpSkeletonMesh->StopAnim("Wave", 0.1f);
-  }
+  if (BecomePressed( eIA_PlaySalute ) )  lpSkeletonMesh->PlayAnim("Wave", 1.0f, 0.1f);
+  else
+	  if( IsReleased( eIA_PlaySalute ) ) lpSkeletonMesh->StopAnim("Wave", 0.1f);
+ 
 // ------------------------------------ For testing porpouses ------------------------------------
 
  

@@ -94,9 +94,16 @@ void cCharacter::SetActiveBehaviour(cBehaviourBase *lpBehaviour)
 }
 void cCharacter::SetActiveBehaviour( cBehaviourBase * lpBehaviour, float posX, float posY, float posZ )
 {
+
+		if ( mpActiveBehaviour )	mpActiveBehaviour->Deinit();
+
 		mpActiveBehaviour = lpBehaviour;
+
+		if ( mpActiveBehaviour )
+		{
 		mpActiveBehaviour->Init(this);
 		mpActiveBehaviour->SetTarget(  posX, posY, posZ );
+		}
 }
 
 

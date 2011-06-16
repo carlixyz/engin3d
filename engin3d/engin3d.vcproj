@@ -247,42 +247,6 @@
 				RelativePath=".\src\Utility\Util.h"
 				>
 			</File>
-			<Filter
-				Name="Input"
-				>
-				<File
-					RelativePath=".\src\Input\GenericDevice.h"
-					>
-				</File>
-				<File
-					RelativePath=".\src\Input\InputAction.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\Input\InputAction.h"
-					>
-				</File>
-				<File
-					RelativePath=".\src\Input\InputEntry.h"
-					>
-				</File>
-				<File
-					RelativePath=".\src\Input\InputManager.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\Input\InputManager.h"
-					>
-				</File>
-				<File
-					RelativePath=".\src\Input\Keyboard.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\Input\Keyboard.h"
-					>
-				</File>
-			</Filter>
 		</Filter>
 		<Filter
 			Name="Window"
@@ -1071,6 +1035,42 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Input"
+			>
+			<File
+				RelativePath=".\src\Input\GenericDevice.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\InputAction.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\InputAction.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\InputEntry.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\InputManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\InputManager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\Keyboard.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Input\Keyboard.h"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\src\main.cpp"

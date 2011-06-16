@@ -3,7 +3,7 @@
 
 #include <string>
 #include "../GLHeaders.h"
-#include "../../Mathlib/Mathlib.h"
+#include "../../Libraries/Mathlib/Mathlib.h"
 #include "../../Utility/Resource.h"
 #include "../../Utility/ResourceHandle.h"
 
