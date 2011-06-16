@@ -1,6 +1,6 @@
 #include "SkeletalCoreModel.h"
 #include "SkeletalMesh.h"
-#include "../../MathLib/MathLib.h"
+#include "../../Libraries/MathLib/MathLib.h"
 #include "../../Utility/FileUtils.h"
 #include <tinystr.h>
 #include <tinyxml.h>

@@ -4,7 +4,7 @@
 #include <aiPostProcess.h>	// Post processing flags
 #include <cassert>
 #include "EffectManager.h"
-#include "../Textures/Texture.h" // << TO CHECK THIS ONE
+#include "../Textures/Texture.h" 
 
 bool cEffect::Init(const std::string &lacNameId, const std::string &lacFile)
 {
@@ -24,7 +24,8 @@ bool cEffect::Init(const std::string &lacNameId, const std::string &lacFile)
 		OutputDebugString("Unable to create effect\n");
 		const char *lacListing = cgGetLastListing(lCGContext);
 		if (lacListing)
-		{
+	
+	{
 			char lacBuffer[512];
 			sprintf(lacBuffer, "%s\n", lacListing);
 			OutputDebugString(lacBuffer);
@@ -40,11 +41,19 @@ bool cEffect::Init(const std::string &lacNameId, const std::string &lacFile)
 			char lacBuffer[512];
 			sprintf(lacBuffer, "Technique %s did not validate. Skipping. \n", cgGetTechniqueName(lTechnique));
 			OutputDebugString( lacBuffer );
+
+			const char *lacListing = cgGetLastListing(lCGContext);
+			if (lacListing)
+			{
+				char lacBuffer[512];
+				sprintf(lacBuffer, "%s\n", lacListing);
+				OutputDebugString(lacBuffer);
+			}
 		}
 		lTechnique = cgGetNextTechnique(lTechnique);
 	}
 	mbLoaded = true;
-	return mbLoaded;
+	return true;
 }
 
 void cEffect::Deinit()

@@ -1,7 +1,9 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 #include "../../Utility/ResourceHandle.h"
-#include "../../MathLib/Matrix/Matrix.h"
+#include "../../Libraries/MathLib/Matrix/Matrix.h"
+
+#include <vector>
 
 class cObject
 {
