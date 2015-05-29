@@ -1,0 +1,1 @@
+a small engine 3d project with a smart and scalable structure, running in windows API.
